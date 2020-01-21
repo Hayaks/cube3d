@@ -1,0 +1,17 @@
+R 1920 1080
+NO ./north_texture
+SO ./sud_texture
+WE ./wesh_texture
+EA ./east_texture
+
+S ./sprite_texture
+F 220,100,0
+C 225,30,0
+
+11111111
+10000001
+10000001
+10011001
+10000001
+10000001
+11111111
