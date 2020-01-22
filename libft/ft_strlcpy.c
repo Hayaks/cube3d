@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/04 12:12:36 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 15:01:00 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
+#include "libft.h"
 
-#include <stdlib.h>
-
-typedef struct	s_struct
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
+	size_t	i;
 
-#endif
+	if (!src)
+		return (0);
+	if (size == 0)
+		return (ft_strlen((char*)src));
+	i = 0;
+	while (src[i] && i < size - 1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (ft_strlen((char*)src));
+}

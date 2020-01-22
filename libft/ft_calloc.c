@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/07 14:19:13 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 15:01:57 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
+#include "libft.h"
 
-#include <stdlib.h>
-
-typedef struct	s_struct
+void	*ft_calloc(size_t count, size_t size)
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
+	void *memoire;
 
-#endif
+	memoire = malloc(count * size);
+	if (memoire)
+		ft_bzero(memoire, count * size);
+	return (memoire);
+}

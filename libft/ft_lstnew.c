@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/13 09:52:34 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 15:06:38 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
+#include "libft.h"
 
-#include <stdlib.h>
-
-typedef struct	s_struct
+t_list	*ft_lstnew(void *content)
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
+	t_list	*list;
 
-#endif
+	if (!(list = malloc(sizeof(*list))))
+		return (0);
+	if (!(list->content = malloc(sizeof(*content))))
+		return (0);
+	list->content = content;
+	list->next = NULL;
+	return (list);
+}

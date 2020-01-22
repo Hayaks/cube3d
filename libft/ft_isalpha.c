@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/04 13:45:44 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 14:59:45 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
-
-#include <stdlib.h>
-
-typedef struct	s_struct
+int	ft_isalpha(int c)
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
-
-#endif
+	if (c > 122 || (c < 97 && c > 90)
+	|| c < 65)
+		return (0);
+	else
+		return (1);
+}

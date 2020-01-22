@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/13 10:51:41 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 15:07:35 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
+#include "libft.h"
 
-#include <stdlib.h>
-
-typedef struct	s_struct
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
+	t_list *list;
 
-#endif
+	if (!alst)
+		return ;
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	list = *alst;
+	while (list->next)
+		list = list->next;
+	list->next = new;
+}

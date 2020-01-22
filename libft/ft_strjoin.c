@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/08 09:10:38 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 15:02:47 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
+#include "libft.h"
 
-#include <stdlib.h>
-
-typedef struct	s_struct
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
+	char	*chaine;
+	int		i;
+	int		j;
 
-#endif
+	if (!s1 || !s2)
+		return (0);
+	if (!(chaine = malloc(sizeof(chaine) *
+		(ft_strlen(s1) + ft_strlen(s2) + 1))))
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		chaine[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		chaine[j++] = s2[i++];
+	chaine[j] = '\0';
+	return (chaine);
+}

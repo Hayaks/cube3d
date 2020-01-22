@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Created: 2019/11/11 15:39:10 by jsaguez           #+#    #+#             */
+/*   Updated: 2019/11/13 15:04:54 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
+#include "libft.h"
 
-#include <stdlib.h>
-
-typedef struct	s_struct
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char		**r;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		**f;
-	char		**c;
-}				t_struct;
+	char	*chaine;
+	int		i;
 
-#endif
+	i = 0;
+	if (!s || !f)
+		return (0);
+	chaine = ft_strdup(s);
+	if (!chaine)
+		return (0);
+	while (chaine[i])
+	{
+		chaine[i] = f(i, chaine[i]);
+		i++;
+	}
+	chaine[i] = 0;
+	return (chaine);
+}
