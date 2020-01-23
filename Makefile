@@ -2,7 +2,7 @@ SRCSDIR		= ./srcs/
 
 INCLUDESDIR	= ./includes/
 
-SRCS		= 	$(SRCSDIR)ft_printf.c
+SRCS		= 	$(SRCSDIR)parsing.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 
