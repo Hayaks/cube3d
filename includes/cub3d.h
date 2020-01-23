@@ -28,6 +28,7 @@ typedef struct	s_struct
 	char		*so;
 	char		*we;
 	char		*ea;
+	char		*s;
 	char		**f;
 	char		**c;
 }				t_struct;
