@@ -13,7 +13,13 @@
 #	ifndef CUB3D_H
 # 	define CUB3D_H
 
+#	define BUFFER_SIZE 32
+#	define OPTIONS "RNSWEFC1"
+
 #include <stdlib.h>
+#include <stdio.h> //printf
+#include <unistd.h> //close
+#include <fcntl.h> //open
 
 typedef struct	s_struct
 {
@@ -25,5 +31,7 @@ typedef struct	s_struct
 	char		**f;
 	char		**c;
 }				t_struct;
+
+int		get_next_line(int const fd, char **line);
 
 #endif
