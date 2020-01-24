@@ -4,16 +4,12 @@ void ft_options(char *line, t_struct *map, int i)
 {
     if (line[i] == 'R')
         map->r = ft_split(line, ' ');
-    if (line[i] == 'N' && line[i + 1] == 'O')
+    if ((line[i] == 'N' && line[i + 1] == 'O') ||
+    (line[i] == 'S' && line[i + 1] == 'O') ||
+    (line[i] == 'W' && line[i + 1] == 'E') ||
+    (line[i] == 'E' && line[i + 1] == 'S') ||
+    (line[i] == 'S' && line[i + 1] == ' '))
         map->no = ft_strdup(line);
-    if (line[i] == 'S' && line[i + 1] == 'O')
-        map->so = ft_strdup(line);
-    if (line[i] == 'W' && line[i + 1] == 'E')
-        map->we = ft_strdup(line);
-    if (line[i] == 'E' && line[i + 1] == 'A')
-        map->ea = ft_strdup(line);
-    if (line[i] == 'S' && line[i + 1] == ' ')
-        map->s = ft_strdup(line);
     if (line[i] == 'F')
         map->r = ft_split(line, ',');
     if (line[i] == 'C')
