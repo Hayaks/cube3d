@@ -7,6 +7,7 @@ void    ft_newmap(t_struct *map)
     map->so = NULL;
     map->we = NULL;
     map->ea = NULL;
+    map->s = NULL;
     map->f = NULL;
     map->c = NULL;
 }
