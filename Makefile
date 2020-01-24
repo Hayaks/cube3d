@@ -2,7 +2,7 @@ SRCSDIR		= ./srcs/
 
 INCLUDESDIR	= ./includes/
 
-SRCS		= 	$(SRCSDIR)parsing.c / $(SRCSDIR)get_next_line.c
+SRCS		= 	$(SRCSDIR)parsing.c $(SRCSDIR)get_next_line.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 
@@ -22,17 +22,19 @@ CFLAGS		= -Wall -Werror -Wextra
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) $(INCLUDES)
 
 $(NAME):	$(OBJS)
-			make -C ./libft/
-			cp ./libft/libft.a ./$(NAME)
+			@make -C ./libft/
+			@cp ./libft/libft.a ./$(NAME)
 			$(LIB) $(NAME) $(OBJS)
 
 all:		$(NAME)
 
 clean: 		
 			$(RM) $(OBJS)
+			@make clean -C ./libft/
 
 fclean:		clean
 			$(RM) $(NAME)
+			@make fclean -C ./libft/
 
 re:			fclean all
 

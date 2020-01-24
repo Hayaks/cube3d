@@ -17,7 +17,7 @@ static int	ft_nb_size(unsigned int nb, int base)
 	int	size;
 
 	size = 0;
-	while (nb >= base)
+	while (nb >= (unsigned int)base)
 	{
 		nb = nb / base;
 		size++;

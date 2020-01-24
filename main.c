@@ -28,8 +28,8 @@ int	main(int ac, char **av)
         fd = open(av[1], O_RDONLY);
         while ((ret = get_next_line(fd, &line)) > 0)
         {
-            parsing(line, map);
+            ft_parsing(line, map);
             free(line);
-        }     
+        }
     }
 }

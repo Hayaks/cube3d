@@ -12,7 +12,6 @@
 
 #	ifndef CUB3D_H
 # 	define CUB3D_H
-
 #	define BUFFER_SIZE 32
 #	define OPTIONS "RNSWEFC1"
 
@@ -20,6 +19,7 @@
 #include <stdio.h> //printf
 #include <unistd.h> //close
 #include <fcntl.h> //open
+#include "../libft/libft.h"
 
 typedef struct	s_struct
 {
@@ -34,5 +34,6 @@ typedef struct	s_struct
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
+void	ft_parsing(char *line, t_struct *map);
 
 #endif
