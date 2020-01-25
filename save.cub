@@ -1,11 +1,11 @@
 R 1920 1080
-NO ./north_texture
-SO ./sud_texture
+NO                ./north_texture
+SO        ./sud_texture
 WE ./wesh_texture
 EA ./east_texture
 
 S ./sprite_texture
-F 220,100,0
+F 220,100       ,0
 C 225,30,0
 
 11111111
