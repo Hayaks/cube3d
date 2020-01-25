@@ -33,6 +33,8 @@ typedef struct	s_struct
 	char		**c;
 	char		*type;
 	char		**map;
+	int			i;
+	int			len;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);

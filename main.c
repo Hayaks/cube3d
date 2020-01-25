@@ -1,16 +1,18 @@
 #include "./includes/cub3d.h"
 
-void    ft_newmap(t_struct *map)
+void    ft_newmap(t_struct *info)
 {
-    map->r = NULL;
-    map->no = NULL;
-    map->so = NULL;
-    map->we = NULL;
-    map->ea = NULL;
-    map->s = NULL;
-    map->f = NULL;
-    map->c = NULL;
-    map->map = NULL;
+    info->r = NULL;
+    info->no = NULL;
+    info->so = NULL;
+    info->we = NULL;
+    info->ea = NULL;
+    info->s = NULL;
+    info->f = NULL;
+    info->c = NULL;
+    info->map = NULL;
+    info->i = 0;
+    info->len = 0;
 }
 
 int	main(int ac, char **av)
@@ -18,11 +20,11 @@ int	main(int ac, char **av)
 	int fd;
     int ret;
     char *line;
-    t_struct    *map;
+    t_struct    *info;
 
-    if (!(map = malloc(sizeof(t_struct))))
+    if (!(info = malloc(sizeof(t_struct))))
         return (-1);
-    ft_newmap(map);
+    ft_newmap(info);
     if (ac != 2)
         return (-1);
     else
@@ -30,21 +32,21 @@ int	main(int ac, char **av)
         fd = open(av[1], O_RDONLY);
         while ((ret = get_next_line(fd, &line)) > 0)
         {
-            ft_parsing(line, map);
+            ft_parsing(line, info);
             free(line);
         }
     }
-    printf("r1: %s\n", map->r[0]);
-    printf("r2: %s\n", map->r[1]);
-    printf("no: %s\n", map->no);
-    printf("so: %s\n", map->so);
-    printf("we: %s\n", map->we);
-    printf("ea: %s\n", map->ea);
-    printf("s: %s\n", map->s);
-    printf("f1: %s\n", map->f[0]);
-    printf("f2: %s\n", map->f[1]);
-    printf("f3: %s\n", map->f[2]);
-    printf("c1: %s\n", map->c[0]);
-    printf("c2: %s\n", map->c[1]);
-    printf("c3: %s\n", map->c[2]);
+    printf("r1: %s\n", info->r[0]);
+    printf("r2: %s\n", info->r[1]);
+    printf("no: %s\n", info->no);
+    printf("so: %s\n", info->so);
+    printf("we: %s\n", info->we);
+    printf("ea: %s\n", info->ea);
+    printf("s: %s\n", info->s);
+    printf("f1: %s\n", info->f[0]);
+    printf("f2: %s\n", info->f[1]);
+    printf("f3: %s\n", info->f[2]);
+    printf("c1: %s\n", info->c[0]);
+    printf("c2: %s\n", info->c[1]);
+    printf("c3: %s\n", info->c[2]);
 }
