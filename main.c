@@ -10,6 +10,7 @@ void    ft_newmap(t_struct *map)
     map->s = NULL;
     map->f = NULL;
     map->c = NULL;
+    map->map = NULL;
 }
 
 int	main(int ac, char **av)

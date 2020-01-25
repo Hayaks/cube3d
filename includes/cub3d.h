@@ -32,9 +32,11 @@ typedef struct	s_struct
 	char		**f;
 	char		**c;
 	char		*type;
+	char		**map;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
 void	ft_parsing(char *line, t_struct *map);
+void    ft_parsing_map(char *line, t_struct *map);
 
 #endif
