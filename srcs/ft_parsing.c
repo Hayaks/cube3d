@@ -89,14 +89,14 @@ void    ft_color(char *line, t_struct *info, int i, int type)
     j = 0;
     if (type == 1)
     {
-        ft_strtrim(&line[i + 1], " ");
+        ft_trimset(&line[i + 1], " ");
         info->f = ft_split(&line[i + 2], ',');
         while (info->f[j])
             j++;
     }
     else
     {
-        ft_strtrim(&line[i + 1], " ");
+        ft_trimset(&line[i + 1], " ");
         info->c = ft_split(&line[i + 2], ',');
         while (info->f[j])
             j++;
