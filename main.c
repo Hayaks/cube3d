@@ -17,12 +17,12 @@ void    ft_newmap(t_struct *info)
 
 int	main(int ac, char **av)
 {
-	int fd;
-    int ret;
-    char *line;
+	int         fd;
+    int         ret;
+    char        *line;
     t_struct    *info;
 
-    if (!(info = malloc(sizeof(t_struct))))
+    if (!(info = malloc(sizeof(*info))))
         return (-1);
     ft_newmap(info);
     if (ac != 2)
