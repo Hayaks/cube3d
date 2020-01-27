@@ -31,6 +31,9 @@ void    ft_parsing_map(char *line, t_struct *info)
     info->map[info->i] = ft_strdup(temp);
     if (info->i == 0)
         info->len = ft_strlen(info->map[info->i]);
+    if (ft_strlen(info->map[info->i]) != (size_t)info->len ||
+    info->map[info->i][info->len - 1] != '1')
+      exit(0);
     info->i++;
     temp = NULL;
     free(temp);
