@@ -30,8 +30,10 @@ int	main(int ac, char **av)
     else
     {
         fd = open(av[1], O_RDONLY);
-        while ((ret = get_next_line(fd, &line)) > 0)
+        ret = 2;
+        while (ret >= 0)
         {
+            ret = get_next_line(fd, &line);
             ft_parsing(line, info);
             free(line);
         }
@@ -49,4 +51,11 @@ int	main(int ac, char **av)
     printf("c1: %s\n", info->c[0]);
     printf("c2: %s\n", info->c[1]);
     printf("c3: %s\n", info->c[2]);
+    //printf("%s\n", info->map[0]);
+    //printf("%s\n", info->map[1]);
+    //printf("%s\n", info->map[2]);
+    //printf("%s\n", info->map[3]);
+    //printf("%s\n", info->map[4]);
+    //printf("%s\n", info->map[5]);
+    printf("%s\n", info->map[6]);
 }

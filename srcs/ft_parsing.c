@@ -12,45 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-char    *ft_trimset(char *str, char *set)
-{
-    char    *new;
-    int     i;
-    int     j;
-    int     c;
-
-    i = 0;
-    j = 0;
-    c = 0;
-    while (str[i])
-    {
-        while (set[j] && str[i] != set[j])
-            j++;
-        if (str[i] != set[j])
-            c++;
-        i++;
-        j = 0;
-    }
-    i = 0;
-    if (!(new = malloc(sizeof(*new) * (c + 1))))
-        return (-1);
-    c = 0;
-    while (str[i])
-    {
-        while (set[j] && str[i] != set[j])
-            j++;
-        if (str[i] != set[j])
-        {
-            new[c] = str[i];
-            c++;
-        }
-        i++;
-        j = 0;
-    }
-    new[c + 1] = '\0';
-    return (new);
-}
-
 void    ft_errors(char *line, t_struct *info, int i)
 {
     if (!(ft_strchr(OPTIONS, line[i])))
@@ -84,23 +45,24 @@ void    ft_resolution(char *line, t_struct *info, int i)
 
 void    ft_color(char *line, t_struct *info, int i, int type)
 {
-    int j;
+    char    *temp;
+    int     j;
 
     j = 0;
     if (type == 1)
     {
-        ft_trimset(&line[i + 1], " ");
-        info->f = ft_split(&line[i + 2], ',');
+        temp = ft_trimset(&line[i + 1], " ");
+        info->f = ft_split(temp, ',');
         while (info->f[j])
             j++;
     }
     else
     {
-        ft_trimset(&line[i + 1], " ");
-        info->c = ft_split(&line[i + 2], ',');
-        while (info->f[j])
+        temp = ft_trimset(&line[i + 1], " ");
+        info->c = ft_split(temp, ',');
+        while (info->c[j])
             j++;
-    }   
+    }
     if (j != 3)
         exit(0);
 }
@@ -136,5 +98,6 @@ void    ft_parsing(char *line, t_struct *info)
         return ;
     ft_errors(line, info, i);
     ft_options(line, info, i);
-    ft_parsing_map(line, info);
+    if (line[i] == '1')
+        ft_parsing_map(line, info);
 }
