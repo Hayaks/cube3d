@@ -15,6 +15,30 @@ void    ft_newmap(t_struct *info)
     info->len = 0;
 }
 
+void    ft_map(int ret, int fd, char *line, t_struct *info)
+{
+    int i;
+
+    i = 0;
+    while ((ret = get_next_line(fd, &line)) > 0)
+    {
+        ft_parsing(line, info);
+        free(line);
+    }
+    if (ret == 0)
+    {
+        ft_parsing(line, info);
+        free(line);
+    }
+    while (info->map[0][i])
+    {
+        if (info->map[0][i] != '1' ||
+        info->map[info->i - 1][i] != '1')
+            exit(0);
+        i++;
+    }
+}
+
 int	main(int ac, char **av)
 {
 	int         fd;
@@ -30,13 +54,8 @@ int	main(int ac, char **av)
     else
     {
         fd = open(av[1], O_RDONLY);
-        ret = 2;
-        while (ret >= 0)
-        {
-            ret = get_next_line(fd, &line);
-            ft_parsing(line, info);
-            free(line);
-        }
+        ft_map(ret, fd, line, info);
+        close(fd);
     }
     printf("r1: %s\n", info->r[0]);
     printf("r2: %s\n", info->r[1]);
@@ -51,11 +70,13 @@ int	main(int ac, char **av)
     printf("c1: %s\n", info->c[0]);
     printf("c2: %s\n", info->c[1]);
     printf("c3: %s\n", info->c[2]);
-    //printf("%s\n", info->map[0]);
-    //printf("%s\n", info->map[1]);
-    //printf("%s\n", info->map[2]);
-    //printf("%s\n", info->map[3]);
-    //printf("%s\n", info->map[4]);
-    //printf("%s\n", info->map[5]);
+    printf("%s\n", info->map[0]);
+    printf("%s\n", info->map[1]);
+    printf("%s\n", info->map[2]);
+    printf("%s\n", info->map[3]);
+    printf("%s\n", info->map[4]);
+    printf("%s\n", info->map[5]);
     printf("%s\n", info->map[6]);
+    printf("i: %d\n", info->i);
+    printf("len: %d\n", info->len);
 }

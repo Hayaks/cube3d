@@ -17,21 +17,21 @@ void    ft_parsing_map(char *line, t_struct *info)
     char  *temp;
     int   j;
 
-    //temp = ft_trimset(line, " ");
-    temp = ft_strdup(line);
-    if(!(info->map = malloc(sizeof(*info->map) * 10)))
-      exit(0);
-    info->map[info->i] = ft_strdup(temp);
-    if(info->i == 0)
-        info->len = ft_strlen(info->map[info->i]);
-    printf("info->i: %d \n", info->i);
+    temp = ft_trimset(line, " ");
     j = 0;
-    printf("map: %s \n", info->map[info->i]);
-    /*while (info->map[info->i][j])
+    while (temp[j])
     {
-      if (!(ft_strchr(OPTIONS, info->map[info->i][j])))
+      if (!(ft_strchr(MAP, temp[j])))
         exit(0);
       j++;
-    }*/
+    }
+    if (info->i == 0)
+      if (!(info->map = malloc(sizeof(*info->map) * 10)))
+        exit(0);
+    info->map[info->i] = ft_strdup(temp);
+    if (info->i == 0)
+        info->len = ft_strlen(info->map[info->i]);
     info->i++;
+    temp = NULL;
+    free(temp);
 }

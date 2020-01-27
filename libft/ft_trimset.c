@@ -47,6 +47,6 @@ char    *ft_trimset(char *str, char *set)
         i++;
         j = 0;
     }
-    new[c + 1] = '\0';
+    new[c] = '\0';
     return (new);
 }

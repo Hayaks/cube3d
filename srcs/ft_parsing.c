@@ -63,6 +63,8 @@ void    ft_color(char *line, t_struct *info, int i, int type)
         while (info->c[j])
             j++;
     }
+    temp = NULL;
+    free(temp);
     if (j != 3)
         exit(0);
 }

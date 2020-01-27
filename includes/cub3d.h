@@ -14,6 +14,7 @@
 # 	define CUB3D_H
 #	define BUFFER_SIZE 32
 #	define OPTIONS "RNSWEFC1"
+#	define MAP "NSWE012"
 
 #include <stdlib.h>
 #include <stdio.h> //printf
