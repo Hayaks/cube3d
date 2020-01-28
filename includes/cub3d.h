@@ -20,6 +20,7 @@
 #include <stdio.h> //printf
 #include <unistd.h> //close
 #include <fcntl.h> //open
+#include <mlx.h>
 #include "../libft/libft.h"
 
 typedef struct	s_struct

@@ -73,20 +73,24 @@ void    ft_options(char *line, t_struct *info, int i)
 {
     if (line[i] == 'R')
         ft_resolution(line, info, i);
-    if (line[i] == 'N' && line[i + 1] == 'O')
+    else if (line[i] == 'N' && line[i + 1] == 'O')
         info->no = ft_strtrim(&line[i + 2], " ");
-    if (line[i] == 'S' && line[i + 1] == 'O')
+    else if (line[i] == 'S' && line[i + 1] == 'O')
         info->so = ft_strtrim(&line[i + 2], " ");
-    if (line[i] == 'W' && line[i + 1] == 'E')
+    else if (line[i] == 'W' && line[i + 1] == 'E')
         info->we = ft_strtrim(&line[i + 2], " ");
-    if (line[i] == 'E' && line[i + 1] == 'A')
+    else if (line[i] == 'E' && line[i + 1] == 'A')
         info->ea = ft_strtrim(&line[i + 2], " ");
-    if (line[i] == 'S' && line[i + 1] == ' ')
+    else if (line[i] == 'S' && line[i + 1] == ' ')
         info->s = ft_strtrim(&line[i + 2], " ");
-    if (line[i] == 'F')
+    else if (line[i] == 'F')
         ft_color(line, info, i, 1);
-    if (line[i] == 'C')
+    else if (line[i] == 'C')
         ft_color(line, info, i, 2);
+    else if (line[i] == '1')
+        ft_parsing_map(line, info);
+    else
+        exit(0);
 }
 
 void    ft_parsing(char *line, t_struct *info)
@@ -100,6 +104,4 @@ void    ft_parsing(char *line, t_struct *info)
         return ;
     ft_errors(line, info, i);
     ft_options(line, info, i);
-    if (line[i] == '1')
-        ft_parsing_map(line, info);
 }

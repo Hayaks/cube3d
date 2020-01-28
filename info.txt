@@ -1,0 +1,2 @@
+compiler avec la minilibx:
+-lmlx -framework OpenGL -framework Appkit
