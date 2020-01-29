@@ -51,8 +51,7 @@ void    ft_draw(t_struct *info)
     {
         while (y <= info->y)
         {
-            printf("wesh\n");
-            mlx_pixel_put(info->mlx->init, info->mlx->window, x, y, 322);
+            mlx_pixel_put(info->mlx->init, info->mlx->window, x, y, 0xB9EDF0);
             y++;
         }
         y = 0;
@@ -62,14 +61,10 @@ void    ft_draw(t_struct *info)
 
 void    ft_mlx(t_struct *info)
 {
-    int i;
-
-    i = 0;
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
+    ft_draw(info);
     mlx_loop(info->mlx->init);
-    while (i == 0)
-        ft_draw(info);
 }
 
 int	main(int ac, char **av)
