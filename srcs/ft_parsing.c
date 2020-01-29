@@ -16,7 +16,7 @@ void    ft_errors(char *line, t_struct *info, int i)
 {
     if (!(ft_strchr(OPTIONS, line[i])))
             exit(0);
-    if ((line[i] == 'R' && info->r != NULL) ||
+    if ((line[i] == 'R' && info->x != 0) ||
     (line[i] == 'N' && line[i + 1] == 'O' && info->no != NULL) ||
     (line[i] == 'S' && line[i + 1] == 'O' && info->so != NULL) ||
     (line[i] == 'W' && line[i + 1] == 'E' && info->we != NULL) ||
@@ -25,7 +25,7 @@ void    ft_errors(char *line, t_struct *info, int i)
     (line[i] == 'F' && info->f != NULL) ||
     (line[i] == 'C' && info->c != NULL))
             exit(0);
-    if (line[i] == '1' && (info->r == NULL || info->no == NULL ||
+    if (line[i] == '1' && (info->x == 0 || info->no == NULL ||
     info->so == NULL || info->we == NULL || info->ea == NULL ||
     info->s == NULL || info->f == NULL || info->c == NULL))
             exit(0);
@@ -33,14 +33,17 @@ void    ft_errors(char *line, t_struct *info, int i)
 
 void    ft_resolution(char *line, t_struct *info, int i)
 {
-    int j;
+    char    **temp;
+    int     j;
 
     j = 0;
-    info->r = ft_split(&line[i + 1], ' ');
-    while (info->r[j])
+    temp = ft_split(&line[i + 1], ' ');
+    while (temp[j])
         j++;
     if (j != 2)
         exit(0);
+    info->x = ft_atoi(temp[0]);
+    info->y = ft_atoi(temp[1]);
 }
 
 void    ft_color(char *line, t_struct *info, int i, int type)

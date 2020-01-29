@@ -2,7 +2,8 @@
 
 void    ft_newmap(t_struct *info)
 {
-    info->r = NULL;
+    info->x = 0;
+    info->y = 0;
     info->no = NULL;
     info->so = NULL;
     info->we = NULL;
@@ -39,6 +40,38 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
     }
 }
 
+void    ft_draw(t_struct *info)
+{
+    int x;
+    int y;
+
+    x = 0;
+    y = 0;
+    while (x <= info->x)
+    {
+        while (y <= info->y)
+        {
+            printf("wesh\n");
+            mlx_pixel_put(info->mlx->init, info->mlx->window, x, y, 322);
+            y++;
+        }
+        y = 0;
+        x++;
+    }   
+}
+
+void    ft_mlx(t_struct *info)
+{
+    int i;
+
+    i = 0;
+    info->mlx->init = mlx_init();
+    info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
+    mlx_loop(info->mlx->init);
+    while (i == 0)
+        ft_draw(info);
+}
+
 int	main(int ac, char **av)
 {
 	int         fd;
@@ -46,19 +79,20 @@ int	main(int ac, char **av)
     char        *line;
     t_struct    *info;
 
-    if (!(info = malloc(sizeof(*info))))
-        return (-1);
-    ft_newmap(info);
-    if (ac != 2)
+    if (!(info = malloc(sizeof(*info))) && ac != 2)
         return (-1);
     else
     {
+        ft_newmap(info);
         fd = open(av[1], O_RDONLY);
         ft_map(ret, fd, line, info);
         close(fd);
     }
-    printf("r1: %s\n", info->r[0]);
-    printf("r2: %s\n", info->r[1]);
+    if(!(info->mlx = malloc(sizeof(mlx_param))))
+        return (-1);
+    ft_mlx(info);
+    printf("r1: %d\n", info->x);
+    printf("r2: %d\n", info->y);
     printf("no: %s\n", info->no);
     printf("so: %s\n", info->so);
     printf("we: %s\n", info->we);

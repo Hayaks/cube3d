@@ -23,9 +23,16 @@
 #include <mlx.h>
 #include "../libft/libft.h"
 
+typedef struct	mlx_struct
+{
+	void		*init;
+	void		*window;
+}				mlx_param;
+
 typedef struct	s_struct
 {
-	char		**r;
+	int			x;
+	int			y;
 	char		*no;
 	char		*so;
 	char		*we;
@@ -37,6 +44,7 @@ typedef struct	s_struct
 	char		**map;
 	int			i;
 	int			len;
+	mlx_param	*mlx;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
