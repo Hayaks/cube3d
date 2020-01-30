@@ -63,6 +63,7 @@ void    ft_mlx(t_struct *info)
 {
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
+    info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
     ft_draw(info);
     mlx_loop(info->mlx->init);
 }

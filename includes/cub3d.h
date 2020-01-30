@@ -27,6 +27,11 @@ typedef struct	mlx_struct
 {
 	void		*init;
 	void		*window;
+	void		*img;
+	float		*posx;
+	float		*posy;
+	float		*dirx;
+	float		*diry;
 }				mlx_param;
 
 typedef struct	s_struct
