@@ -15,6 +15,7 @@
 #	define BUFFER_SIZE 32
 #	define OPTIONS "RNSWEFC1"
 #	define MAP "NSWE012"
+#	define POS "NSWE"
 
 #include <stdlib.h>
 #include <stdio.h> //printf
@@ -28,10 +29,12 @@ typedef struct	mlx_struct
 	void		*init;
 	void		*window;
 	void		*img;
-	float		*posx;
-	float		*posy;
-	float		*dirx;
-	float		*diry;
+	float		posx;
+	float		posy;
+	float		dirx;
+	float		diry;
+	float		planex;
+	float		planey;
 }				mlx_param;
 
 typedef struct	s_struct

@@ -14,6 +14,12 @@ void    ft_newmap(t_struct *info)
     info->map = NULL;
     info->i = 0;
     info->len = 0;
+    info->mlx->posx = 0;
+    info->mlx->posy = 0;
+    info->mlx->dirx = 0;
+    info->mlx->diry = 0;
+    info->mlx->planex = 0;
+    info->mlx->planey = 0;
 }
 
 void    ft_map(int ret, int fd, char *line, t_struct *info)
@@ -79,13 +85,13 @@ int	main(int ac, char **av)
         return (-1);
     else
     {
+        if(!(info->mlx = malloc(sizeof(mlx_param))))
+            return (-1);
         ft_newmap(info);
         fd = open(av[1], O_RDONLY);
         ft_map(ret, fd, line, info);
         close(fd);
     }
-    if(!(info->mlx = malloc(sizeof(mlx_param))))
-        return (-1);
     ft_mlx(info);
     printf("r1: %d\n", info->x);
     printf("r2: %d\n", info->y);

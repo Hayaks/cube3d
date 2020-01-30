@@ -12,6 +12,12 @@
 
 #include "../includes/cub3d.h"
 
+void ft_setplayer(char *temp, int j, t_struct *info)
+{
+  info->mlx->posx = info->i;
+  info->mlx->posy = j;
+}
+
 void    ft_parsing_map(char *line, t_struct *info)
 {
     char  *temp;
@@ -23,6 +29,8 @@ void    ft_parsing_map(char *line, t_struct *info)
     {
       if (!(ft_strchr(MAP, temp[j])))
         exit(0);
+      if (ft_strchr(POS, temp[j]))
+        ft_setplayer(temp, j, info);
       j++;
     }
     if (info->i == 0)
