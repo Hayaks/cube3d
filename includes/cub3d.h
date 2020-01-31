@@ -22,6 +22,7 @@
 #include <unistd.h> //close
 #include <fcntl.h> //open
 #include <mlx.h>
+#include <math.h>
 #include "../libft/libft.h"
 
 typedef struct	mlx_struct
