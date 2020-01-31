@@ -14,8 +14,26 @@
 
 void ft_setplayer(char *temp, int j, t_struct *info)
 {
-  info->mlx->posx = info->i;
-  info->mlx->posy = j;
+  if (info->mlx->dirx == 0 && info->mlx->diry == 0)
+  {
+    info->mlx->posx = info->i;
+    info->mlx->posy = j;
+
+    if (temp[j] == 'N')
+		  info->mlx->dirx = -1.0;
+	  else if (temp[j] == 'S')
+		  info->mlx->dirx = 1.0;
+	  else if (temp[j] == 'E')
+		  info->mlx->diry = 1.0;
+	  else
+		  info->mlx->diry = -1.0;
+    if (info->mlx->dirx != 0)
+		  info->mlx->planey = -info->mlx->dirx;
+    else
+		  info->mlx->planex = -info->mlx->diry;
+  }
+  else
+    exit(0);
 }
 
 void    ft_parsing_map(char *line, t_struct *info)

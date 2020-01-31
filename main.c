@@ -115,4 +115,10 @@ int	main(int ac, char **av)
     printf("%s\n", info->map[6]);
     printf("i: %d\n", info->i);
     printf("len: %d\n", info->len);
+    printf("posx: %f\n", info->mlx->posx);
+    printf("posy: %f\n", info->mlx->posy);
+    printf("dirx: %f\n", info->mlx->dirx);
+    printf("diry: %f\n", info->mlx->diry);
+    printf("planex: %f\n", info->mlx->planex);
+    printf("planey: %f\n", info->mlx->planey);
 }
