@@ -58,6 +58,22 @@ int     *ft_imgaddr(void *img)
     return (stockimg);
 }
 
+void    ft_transparent(int *img, int pixel)
+{
+    int i;
+
+    i = 0;
+    while (i < pixel)
+    {
+        if (img[i] == 0 && i <= (pixel / 2))
+            img[i] = 12058111;
+        if (img[i] == 0 && i > (pixel / 2))
+            img[i] = 12895428;
+        i++;
+    }
+    
+}
+
 void    ft_draw(t_struct *info)
 {
     int     x;
@@ -102,8 +118,10 @@ void    ft_draw(t_struct *info)
         raydiry = info->mlx->diry + info->mlx->planey * camerax;
         mapx = (int)rayposx;
         mapy = (int)rayposy;
-        deltadistx = (float)sqrt(1 + (raydiry * raydiry) / (rayposx * rayposx));
-        deltadisty = (float)sqrt(1 + (raydirx * raydirx) / (rayposy * rayposy));
+        deltadistx = fabs(1 / raydirx);
+        deltadisty = fabs(1/ raydiry);
+        //deltadistx = (float)sqrt(1 + (raydiry * raydiry) / (rayposx * rayposx));
+        //deltadisty = (float)sqrt(1 + (raydirx * raydirx) / (rayposy * rayposy));
         hit = 0;
         side = 0;
         img = ft_imgaddr(info->mlx->img);
@@ -158,12 +176,12 @@ void    ft_draw(t_struct *info)
         y = drawstart;
         while (y < drawend)
         {
-            img[x + info->x * y] = 32240;
-            //mlx_pixel_put(info->mlx->init, info->mlx->window, x, y, 32240);
+            img[x + info->x * y] = 12481831;
             y++;
         }
         x++;
     }
+    ft_transparent(img, (info->x * info->y));
     mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->mlx->img, 0, 0);
 }
 
