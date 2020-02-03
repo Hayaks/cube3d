@@ -46,6 +46,18 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
     }
 }
 
+int     *ft_imgaddr(void *img) 
+{
+    int lgthbytes;
+    int sizeline;
+    int endian;
+    int *stockimg;
+
+    lgthbytes = sizeof(int);
+    stockimg = (int*)mlx_get_data_addr(img, &lgthbytes, &sizeline, &endian);
+    return (stockimg);
+}
+
 void    ft_draw(t_struct *info)
 {
     int     x;
@@ -69,13 +81,21 @@ void    ft_draw(t_struct *info)
     int     stepy;
     int     hit;//le rayon touche un mur ou pas
     int     side;//quelle orientation à le mur (nord/sud ou est/ouest) dans la map
-    float   perpwalldist;// distance corrigée du rayon
+    float   perpwalldist;//Distance corrigée du rayon
+    float   hauteurligne;//La hauteur de la ligne a tracer
+    int     drawstart;//Max haut de la colonne a tracer
+    int     drawend;//Max bas de la colonne a tracer
+    int     *img;
 
     x = 0;
     y = 0;
+    printf("posx: %f\n", info->mlx->posx);
+    printf("posy: %f\n", info->mlx->posy);
+    printf("dirx: %f\n", info->mlx->dirx);
+    printf("diry: %f\n", info->mlx->diry);
     while (x <= info->x)
     {
-        camerax = (2 * (float)x / (float)info->x) - 1;
+        camerax = (2.0 * (float)x / (float)info->x) - 1.0;
         rayposx = info->mlx->posx;
         rayposy = info->mlx->posy;
         raydirx = info->mlx->dirx + info->mlx->planex * camerax;
@@ -86,6 +106,7 @@ void    ft_draw(t_struct *info)
         deltadisty = (float)sqrt(1 + (raydirx * raydirx) / (rayposy * rayposy));
         hit = 0;
         side = 0;
+        img = ft_imgaddr(info->mlx->img);
         if (raydirx < 0)
         {
             stepx = -1;
@@ -106,28 +127,44 @@ void    ft_draw(t_struct *info)
             stepy = 1;
             sidedisty = (mapy + 1.0 - rayposy) * deltadisty;
         }
-    }
-    while (hit == 0)
-    {
-        if (sidedistx < sidedisty)
+        while (hit == 0)
         {
-            sidedistx += deltadistx;
-            mapx += stepx;
-            side = 0;
+            if (sidedistx < sidedisty)
+            {
+                sidedistx += deltadistx;
+                mapx += stepx;
+                side = 0;
+            }
+            else
+            {
+                sidedisty += deltadisty;
+                mapy += stepy;
+                side = 1;
+            }
+            if (info->map[mapx][mapy] == '1')
+                hit = 1;
         }
+        if (side == 0)
+            perpwalldist = (float)fabs(((float)mapx - rayposx + (1.0 - (float)stepx) / 2.0) / raydirx);
         else
+            perpwalldist = (float)fabs(((float)mapy - rayposy + (1.0 - (float)stepy) / 2.0) / raydiry);
+        hauteurligne = (float)fabs((float)(info->y / perpwalldist));
+        drawstart = (int)(-hauteurligne / 2 + info->y / 2);
+        drawend = (int)(hauteurligne / 2 + info->y / 2);
+        if (drawstart < 0)
+            drawstart = 0;
+        if (drawend >= info->y)
+            drawend = info->y - 1;
+        y = drawstart;
+        while (y < drawend)
         {
-            sidedisty += deltadisty;
-            mapy += stepy;
-            side = 1;
+            img[x + info->x * y] = 32240;
+            //mlx_pixel_put(info->mlx->init, info->mlx->window, x, y, 32240);
+            y++;
         }
-        if (info->map[mapx][mapy] == '1')
-            hit = 1;
+        x++;
     }
-    if (side == 0)
-        perpwalldist = (float)fabs(((float)mapx - rayposx + (1.0 - (float)stepx) / 2.0) / raydirx);
-    else
-        perpwalldist = (float)fabs(((float)mapy - rayposy + (1.0 - (float)stepy) / 2.0) / raydiry);
+    mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->mlx->img, 0, 0);
 }
 
 void    ft_mlx(t_struct *info)
