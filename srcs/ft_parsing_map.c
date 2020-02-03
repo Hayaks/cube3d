@@ -16,8 +16,8 @@ void ft_setplayer(char *temp, int j, t_struct *info)
 {
   if (info->mlx->dirx == 0 && info->mlx->diry == 0)
   {
-    info->mlx->posx = info->i;
-    info->mlx->posy = j;
+    info->mlx->posx = info->i + 0.5;
+    info->mlx->posy = j + 0.5;
 
     if (temp[j] == 'N')
 		  info->mlx->dirx = -1.0;
