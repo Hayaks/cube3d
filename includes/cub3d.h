@@ -36,6 +36,12 @@ typedef struct	mlx_struct
 	float		diry;
 	float		planex;
 	float		planey;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+	int			leftr;
+	int			rightr;
 }				mlx_param;
 
 typedef struct	s_struct

@@ -1,2 +1,5 @@
-compiler avec la minilibx:
--lmlx -framework OpenGL -framework Appkit
+gerer la taille maximal ou minimal de l'ecran
+Le debut et fin du tableau
+creer une fonction pour les messages d'eeurs
+refaire au propre
+regler le probleme des touches
