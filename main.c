@@ -1,4 +1,5 @@
 #include "./includes/cub3d.h"
+#include "./includes/key.h"
 
 void    ft_newmap(t_struct *info)
 {
@@ -188,80 +189,106 @@ void    ft_draw(t_struct *info)
     mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->mlx->img, 0, 0);
 }
 //////////////////////////////////////////////////
-void    ft_move(t_struct *info)
+void    ft_move(t_struct *info, mlx_param *mlx)
 {
-    float v;
+    float   v;
 
     v = 0.05;
-    if (info->map[(int)(info->mlx->posx + info->mlx->dirx * v)][(int)info->mlx->posy]
-    != '1' && info->mlx->up == 1)
-        info->mlx->posx += info->mlx->dirx * v;
-    if (info->map[(int)info->mlx->posx][(int)(info->mlx->posy + info->mlx->diry * v)]
-    != '1' && info->mlx->up == 1)
-        info->mlx->posy += info->mlx->diry * v;
+    if (info->map[(int)(mlx->posx + mlx->dirx * 0.5)][(int)mlx->posy]
+    != '1' && mlx->up == 1)
+        mlx->posx += mlx->dirx * v;
+    if (info->map[(int)mlx->posx][(int)(mlx->posy + mlx->diry * 0.5)]
+    != '1' && mlx->up == 1)
+        mlx->posy += mlx->diry * v;
 
-    if (info->map[(int)(info->mlx->posx - info->mlx->dirx * v)][(int)info->mlx->posy]
-    != '1' && info->mlx->down == 1)
-        info->mlx->posx -= info->mlx->dirx * v;
-    if (info->map[(int)info->mlx->posx][(int)(info->mlx->posy - info->mlx->diry * v)]
-    != '1' && info->mlx->down == 1)
-        info->mlx->posy -= info->mlx->diry * v;
+    if (info->map[(int)(mlx->posx - mlx->dirx * 0.5)][(int)mlx->posy]
+    != '1' && mlx->down == 1)
+        mlx->posx -= mlx->dirx * v;
+    if (info->map[(int)mlx->posx][(int)(mlx->posy - mlx->diry * 0.5)]
+    != '1' && mlx->down == 1)
+        mlx->posy -= mlx->diry * v;
 
-    if (info->map[(int)(info->mlx->posx + info->mlx->planex * v)][(int)info->mlx->posy]
-    != '1' && info->mlx->up == 1)
-        info->mlx->posx += info->mlx->planex * v;
-    if (info->map[(int)info->mlx->posx][(int)(info->mlx->posy + info->mlx->planey * v)]
-    != '1' && info->mlx->up == 1)
-        info->mlx->posy += info->mlx->planey * v;
+    if (info->map[(int)(mlx->posx + mlx->planex * 0.5)][(int)mlx->posy]
+    != '1' && mlx->right == 1)
+        mlx->posx += mlx->planex * v;
+    if (info->map[(int)mlx->posx][(int)(mlx->posy + mlx->planey * 0.5)]
+    != '1' && mlx->right == 1)
+        mlx->posy += mlx->planey * v;
 
-    if (info->map[(int)(info->mlx->posx - info->mlx->planex * v)][(int)info->mlx->posy]
-    != '1' && info->mlx->down == 1)
-        info->mlx->posx -= info->mlx->planex * v;
-    if (info->map[(int)info->mlx->posx][(int)(info->mlx->posy - info->mlx->planey * v)]
-    != '1' && info->mlx->down == 1)
-        info->mlx->posy -= info->mlx->planey * v;
+    if (info->map[(int)(mlx->posx - mlx->planex * 0.5)][(int)mlx->posy]
+    != '1' && mlx->left == 1)
+        mlx->posx -= mlx->planex * v;
+    if (info->map[(int)mlx->posx][(int)(mlx->posy - mlx->planey * 0.5)]
+    != '1' && mlx->left == 1)
+        mlx->posy -= mlx->planey * v;
 }
 //////////////////////////////////////////////////
+void    ft_rotate(mlx_param *mlx)
+{
+    float   v;
+    float   tempdirx;
+    float   tempplanex;
 
+    v = 0.05;
+    if (mlx->rightr == 1)
+    {
+        tempdirx = mlx->dirx;
+        mlx->dirx = mlx->dirx * cos(-v) - mlx->diry * sin(-v);
+        mlx->diry = tempdirx * sin(-v) + mlx->diry * cos(-v);
+        tempplanex = mlx->planex;
+        mlx->planex = mlx->planex * cos(-v) - mlx->planey * sin(-v);
+        mlx->planey = tempplanex * sin(-v) + mlx->planey * cos(-v);
+    }
+    if (mlx->leftr == 1)
+    {
+        tempdirx = mlx->dirx;
+        mlx->dirx = mlx->dirx * cos(v) - mlx->diry * sin(v);
+        mlx->diry = tempdirx * sin(v) + mlx->diry * cos(v);
+        tempplanex = mlx->planex;
+        mlx->planex = mlx->planex * cos(v) - mlx->planey * sin(v);
+        mlx->planey = tempplanex * sin(v) + mlx->planey * cos(v);
+    }
+}
+//////////////////////////////////////////////////
 int    ft_update(t_struct *info)
 {
-    ft_move(info);
+    ft_move(info, info->mlx);
+    ft_rotate(info->mlx);
     mlx_destroy_image(info->mlx->init, info->mlx->img);
     ft_draw(info);
-    printf("up: %d\n", info->mlx->up);
     return (0);
 }
-int     ft_presskey(t_struct *info, int key)
+int     ft_presskey(int key, mlx_param *mlx)
 {
     if (key == 13)
-        info->mlx->up = 1;
+        mlx->up = 1;
     if (key == 1)
-        info->mlx->down = 1;
+        mlx->down = 1;
     if (key == 0)
-        info->mlx->left = 1;
+        mlx->left = 1;
     if (key == 2)
-        info->mlx->right = 1;
+        mlx->right = 1;
     if (key == 123)
-        info->mlx->leftr = 1;
+        mlx->leftr = 1;
     if (key == 124)
-        info->mlx->rightr = 1;
+        mlx->rightr = 1;
     return (1);
 }
 
-int     ft_releasekey(t_struct *info, int key)
+int     ft_releasekey(int key, mlx_param *mlx)
 {
     if (key == 13)
-        info->mlx->up = 0;
+        mlx->up = 0;
     if (key == 1)
-        info->mlx->down = 0;
+        mlx->down = 0;
     if (key == 0)
-        info->mlx->left = 0;
+        mlx->left = 0;
     if (key == 2)
-        info->mlx->right = 0;
+        mlx->right = 0;
     if (key == 123)
-        info->mlx->leftr = 0;
+        mlx->leftr = 0;
     if (key == 124)
-        info->mlx->rightr = 0;
+        mlx->rightr = 0;
     return (1);
 }
 
@@ -270,8 +297,8 @@ void    ft_mlx(t_struct *info)
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
     ft_draw(info);
-    //mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info);
-	//mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info);
+    mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info->mlx);
+	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info->mlx);
     mlx_loop_hook(info->mlx->init, &ft_update, info);
     mlx_loop(info->mlx->init);
 }
