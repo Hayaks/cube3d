@@ -314,7 +314,8 @@ int	main(int ac, char **av)
         return (-1);
     else
     {
-        if (!(info->mlx = malloc(sizeof(mlx_param))))
+        if (!(info->mlx = malloc(sizeof(mlx_param))) &&
+        !(info->text = malloc(sizeof(text_param))))
             return (-1);
         ft_newmap(info);
         fd = open(av[1], O_RDONLY);

@@ -44,6 +44,22 @@ typedef struct	mlx_struct
 	int			rightr;
 }				mlx_param;
 
+typedef struct	text_struct
+{
+	int			*no;
+	int			nox;
+	int			noy;
+	int			*so;
+	int			sox;
+	int			soy;
+	int			*we;
+	int			wex;
+	int			wey;
+	int			*ea;
+	int			eax;
+	int			eay;
+}				text_param;
+
 typedef struct	s_struct
 {
 	int			x;
@@ -60,6 +76,7 @@ typedef struct	s_struct
 	int			i;
 	int			len;
 	mlx_param	*mlx;
+	text_param	*text;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);

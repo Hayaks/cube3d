@@ -1,8 +1,8 @@
 R 1920 1080
-NO                ./north_texture
-SO        ./sud_texture
-WE ./wesh_texture
-EA ./east_texture
+NO                BRICK4.xpm
+SO        BSTONE1.xpm
+WE BRICK7.xpm
+EA BRICKLIT.xpm
 
 S ./sprite_texture
 F 220,100       ,         0
