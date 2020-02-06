@@ -27,6 +27,18 @@ void    ft_newmap(t_struct *info)
     info->mlx->right = 0;
     info->mlx->leftr = 0;
     info->mlx->rightr = 0;
+    info->text->no = NULL;
+    info->text->nox = 0;
+    info->text->noy = 0;
+    info->text->so = NULL;
+    info->text->sox = 0;
+    info->text->soy = 0;
+    info->text->we = NULL;
+    info->text->wex = 0;
+    info->text->wey = 0;
+    info->text->ea = NULL;
+    info->text->eax = 0;
+    info->text->eay = 0;
 }
 
 void    ft_map(int ret, int fd, char *line, t_struct *info)
@@ -292,10 +304,31 @@ int     ft_releasekey(int key, mlx_param *mlx)
     return (1);
 }
 
+void    ft_set_texture(t_struct *info, text_param *text)
+{
+    int     *img;
+    void    *temp;
+    int     height;
+    int     width;
+    temp = mlx_xpm_file_to_image(info->mlx->init, info->no, &width, &height);
+    //img = ft_imgaddr(temp);
+    printf("height: %d \n", height);
+    printf("width: %d \n", width);
+    //info->text->no = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->no, &text->nox, &text->noy));
+    //info->text->so = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->so, &text->sox, &text->soy));
+    //info->text->we = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->we, &text->wex, &text->wey));
+    //info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
+}
 void    ft_mlx(t_struct *info)
 {
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
+    printf("nox: %d \n", info->text->nox);
+    printf("noy: %d \n", info->text->noy);
+    printf("texture no: %s \n", info->no);
+    ft_set_texture(info, info->text);
+    printf("nox: %d \n", info->text->nox);
+    printf("noy: %d \n", info->text->noy);
     ft_draw(info);
     mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info->mlx);
 	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info->mlx);
@@ -310,12 +343,13 @@ int	main(int ac, char **av)
     char        *line;
     t_struct    *info;
 
-    if (!(info = malloc(sizeof(*info))) && ac != 2)
+    if (!(info = malloc(sizeof(t_struct))) && ac != 2)
         return (-1);
     else
     {
-        if (!(info->mlx = malloc(sizeof(mlx_param))) &&
-        !(info->text = malloc(sizeof(text_param))))
+        if (!(info->mlx = malloc(sizeof(mlx_param))))
+            return (-1);
+        if (!(info->text = malloc(sizeof(text_param))))
             return (-1);
         ft_newmap(info);
         fd = open(av[1], O_RDONLY);

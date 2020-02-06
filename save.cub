@@ -1,5 +1,5 @@
 R 1920 1080
-NO                BRICK4.xpm
+NO                ./textures/BRICK4.xpm
 SO        BSTONE1.xpm
 WE BRICK7.xpm
 EA BRICKLIT.xpm

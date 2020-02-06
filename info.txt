@@ -1,3 +1,4 @@
 gerer la taille maximal ou minimal de l'ecran
 creer une fonction pour les messages d'erreurs
 refaire au propre
+finir les textures (surtout ft_set_texure)

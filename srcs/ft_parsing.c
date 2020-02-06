@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void    ft_errors(char *line, t_struct *info, int i)
+void    ft_verif(char *line, t_struct *info, int i)
 {
     if (!(ft_strchr(OPTIONS, line[i])))
             exit(0);
@@ -105,6 +105,6 @@ void    ft_parsing(char *line, t_struct *info)
         i++;
     if (!(line[i]))
         return ;
-    ft_errors(line, info, i);
+    ft_verif(line, info, i);
     ft_options(line, info, i);
 }
