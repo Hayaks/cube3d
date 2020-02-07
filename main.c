@@ -208,7 +208,14 @@ void    ft_draw(t_struct *info)
             texy = (y * 2 - info->y + hauteurligne) * (64 / 2) / hauteurligne;
             if (texy < 0)
             texy -= texy;
-            img[x + info->x * y] = info->text->no[texx + texy * 64];
+            if (side == 0 && raydirx < 0)
+                img[x + info->x * y] = info->text->no[texx + texy * 64];
+            else if (side == 0 && raydirx > 0)
+                img[x + info->x * y] = info->text->so[texx + texy * 64];
+            else if (side == 1 && raydiry < 0)
+                img[x + info->x * y] = info->text->we[texx + texy * 64];
+            else if (side == 1 && raydiry > 0)
+                img[x + info->x * y] = info->text->ea[texx + texy * 64];
             //img[x + info->x * y] = 12481831;
             y++;
         }
@@ -333,18 +340,6 @@ void    ft_mlx(t_struct *info)
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
     ft_set_texture(info, info->text);
-    printf("nox: %d \n", info->text->nox);
-    printf("noy: %d \n", info->text->noy);
-    printf("%s \n", info->no);
-    printf("sox: %d \n", info->text->sox);
-    printf("soy: %d \n", info->text->soy);
-    printf("%s \n", info->so);
-    printf("wex: %d \n", info->text->wex);
-    printf("wey: %d \n", info->text->wey);
-    printf("%s \n", info->we);
-    printf("eax: %d \n", info->text->eax);
-    printf("eay: %d \n", info->text->eay);
-    printf("%s \n", info->ea);
     ft_draw(info);
     mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info->mlx);
 	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info->mlx);

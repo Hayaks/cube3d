@@ -1,5 +1,5 @@
 R 1920 1080 
-NO                ./srcs/textures/wall.xpm 
+NO                ./srcs/textures/BRICK4.xpm 
 SO        ./srcs/textures/BSTONE1.xpm
 WE ./srcs/textures/BRICK7.xpm
 EA ./srcs/textures/BRICKLIT.xpm
