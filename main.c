@@ -121,6 +121,9 @@ void    ft_draw(t_struct *info)
     int     drawstart;//Max haut de la colonne a tracer
     int     drawend;//Max bas de la colonne a tracer
     int     *img;
+    float   wallx;// la colonne exacte touchée transposée sur X
+    int     texx;// coordonnée x de la colonne dans la texture
+    int     texy;
 
     x = 0;
     y = 0;
@@ -137,8 +140,6 @@ void    ft_draw(t_struct *info)
         mapy = (int)rayposy;
         deltadistx = fabs(1 / raydirx);
         deltadisty = fabs(1/ raydiry);
-        //deltadistx = (float)sqrt(1 + (raydiry * raydiry) / (rayposx * rayposx));
-        //deltadisty = (float)sqrt(1 + (raydirx * raydirx) / (rayposy * rayposy));
         hit = 0;
         side = 0;
         if (raydirx < 0)
@@ -179,9 +180,21 @@ void    ft_draw(t_struct *info)
                 hit = 1;
         }
         if (side == 0)
+        {
             perpwalldist = (float)fabs(((float)mapx - rayposx + (1.0 - (float)stepx) / 2.0) / raydirx);
+            wallx = rayposy + ((mapx - rayposx + (1 - stepx) / 2) / raydirx) * raydiry;
+        }
         else
+        {
             perpwalldist = (float)fabs(((float)mapy - rayposy + (1.0 - (float)stepy) / 2.0) / raydiry);
+            wallx = rayposx + ((mapy - rayposy + (1 - stepy) / 2) / raydiry) * raydirx;
+        }
+        wallx -= floor(wallx);
+        texx = (int)(wallx * 64);
+        if (side == 0 && raydirx > 0)
+            texx = 64 - texx - 1;
+        if (side == 1 && raydiry < 0)
+            texx = 64 - texx - 1;
         hauteurligne = (float)fabs((float)(info->y / perpwalldist));
         drawstart = (int)(-hauteurligne / 2 + info->y / 2);
         drawend = (int)(hauteurligne / 2 + info->y / 2);
@@ -192,7 +205,11 @@ void    ft_draw(t_struct *info)
         y = drawstart;
         while (y < drawend)
         {
-            img[x + info->x * y] = 12481831;
+            texy = (y * 2 - info->y + hauteurligne) * (64 / 2) / hauteurligne;
+            if (texy < 0)
+            texy -= texy;
+            img[x + info->x * y] = info->text->no[texx + texy * 64];
+            //img[x + info->x * y] = 12481831;
             y++;
         }
         x++;
@@ -306,29 +323,28 @@ int     ft_releasekey(int key, mlx_param *mlx)
 
 void    ft_set_texture(t_struct *info, text_param *text)
 {
-    int     *img;
-    void    *temp;
-    int     height;
-    int     width;
-    temp = mlx_xpm_file_to_image(info->mlx->init, info->no, &width, &height);
-    //img = ft_imgaddr(temp);
-    printf("height: %d \n", height);
-    printf("width: %d \n", width);
-    //info->text->no = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->no, &text->nox, &text->noy));
-    //info->text->so = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->so, &text->sox, &text->soy));
-    //info->text->we = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->we, &text->wex, &text->wey));
-    //info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
+    info->text->no = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->no, &text->nox, &text->noy));
+    info->text->so = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->so, &text->sox, &text->soy));
+    info->text->we = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->we, &text->wex, &text->wey));
+    info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
 }
 void    ft_mlx(t_struct *info)
 {
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
-    printf("nox: %d \n", info->text->nox);
-    printf("noy: %d \n", info->text->noy);
-    printf("texture no: %s \n", info->no);
     ft_set_texture(info, info->text);
     printf("nox: %d \n", info->text->nox);
     printf("noy: %d \n", info->text->noy);
+    printf("%s \n", info->no);
+    printf("sox: %d \n", info->text->sox);
+    printf("soy: %d \n", info->text->soy);
+    printf("%s \n", info->so);
+    printf("wex: %d \n", info->text->wex);
+    printf("wey: %d \n", info->text->wey);
+    printf("%s \n", info->we);
+    printf("eax: %d \n", info->text->eax);
+    printf("eay: %d \n", info->text->eay);
+    printf("%s \n", info->ea);
     ft_draw(info);
     mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info->mlx);
 	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info->mlx);
@@ -357,32 +373,4 @@ int	main(int ac, char **av)
         close(fd);
     }
     ft_mlx(info);
-    printf("r1: %d\n", info->x);
-    printf("r2: %d\n", info->y);
-    printf("no: %s\n", info->no);
-    printf("so: %s\n", info->so);
-    printf("we: %s\n", info->we);
-    printf("ea: %s\n", info->ea);
-    printf("s: %s\n", info->s);
-    printf("f1: %s\n", info->f[0]);
-    printf("f2: %s\n", info->f[1]);
-    printf("f3: %s\n", info->f[2]);
-    printf("c1: %s\n", info->c[0]);
-    printf("c2: %s\n", info->c[1]);
-    printf("c3: %s\n", info->c[2]);
-    printf("%s\n", info->map[0]);
-    printf("%s\n", info->map[1]);
-    printf("%s\n", info->map[2]);
-    printf("%s\n", info->map[3]);
-    printf("%s\n", info->map[4]);
-    printf("%s\n", info->map[5]);
-    printf("%s\n", info->map[6]);
-    printf("i: %d\n", info->i);
-    printf("len: %d\n", info->len);
-    printf("posx: %f\n", info->mlx->posx);
-    printf("posy: %f\n", info->mlx->posy);
-    printf("dirx: %f\n", info->mlx->dirx);
-    printf("diry: %f\n", info->mlx->diry);
-    printf("planex: %f\n", info->mlx->planex);
-    printf("planey: %f\n", info->mlx->planey);
 }

@@ -1,8 +1,8 @@
-R 1920 1080
-NO                ./textures/BRICK4.xpm
-SO        BSTONE1.xpm
-WE BRICK7.xpm
-EA BRICKLIT.xpm
+R 1920 1080 
+NO                ./srcs/textures/wall.xpm 
+SO        ./srcs/textures/BSTONE1.xpm
+WE ./srcs/textures/BRICK7.xpm
+EA ./srcs/textures/BRICKLIT.xpm
 
 S ./sprite_texture
 F 220,100       ,         0
