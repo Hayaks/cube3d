@@ -58,6 +58,9 @@ typedef struct	text_struct
 	int			*ea;
 	int			eax;
 	int			eay;
+	int			*s;
+	int			sx;
+	int			sy;
 }				text_param;
 
 typedef struct	s_struct

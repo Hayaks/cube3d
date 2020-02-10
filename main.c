@@ -39,6 +39,9 @@ void    ft_newmap(t_struct *info)
     info->text->ea = NULL;
     info->text->eax = 0;
     info->text->eay = 0;
+    info->text->s = NULL;
+    info->text->sx = 0;
+    info->text->sy = 0;
 }
 
 void    ft_map(int ret, int fd, char *line, t_struct *info)
@@ -124,6 +127,16 @@ void    ft_draw(t_struct *info)
     float   wallx;// la colonne exacte touchée transposée sur X
     int     texx;// coordonnée x de la colonne dans la texture
     int     texy;
+    //sol et plafond
+    // positions X et Y du texel du sol au bas du mur
+    float   floorxwall;
+    float   floorywall;
+    float   weight;
+    float   currentfloorx;
+    float   currentfloory;
+    int     floortextx;
+    int     floortexty;
+    float   currentdist;
 
     x = 0;
     y = 0;
@@ -192,9 +205,27 @@ void    ft_draw(t_struct *info)
         wallx -= floor(wallx);
         texx = (int)(wallx * 64);
         if (side == 0 && raydirx > 0)
+        {
             texx = 64 - texx - 1;
-        if (side == 1 && raydiry < 0)
+            floorxwall = mapx;
+            floorywall = mapy + wallx;
+        }
+        else if (side == 0 && raydirx < 0)
+        {
+            floorxwall = mapx + 1.0;
+            floorywall = mapy + wallx;
+        }
+        else if (side == 1 && raydiry < 0)
+        {
             texx = 64 - texx - 1;
+            floorxwall = mapx + wallx;
+            floorywall = mapy + 1.0;
+        }
+        else if (side == 1 && raydiry > 0)
+        {
+            floorxwall = mapx + wallx;
+            floorywall = mapy;
+        }
         hauteurligne = (float)fabs((float)(info->y / perpwalldist));
         drawstart = (int)(-hauteurligne / 2 + info->y / 2);
         drawend = (int)(hauteurligne / 2 + info->y / 2);
@@ -217,6 +248,17 @@ void    ft_draw(t_struct *info)
             else if (side == 1 && raydiry > 0)
                 img[x + info->x * y] = info->text->ea[texx + texy * 64];
             //img[x + info->x * y] = 12481831;
+            y++;
+        }
+        while (y < info->y)
+        {
+            currentdist = info->y / (2 * y - info->y);
+            weight = currentdist / perpwalldist;
+            currentfloorx = weight * floorxwall + (1.0 - weight) * rayposx;
+            currentfloory = weight * floorywall + (1.0 - weight) * rayposy;
+            floortextx = (int)(currentfloorx * 64) % 64;
+            floortexty = (int)(currentfloory * 64) % 64;
+            img[x + info->x * y - 1] = info->text->s[floortextx + floortexty * 64];
             y++;
         }
         x++;
@@ -334,6 +376,7 @@ void    ft_set_texture(t_struct *info, text_param *text)
     info->text->so = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->so, &text->sox, &text->soy));
     info->text->we = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->we, &text->wex, &text->wey));
     info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
+    info->text->s = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->s, &text->sx, &text->sy));
 }
 void    ft_mlx(t_struct *info)
 {
