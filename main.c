@@ -237,8 +237,6 @@ void    ft_draw(t_struct *info)
         while (y < drawend)
         {
             texy = (y * 2 - info->y + hauteurligne) * (64 / 2) / hauteurligne;
-            if (texy < 0)
-            texy -= texy;
             if (side == 0 && raydirx < 0)
                 img[x + info->x * y] = info->text->no[texx + texy * 64];
             else if (side == 0 && raydirx > 0)
@@ -250,15 +248,16 @@ void    ft_draw(t_struct *info)
             //img[x + info->x * y] = 12481831;
             y++;
         }
-        while (y < info->y)
+        while (y < info->y - 1)
         {
-            currentdist = info->y / (2 * y - info->y);
+            currentdist = info->y / (2.0 * y - info->y);
             weight = currentdist / perpwalldist;
             currentfloorx = weight * floorxwall + (1.0 - weight) * rayposx;
             currentfloory = weight * floorywall + (1.0 - weight) * rayposy;
             floortextx = (int)(currentfloorx * 64) % 64;
             floortexty = (int)(currentfloory * 64) % 64;
-            img[x + info->x * y - 1] = info->text->s[floortextx + floortexty * 64];
+            img[x + info->x * y] = info->text->s[floortextx + floortexty * 64];
+            img[x + info->x * (info->y - y) - 1] = info->text->s[floortextx + floortexty * 64];
             y++;
         }
         x++;
