@@ -299,7 +299,7 @@ void    ft_move(t_struct *info, mlx_param *mlx)
     != '1' && mlx->left == 1)
         mlx->posy -= mlx->planey * v;
 }
-//////////////////////////////////////////////////
+
 void    ft_rotate(mlx_param *mlx)
 {
     float   v;
@@ -326,7 +326,7 @@ void    ft_rotate(mlx_param *mlx)
         mlx->planey = tempplanex * sin(v) + mlx->planey * cos(v);
     }
 }
-//////////////////////////////////////////////////
+
 int    ft_update(t_struct *info)
 {
     ft_move(info, info->mlx);
@@ -377,6 +377,7 @@ void    ft_set_texture(t_struct *info, text_param *text)
     info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
     info->text->s = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->s, &text->sx, &text->sy));
 }
+
 void    ft_mlx(t_struct *info)
 {
     info->mlx->init = mlx_init();
@@ -398,16 +399,13 @@ int	main(int ac, char **av)
 
     if (!(info = malloc(sizeof(t_struct))) && ac != 2)
         return (-1);
-    else
-    {
-        if (!(info->mlx = malloc(sizeof(mlx_param))))
-            return (-1);
-        if (!(info->text = malloc(sizeof(text_param))))
-            return (-1);
-        ft_newmap(info);
-        fd = open(av[1], O_RDONLY);
-        ft_map(ret, fd, line, info);
-        close(fd);
-    }
+    if (!(info->mlx = malloc(sizeof(mlx_param))))
+        return (-1);
+    if (!(info->text = malloc(sizeof(text_param))))
+        return (-1);
+    ft_newmap(info);
+    fd = open(av[1], O_RDONLY);
+    ft_map(ret, fd, line, info);
+    close(fd);
     ft_mlx(info);
 }
