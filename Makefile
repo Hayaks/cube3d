@@ -2,7 +2,9 @@ SRCSDIR		= ./srcs/
 
 INCLUDESDIR	= ./includes/
 
-SRCS		= 	$(SRCSDIR)ft_parsing.c $(SRCSDIR)get_next_line.c $(SRCSDIR)ft_parsing_map.c
+SRCS		= 	$(SRCSDIR)ft_parsing.c $(SRCSDIR)get_next_line.c $(SRCSDIR)ft_parsing_map.c \
+				$(SRCSDIR)ft_update.c $(SRCSDIR)ft_draw.c $(SRCSDIR)ft_imgaddr.c \
+				$(SRCSDIR)ft_key.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 

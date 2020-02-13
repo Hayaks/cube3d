@@ -49,6 +49,8 @@ void    ft_parsing_map(char *line, t_struct *info)
         exit(0);
       if (ft_strchr(POS, temp[j]))
         ft_setplayer(temp, j, info);
+      if (temp[j] == '2')
+          info->nbsprites++;
       j++;
     }
     if (info->i == 0)

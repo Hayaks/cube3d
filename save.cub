@@ -1,4 +1,4 @@
-R 1920 1080 
+R 2560 1440 
 NO                ./srcs/textures/BRICK4.xpm 
 SO        ./srcs/textures/BSTONE1.xpm
 WE ./srcs/textures/BRICK7.xpm
@@ -13,5 +13,5 @@ C 225,30,0
 10000000001
 10100100101
 10100100001
-100N0000001
+100N0002201
 11111111111

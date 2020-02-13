@@ -25,6 +25,15 @@
 #include <math.h>
 #include "../libft/libft.h"
 
+typedef struct	sprite_struct
+{
+	float		x;
+	float		y;
+	float		dist;
+	int			view;
+}				s_param;
+
+
 typedef struct	mlx_struct
 {
 	void		*init;
@@ -42,6 +51,7 @@ typedef struct	mlx_struct
 	int			right;
 	int			leftr;
 	int			rightr;
+	float		v;
 }				mlx_param;
 
 typedef struct	text_struct
@@ -80,10 +90,17 @@ typedef struct	s_struct
 	int			len;
 	mlx_param	*mlx;
 	text_param	*text;
+	s_param		**sprites;
+	int			nbsprites;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
 void	ft_parsing(char *line, t_struct *map);
 void    ft_parsing_map(char *line, t_struct *map);
+int    	ft_update(t_struct *info);
+void    ft_draw(t_struct *info);
+int     *ft_imgaddr(void *img);
+int     ft_presskey(int key, mlx_param *mlx);
+int     ft_releasekey(int key, mlx_param *mlx);
 
 #endif

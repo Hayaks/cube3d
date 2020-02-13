@@ -2,5 +2,4 @@ gerer la taille maximal ou minimal de l'ecran
 creer une fonction pour les messages d'erreurs
 refaire au propre
 Parsing de la map
-Chosir la texure suivant l'orientation
 Touche echap
