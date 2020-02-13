@@ -111,6 +111,8 @@ void    ft_draw(t_struct *info)
             }
             if (info->map[mapx][mapy] == '1')
                 hit = 1;
+            else if (info->map[mapx][mapy] == '2')
+                ft_sprite(info, mapx, mapy);//Je dectete le sprite mais encore???
         }
         if (side == 0)
         {
@@ -165,7 +167,6 @@ void    ft_draw(t_struct *info)
                 img[x + info->x * y] = info->text->we[texx + texy * 64];
             else if (side == 1 && raydiry > 0)
                 img[x + info->x * y] = info->text->ea[texx + texy * 64];
-            //img[x + info->x * y] = 12481831;
             y++;
         }
         while (y < info->y - 1)
