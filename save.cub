@@ -5,8 +5,8 @@ WE ./srcs/textures/BRICK7.xpm
 EA ./srcs/textures/BRICKLIT.xpm
 
 S ./srcs/textures/wall.xpm 
-F 220,100       ,         0
-C 225,30,0
+F ./srcs/textures/wall.xpm 
+C ./srcs/textures/wall.xpm 
 
 11111111111
 10101010101

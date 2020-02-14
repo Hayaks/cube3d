@@ -44,6 +44,12 @@ void    ft_newmap(t_struct *info)
     info->text->s = NULL;
     info->text->sx = 0;
     info->text->sy = 0;
+    info->text->c = NULL;
+    info->text->cx = 0;
+    info->text->cy = 0;
+    info->text->f = NULL;
+    info->text->fx = 0;
+    info->text->fy = 0;
 }
 
 void    ft_map(int ret, int fd, char *line, t_struct *info)
@@ -77,6 +83,8 @@ void    ft_set_texture(t_struct *info, text_param *text)
     info->text->we = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->we, &text->wex, &text->wey));
     info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
     info->text->s = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->s, &text->sx, &text->sy));
+    info->text->c = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->c, &text->cx, &text->cy));
+    info->text->f = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->f, &text->fx, &text->fy));
 }
 
 void    ft_mlx(t_struct *info)

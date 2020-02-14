@@ -30,7 +30,6 @@ typedef struct	sprite_struct
 	float		x;
 	float		y;
 	float		dist;
-	int			view;
 }				s_param;
 
 
@@ -71,6 +70,12 @@ typedef struct	text_struct
 	int			*s;
 	int			sx;
 	int			sy;
+	int			*c;
+	int			cx;
+	int			cy;
+	int			*f;
+	int			fx;
+	int			fy;
 }				text_param;
 
 typedef struct	s_struct

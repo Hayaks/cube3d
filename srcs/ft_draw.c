@@ -57,9 +57,11 @@ void    ft_draw(t_struct *info)
     int     floortextx;
     int     floortexty;
     float   currentdist;
+    int     i;
 
     x = 0;
     y = 0;
+    i = 0;
     info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
     img = ft_imgaddr(info->mlx->img);
     while (x <= info->x)
@@ -111,8 +113,8 @@ void    ft_draw(t_struct *info)
             }
             if (info->map[mapx][mapy] == '1')
                 hit = 1;
-            else if (info->map[mapx][mapy] == '2')
-                ft_sprite(info, mapx, mapy);//Je dectete le sprite mais encore???
+            //else if (info->map[mapx][mapy] == '2')
+                /*rajouter une fonction pour ajouter un sprite a retenir*///ft_sprite(info, mapx, mapy, i);
         }
         if (side == 0)
         {
@@ -177,8 +179,8 @@ void    ft_draw(t_struct *info)
             currentfloory = weight * floorywall + (1.0 - weight) * rayposy;
             floortextx = (int)(currentfloorx * 64) % 64;
             floortexty = (int)(currentfloory * 64) % 64;
-            img[x + info->x * y] = info->text->s[floortextx + floortexty * 64];
-            img[x + info->x * (info->y - y) - 1] = info->text->s[floortextx + floortexty * 64];
+            img[x + info->x * y] = info->text->f[floortextx + floortexty * 64];
+            img[x + info->x * (info->y - y) - 1] = info->text->c[floortextx + floortexty * 64];
             y++;
         }
         x++;
