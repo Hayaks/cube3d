@@ -4,14 +4,14 @@ SO        ./srcs/textures/BSTONE1.xpm
 WE ./srcs/textures/BRICK7.xpm
 EA ./srcs/textures/BRICKLIT.xpm
 
-S ./srcs/textures/wall.xpm 
+S ./srcs/textures/barrel.xpm 
 F ./srcs/textures/wall.xpm 
 C ./srcs/textures/wall.xpm 
 
 11111111111
 10101010101
-10000000001
+10020000001
 10100100101
 10100100001
-100N0002201
+100N0000001
 11111111111
