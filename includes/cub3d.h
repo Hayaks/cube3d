@@ -30,6 +30,7 @@ typedef struct	sprite_struct
 	float		x;
 	float		y;
 	float		dist;
+	void		*img;
 }				s_param;
 
 
@@ -51,6 +52,7 @@ typedef struct	mlx_struct
 	int			leftr;
 	int			rightr;
 	float		v;
+	float		*perp;
 }				mlx_param;
 
 typedef struct	text_struct
@@ -87,8 +89,8 @@ typedef struct	s_struct
 	char		*we;
 	char		*ea;
 	char		*s;
-	char		**f;
-	char		**c;
+	char		*f;
+	char		*c;
 	char		*type;
 	char		**map;
 	int			i;
@@ -107,5 +109,6 @@ void    ft_draw(t_struct *info);
 int     *ft_imgaddr(void *img);
 int     ft_presskey(int key, mlx_param *mlx);
 int     ft_releasekey(int key, mlx_param *mlx);
+void    ft_sprite(t_struct *info);
 
 #endif

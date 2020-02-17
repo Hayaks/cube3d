@@ -16,6 +16,7 @@ void    ft_newmap(t_struct *info)
     info->i = 0;
     info->len = 0;
     info->nbsprites = 0;
+
     info->mlx->posx = 0;
     info->mlx->posy = 0;
     info->mlx->dirx = 0;
@@ -29,6 +30,8 @@ void    ft_newmap(t_struct *info)
     info->mlx->leftr = 0;
     info->mlx->rightr = 0;
     info->mlx->v = 0.05;
+    info->mlx->perp = malloc(sizeof(float) * (3000));
+
     info->text->no = NULL;
     info->text->nox = 0;
     info->text->noy = 0;
@@ -115,6 +118,10 @@ int	main(int ac, char **av)
     ft_newmap(info);
     if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nbsprites + 1))))
         return (-1);
+    if (!(info->sprites[0] = malloc(sizeof(s_param))))
+        return (-1);
+    info->sprites[0]->x = 3;/*rajouter une fonction pour ajouter un sprite a retenir*/
+    info->sprites[0]->y = 3;
     fd = open(av[1], O_RDONLY);
     ft_map(ret, fd, line, info);
     close(fd);

@@ -15,7 +15,7 @@ int     ft_presskey(int key, mlx_param *mlx)
     if (key == 124)
         mlx->rightr = 1;
     if (key == 257)
-        mlx->v = 0.2;
+        mlx->v = 0.1;
     return (1);
 }
 

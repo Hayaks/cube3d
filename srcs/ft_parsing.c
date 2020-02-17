@@ -46,7 +46,7 @@ void    ft_resolution(char *line, t_struct *info, int i)
     info->y = ft_atoi(temp[1]);
 }
 
-void    ft_color(char *line, t_struct *info, int i, int type)
+/*void    ft_color(char *line, t_struct *info, int i, int type)
 {
     char    *temp;
     int     j;
@@ -70,7 +70,7 @@ void    ft_color(char *line, t_struct *info, int i, int type)
     free(temp);
     if (j != 3)
         exit(0);
-}
+}*/
 
 void    ft_options(char *line, t_struct *info, int i)
 {
@@ -87,9 +87,11 @@ void    ft_options(char *line, t_struct *info, int i)
     else if (line[i] == 'S' && line[i + 1] == ' ')
         info->s = ft_strtrim(&line[i + 2], " ");
     else if (line[i] == 'F')
-        ft_color(line, info, i, 1);
+        info->f = ft_strtrim(&line[i + 2], " ");
+        //ft_color(line, info, i, 1);
     else if (line[i] == 'C')
-        ft_color(line, info, i, 2);
+        info->c = ft_strtrim(&line[i + 2], " ");
+        //ft_color(line, info, i, 2);
     else if (line[i] == '1')
         ft_parsing_map(line, info);
     else

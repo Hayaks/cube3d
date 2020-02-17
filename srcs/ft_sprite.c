@@ -1,6 +1,20 @@
 #include "../includes/cub3d.h"
 
-ft_sprite(t_struct *info, int mapx, int mapy, int i)
+void    ft_vide(t_struct *info, int *img)
+{
+    int i;
+
+    i = 0;
+    while (i < (info->x * info->y))
+    {
+        if (img[i] == 0)
+			img[i] = 0xFFFFFFFF;
+		i++;
+    }
+    
+}
+
+void    ft_sprite(t_struct *info)
 {
     int     y;
     int     d;
@@ -18,10 +32,13 @@ ft_sprite(t_struct *info, int mapx, int mapy, int i)
     int     drawendx;
     int     texy;
     int     texx;
+    int     *img;
 
-    info->sprites[i]->dist = ((info->mlx->posx - mapx) * (info->mlx->posx - mapx) + (info->mlx->posy - mapy) * (info->mlx->posy - mapy));
-    spritex = mapx + 0.5 - info->mlx->posx;
-    spritey = mapy + 0.5 - info->mlx->posy;
+    //info->sprites[i]->dist = ((info->mlx->posx - mapx) * (info->mlx->posx - mapx) + (info->mlx->posy - mapy) * (info->mlx->posy - mapy));
+    info->sprites[0]->img = mlx_new_image(info->mlx->init, info->x, info->y);
+    img = ft_imgaddr(info->sprites[0]->img);
+    spritex = info->sprites[0]->x + 0.5 - info->mlx->posx;
+    spritey = info->sprites[0]->y + 0.5 - info->mlx->posy;
     invdet = 1.0 / (info->mlx->planex * info->mlx->diry - info->mlx->planey * info->mlx->dirx);
     transformx = invdet * (info->mlx->diry * spritex - info->mlx->dirx * spritey);
     transformy = invdet * (-info->mlx->planey * spritex + info->mlx->planex * spritey);
@@ -42,20 +59,21 @@ ft_sprite(t_struct *info, int mapx, int mapy, int i)
     drawendx = spritewidth / 2 + spritescreenx;
     if (drawendx < 0)
         drawendx = 0;
-
-    //recupere l'adresse de l'image en cours
-
+    
     while (drawstartx < drawendx)
     {
         y = drawstarty;
-        texx = (int)((256 * (drawstartx - (-spritewidth / 2 + spritescreenx)) * 64 / info->text->sx) / 256);
-        if(transformy > 0 && drawstartx >= 0 && drawstartx <= info->x && transformy < perpwalldist)
+        texx = (int)((256 * (drawstartx - (-spritewidth / 2 + spritescreenx)) * info->text->sx / spritewidth) / 256);
+        if(transformy > 0 && drawstartx >= 0 && drawstartx <= info->x && transformy < info->mlx->perp[drawstartx])
             while (y < drawendy)
             {
-                d = y * 256 - info->y * 128+ spriteheight * 128;
+                d = y * 256 - info->y * 128 + spriteheight * 128;
                 texy = ((d * info->text->sy) / spriteheight) / 256;
                 img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
+                y++;
             }
         drawstartx++; 
     }
+    ft_vide(info, img);
+    mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->sprites[0]->img, 0, 0);
 }

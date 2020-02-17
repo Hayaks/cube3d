@@ -67,5 +67,6 @@ int    ft_update(t_struct *info)
     ft_rotate(info->mlx);
     mlx_destroy_image(info->mlx->init, info->mlx->img);
     ft_draw(info);
+    ft_sprite(info);
     return (0);
 }

@@ -114,7 +114,7 @@ void    ft_draw(t_struct *info)
             if (info->map[mapx][mapy] == '1')
                 hit = 1;
             //else if (info->map[mapx][mapy] == '2')
-                /*rajouter une fonction pour ajouter un sprite a retenir*///ft_sprite(info, mapx, mapy, i);
+                /*rajouter une fonction pour ajouter un sprite a retenir*/
         }
         if (side == 0)
         {
@@ -183,6 +183,7 @@ void    ft_draw(t_struct *info)
             img[x + info->x * (info->y - y) - 1] = info->text->c[floortextx + floortexty * 64];
             y++;
         }
+        info->mlx->perp[x] = perpwalldist;
         x++;
     }
     ft_transparent(img, (info->x * info->y));
