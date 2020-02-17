@@ -30,7 +30,8 @@ typedef struct	sprite_struct
 	float		x;
 	float		y;
 	float		dist;
-	void		*img;
+	void		*newimg;
+	int			*img;
 }				s_param;
 
 

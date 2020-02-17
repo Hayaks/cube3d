@@ -11,7 +11,6 @@ void    ft_vide(t_struct *info, int *img)
 			img[i] = 0xFFFFFFFF;
 		i++;
     }
-    
 }
 
 void    ft_sprite(t_struct *info)
@@ -32,19 +31,18 @@ void    ft_sprite(t_struct *info)
     int     drawendx;
     int     texy;
     int     texx;
-    int     *img;
 
     //info->sprites[i]->dist = ((info->mlx->posx - mapx) * (info->mlx->posx - mapx) + (info->mlx->posy - mapy) * (info->mlx->posy - mapy));
-    info->sprites[0]->img = mlx_new_image(info->mlx->init, info->x, info->y);
-    img = ft_imgaddr(info->sprites[0]->img);
+    info->sprites[0]->newimg = mlx_new_image(info->mlx->init, info->x, info->y);
+    info->sprites[0]->img = ft_imgaddr(info->sprites[0]->newimg);
     spritex = info->sprites[0]->x + 0.5 - info->mlx->posx;
     spritey = info->sprites[0]->y + 0.5 - info->mlx->posy;
     invdet = 1.0 / (info->mlx->planex * info->mlx->diry - info->mlx->planey * info->mlx->dirx);
     transformx = invdet * (info->mlx->diry * spritex - info->mlx->dirx * spritey);
     transformy = invdet * (-info->mlx->planey * spritex + info->mlx->planex * spritey);
     spritescreenx = (int)((info->x / 2) * (1.0 + transformx / transformy));
-    spriteheight = abs((int)(info->y / transformy));
 
+    spriteheight = abs((int)(info->y / transformy));
     drawstarty = -spriteheight / 2 + info->y / 2;
     if (drawstarty < 0)
         drawstarty = 0;
@@ -59,21 +57,20 @@ void    ft_sprite(t_struct *info)
     drawendx = spritewidth / 2 + spritescreenx;
     if (drawendx < 0)
         drawendx = 0;
-    
     while (drawstartx < drawendx)
     {
         y = drawstarty;
         texx = (int)((256 * (drawstartx - (-spritewidth / 2 + spritescreenx)) * info->text->sx / spritewidth) / 256);
-        if(transformy > 0 && drawstartx >= 0 && drawstartx <= info->x && transformy < info->mlx->perp[drawstartx])
-            while (y < drawendy)
+        if (transformy > 0 && drawstartx > 0 && drawstartx < info->x && transformy < info->mlx->perp[drawstartx])
+            while (y < drawendy && y < info->y)
             {
                 d = y * 256 - info->y * 128 + spriteheight * 128;
                 texy = ((d * info->text->sy) / spriteheight) / 256;
-                img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
+                info->sprites[0]->img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
                 y++;
             }
         drawstartx++; 
     }
-    ft_vide(info, img);
-    mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->sprites[0]->img, 0, 0);
+    ft_vide(info, info->sprites[0]->img);
+    mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->sprites[0]->newimg, 0, 0);
 }

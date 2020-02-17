@@ -120,7 +120,7 @@ int	main(int ac, char **av)
         return (-1);
     if (!(info->sprites[0] = malloc(sizeof(s_param))))
         return (-1);
-    info->sprites[0]->x = 3;/*rajouter une fonction pour ajouter un sprite a retenir*/
+    info->sprites[0]->x = 2;/*rajouter une fonction pour ajouter un sprite a retenir*/
     info->sprites[0]->y = 3;
     fd = open(av[1], O_RDONLY);
     ft_map(ret, fd, line, info);

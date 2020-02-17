@@ -34,6 +34,6 @@ int     ft_releasekey(int key, mlx_param *mlx)
     if (key == 124)
         mlx->rightr = 0;
     if (key == 257)
-        mlx->v = 0.05;
+        mlx->v = 0.04;
     return (1);
 }
