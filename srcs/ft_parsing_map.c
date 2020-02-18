@@ -50,17 +50,20 @@ void    ft_parsing_map(char *line, t_struct *info)
       if (ft_strchr(POS, temp[j]))
         ft_setplayer(temp, j, info);
       if (temp[j] == '2')
-          info->nbsprites++;
+      {
+        if (!(info->sprites[info->nb] = malloc(sizeof(s_param))))
+        exit(0);
+        info->sprites[info->nb]->x = info->i;
+        info->sprites[info->nb]->y = j;
+        info->nb++;
+      }
       j++;
     }
     if (info->i == 0)
-      if (!(info->map = malloc(sizeof(*info->map) * 10)))
+      if (!(info->map = malloc(sizeof(*info->map) * 30)))
         exit(0);
     info->map[info->i] = ft_strdup(temp);
-    if (info->i == 0)
-        info->len = ft_strlen(info->map[info->i]);
-    if (ft_strlen(info->map[info->i]) != (size_t)info->len ||
-    info->map[info->i][info->len - 1] != '1')
+    if (info->map[info->i][j - 1] != '1')
       exit(0);
     info->i++;
     temp = NULL;

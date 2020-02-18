@@ -187,5 +187,6 @@ void    ft_draw(t_struct *info)
         x++;
     }
     ft_transparent(img, (info->x * info->y));
+    ft_sprite(info);
     mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->mlx->img, 0, 0);
 }

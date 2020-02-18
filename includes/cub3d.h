@@ -29,7 +29,6 @@ typedef struct	sprite_struct
 {
 	float		x;
 	float		y;
-	float		dist;
 	void		*newimg;
 	int			*img;
 }				s_param;
@@ -95,11 +94,10 @@ typedef struct	s_struct
 	char		*type;
 	char		**map;
 	int			i;
-	int			len;
+	int			nb;
 	mlx_param	*mlx;
 	text_param	*text;
 	s_param		**sprites;
-	int			nbsprites;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
