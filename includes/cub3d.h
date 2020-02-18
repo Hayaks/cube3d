@@ -29,7 +29,7 @@ typedef struct	sprite_struct
 {
 	float		x;
 	float		y;
-	void		*newimg;
+	int			rank;
 	int			*img;
 }				s_param;
 
@@ -53,6 +53,7 @@ typedef struct	mlx_struct
 	int			rightr;
 	float		v;
 	float		*perp;
+	int			order;
 }				mlx_param;
 
 typedef struct	text_struct

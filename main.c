@@ -30,6 +30,7 @@ void    ft_newmap(t_struct *info)
     info->mlx->rightr = 0;
     info->mlx->v = 0.05;
     info->mlx->perp = malloc(sizeof(float) * (3000));
+    info->mlx->order = 1;
 
     info->text->no = NULL;
     info->text->nox = 0;
@@ -117,8 +118,6 @@ int	main(int ac, char **av)
     if (!(info->sprites = malloc(sizeof(*info->sprites) * (20 + 1))))
         return (-1);
     ft_newmap(info);
-    //if (!(info->sprites[0] = malloc(sizeof(s_param))))
-      //  return (-1);
     fd = open(av[1], O_RDONLY);
     ft_map(ret, fd, line, info);
     close(fd);

@@ -34,7 +34,6 @@ void    ft_sprite(t_struct *info)
     int     texx;
 
     i = 0;
-    //info->sprites[0]->newimg = mlx_new_image(info->mlx->init, info->x, info->y);
     while (i < info->nb)
     {
         info->sprites[i]->img = ft_imgaddr(info->mlx->img);
@@ -69,13 +68,12 @@ void    ft_sprite(t_struct *info)
                 {
                     d = y * 256 - info->y * 128 + spriteheight * 128;
                     texy = ((d * info->text->sy) / spriteheight) / 256;
-                    info->sprites[i]->img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
+                    if (info->text->s[info->text->sx * texy + texx] != 0)
+                        info->sprites[i]->img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
                     y++;
                 }
             drawstartx++; 
         }
-        //ft_vide(info, info->sprites[i]->img);
-        //mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->sprites[0]->newimg, 0, 0);
         i++;
     }
 }

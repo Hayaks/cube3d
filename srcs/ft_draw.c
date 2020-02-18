@@ -64,6 +64,7 @@ void    ft_draw(t_struct *info)
     i = 0;
     info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
     img = ft_imgaddr(info->mlx->img);
+    info->mlx->order = 1;
     while (x <= info->x)
     {
         camerax = (2.0 * (float)x / (float)info->x) - 1.0;
@@ -113,8 +114,17 @@ void    ft_draw(t_struct *info)
             }
             if (info->map[mapx][mapy] == '1')
                 hit = 1;
-            //else if (info->map[mapx][mapy] == '2')
-                /*rajouter une fonction pour ajouter un sprite a retenir*/
+            else if (info->map[mapx][mapy] == '2')
+            {
+                while (y <= info->nb)
+                {
+                    //if (info->sprites[y]->x == mapx && info->sprites[y]->y == mapy)
+                      //  info->sprites[y]->rank = info->mlx->order;
+                    y++;
+                }
+                y = 0;
+                info->mlx->order++;   
+            }
         }
         if (side == 0)
         {
