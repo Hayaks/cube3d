@@ -60,13 +60,12 @@ void    ft_draw(t_struct *info)
     int     i;
 
     x = 0;
-    y = 0;
     i = 0;
     info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
     img = ft_imgaddr(info->mlx->img);
-    info->mlx->order = 1;
     while (x <= info->x)
     {
+        y = 0;
         camerax = (2.0 * (float)x / (float)info->x) - 1.0;
         rayposx = info->mlx->posx;
         rayposy = info->mlx->posy;
@@ -116,14 +115,20 @@ void    ft_draw(t_struct *info)
                 hit = 1;
             else if (info->map[mapx][mapy] == '2')
             {
-                while (y <= info->nb)
+                while (y < info->nb)
                 {
-                    //if (info->sprites[y]->x == mapx && info->sprites[y]->y == mapy)
-                      //  info->sprites[y]->rank = info->mlx->order;
+                    if (info->sprites[y]->x == mapx && info->sprites[y]->y == mapy && info->sprites[y]->visible == 0)
+                    {
+                        info->sprites[y]->visible = 1;
+                        if (side == 0)
+                            info->sprites[y]->dist= (float)fabs(((float)mapx - rayposx + (1.0 - (float)stepx) / 2.0) / raydirx);
+                        else
+                            info->sprites[y]->dist= (float)fabs(((float)mapy - rayposy + (1.0 - (float)stepy) / 2.0) / raydiry);
+                        info->mlx->compteur++;
+                    }
                     y++;
                 }
-                y = 0;
-                info->mlx->order++;   
+                y = 0; 
             }
         }
         if (side == 0)

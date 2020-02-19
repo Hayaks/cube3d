@@ -34,8 +34,9 @@ void    ft_sprite(t_struct *info)
     int     texx;
 
     i = 0;
-    while (i < info->nb)
+    while (info->mlx->compteur > 0)
     {
+        //Trouver le plus loin du joueur a afficher
         info->sprites[i]->img = ft_imgaddr(info->mlx->img);
         spritex = info->sprites[i]->x + 0.5 - info->mlx->posx;
         spritey = info->sprites[i]->y + 0.5 - info->mlx->posy;
@@ -74,6 +75,8 @@ void    ft_sprite(t_struct *info)
                 }
             drawstartx++; 
         }
+        info->mlx->compteur--;
+        info->sprites[i]->visible = 0;
         i++;
     }
 }
