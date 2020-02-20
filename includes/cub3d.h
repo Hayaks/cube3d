@@ -30,7 +30,6 @@ typedef struct	sprite_struct
 	int			x;
 	int			y;
 	float		dist;
-	int			visible;
 	int			*img;
 }				s_param;
 
@@ -54,7 +53,6 @@ typedef struct	mlx_struct
 	int			rightr;
 	float		v;
 	float		*perp;
-	int			compteur;
 }				mlx_param;
 
 typedef struct	text_struct

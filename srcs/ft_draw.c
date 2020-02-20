@@ -113,23 +113,6 @@ void    ft_draw(t_struct *info)
             }
             if (info->map[mapx][mapy] == '1')
                 hit = 1;
-            else if (info->map[mapx][mapy] == '2')
-            {
-                while (y < info->nb)
-                {
-                    if (info->sprites[y]->x == mapx && info->sprites[y]->y == mapy && info->sprites[y]->visible == 0)
-                    {
-                        info->sprites[y]->visible = 1;
-                        if (side == 0)
-                            info->sprites[y]->dist= (float)fabs(((float)mapx - rayposx + (1.0 - (float)stepx) / 2.0) / raydirx);
-                        else
-                            info->sprites[y]->dist= (float)fabs(((float)mapy - rayposy + (1.0 - (float)stepy) / 2.0) / raydiry);
-                        info->mlx->compteur++;
-                    }
-                    y++;
-                }
-                y = 0; 
-            }
         }
         if (side == 0)
         {

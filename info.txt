@@ -4,5 +4,3 @@ refaire au propre
 Parsing de la map
 Touche echap
 Calloc
-Choper tous les sprites et les mettres dans le tableau
-Finir l'ordre des sprites

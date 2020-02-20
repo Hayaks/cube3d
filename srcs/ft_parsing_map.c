@@ -56,7 +56,6 @@ void    ft_parsing_map(char *line, t_struct *info)
         info->sprites[info->nb]->x = info->i;
         info->sprites[info->nb]->y = j;
         info->sprites[info->nb]->dist = 0.0;
-        info->sprites[info->nb]->visible = 0;
         info->nb++;
       }
       j++;
