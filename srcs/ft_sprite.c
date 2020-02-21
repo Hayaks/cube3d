@@ -95,7 +95,6 @@ void    ft_sprite(t_struct *info)
     final = ft_tri(info, final);
     while (i < info->nb)
     {
-        //Trouver le plus loin du joueur a afficher
         info->sprites[final[i]]->img = ft_imgaddr(info->mlx->img);
         spritex = info->sprites[final[i]]->x + 0.5 - info->mlx->posx;
         spritey = info->sprites[final[i]]->y + 0.5 - info->mlx->posy;

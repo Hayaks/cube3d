@@ -44,6 +44,16 @@ void    ft_resolution(char *line, t_struct *info, int i)
         exit(0);
     info->x = ft_atoi(temp[0]);
     info->y = ft_atoi(temp[1]);
+    if (info->x > 2560)
+        info->x = 2560;
+    if (info->y > 1440)
+        info->y = 1440;
+    if ((info->x % 2) == 1)
+        info->x++;
+    if ((info->y % 2) == 1)
+        info->y++;
+    if (info->x <= 0 || info->y <= 0)
+        exit(0);
 }
 
 /*void    ft_color(char *line, t_struct *info, int i, int type)

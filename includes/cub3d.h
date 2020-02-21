@@ -109,5 +109,6 @@ int     *ft_imgaddr(void *img);
 int     ft_presskey(int key, mlx_param *mlx);
 int     ft_releasekey(int key, mlx_param *mlx);
 void    ft_sprite(t_struct *info);
+void    ft_error(int i);
 
 #endif
