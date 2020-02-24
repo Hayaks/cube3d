@@ -154,7 +154,7 @@ void    ft_draw(t_struct *info, mlx_param *mlx)
         if (drawend >= info->y)
             drawend = info->y - 1;
         y = drawstart;
-        while (y < drawend)
+        while (y <= drawend)
         {
             texy = (y * 2 - info->y + hauteurligne) * (64 / 2) / hauteurligne;
             if (side == 0 && raydirx < 0)
@@ -176,7 +176,7 @@ void    ft_draw(t_struct *info, mlx_param *mlx)
             floortextx = (int)(currentfloorx * 64) % 64;
             floortexty = (int)(currentfloory * 64) % 64;
             img[x + info->x * y] = info->text->f[floortextx + floortexty * 64];
-            img[x + info->x * (info->y - y) - 1] = info->text->c[floortextx + floortexty * 64];
+            img[x + info->x * (info->y - y)] = info->text->c[floortextx + floortexty * 64];
             y++;
         }
         mlx->perp[x] = perpwalldist;
