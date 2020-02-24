@@ -104,11 +104,12 @@ int		get_next_line(int const fd, char **line);
 void	ft_parsing(char *line, t_struct *map);
 void    ft_parsing_map(char *line, t_struct *map);
 int    	ft_update(t_struct *info);
-void    ft_draw(t_struct *info);
+void    ft_move(t_struct *info);
+void    ft_draw(t_struct *info, mlx_param *mlx);
 int     *ft_imgaddr(void *img);
 int     ft_presskey(int key, mlx_param *mlx);
 int     ft_releasekey(int key, mlx_param *mlx);
-void    ft_sprite(t_struct *info);
+void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites);
 void    ft_error(int i);
 
 #endif

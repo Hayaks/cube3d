@@ -16,7 +16,7 @@ void    ft_transparent(int *img, int pixel)
     
 }
 
-void    ft_draw(t_struct *info)
+void    ft_draw(t_struct *info, mlx_param *mlx)
 {
     int     x;
     int     y;
@@ -57,20 +57,18 @@ void    ft_draw(t_struct *info)
     int     floortextx;
     int     floortexty;
     float   currentdist;
-    int     i;
 
     x = 0;
-    i = 0;
-    info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
-    img = ft_imgaddr(info->mlx->img);
+    mlx->img = mlx_new_image(mlx->init, info->x, info->y);
+    img = ft_imgaddr(mlx->img);
     while (x <= info->x)
     {
         y = 0;
         camerax = (2.0 * (float)x / (float)info->x) - 1.0;
-        rayposx = info->mlx->posx;
-        rayposy = info->mlx->posy;
-        raydirx = info->mlx->dirx + info->mlx->planex * camerax;
-        raydiry = info->mlx->diry + info->mlx->planey * camerax;
+        rayposx = mlx->posx;
+        rayposy = mlx->posy;
+        raydirx = mlx->dirx + mlx->planex * camerax;
+        raydiry = mlx->diry + mlx->planey * camerax;
         mapx = (int)rayposx;
         mapy = (int)rayposy;
         deltadistx = fabs(1 / raydirx);
@@ -181,10 +179,10 @@ void    ft_draw(t_struct *info)
             img[x + info->x * (info->y - y) - 1] = info->text->c[floortextx + floortexty * 64];
             y++;
         }
-        info->mlx->perp[x] = perpwalldist;
+        mlx->perp[x] = perpwalldist;
         x++;
     }
     ft_transparent(img, (info->x * info->y));
-    ft_sprite(info);
-    mlx_put_image_to_window(info->mlx->init, info->mlx->window, info->mlx->img, 0, 0);
+    ft_sprite(info, info->mlx, info->sprites);
+    mlx_put_image_to_window(mlx->init, mlx->window, mlx->img, 0, 0);
 }

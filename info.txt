@@ -1,4 +1,3 @@
-creer une fonction pour les messages d'erreurs
 refaire au propre
 Parsing de la map
 Touche echap

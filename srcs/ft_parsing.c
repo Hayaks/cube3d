@@ -15,7 +15,7 @@
 void    ft_verif(char *line, t_struct *info, int i)
 {
     if (!(ft_strchr(OPTIONS, line[i])))
-            exit(0);
+            ft_error(3);
     if ((line[i] == 'R' && info->x != 0) ||
     (line[i] == 'N' && line[i + 1] == 'O' && info->no != NULL) ||
     (line[i] == 'S' && line[i + 1] == 'O' && info->so != NULL) ||
@@ -24,11 +24,11 @@ void    ft_verif(char *line, t_struct *info, int i)
     (line[i] == 'S' && line[i + 1] == ' ' && info->s != NULL) ||
     (line[i] == 'F' && info->f != NULL) ||
     (line[i] == 'C' && info->c != NULL))
-            exit(0);
+            ft_error(3);
     if (line[i] == '1' && (info->x == 0 || info->no == NULL ||
     info->so == NULL || info->we == NULL || info->ea == NULL ||
     info->s == NULL || info->f == NULL || info->c == NULL))
-            exit(0);
+            ft_error(3);
 }
 
 void    ft_resolution(char *line, t_struct *info, int i)
@@ -41,7 +41,7 @@ void    ft_resolution(char *line, t_struct *info, int i)
     while (temp[j])
         j++;
     if (j != 2)
-        exit(0);
+        ft_error(3);
     info->x = ft_atoi(temp[0]);
     info->y = ft_atoi(temp[1]);
     if (info->x > 2560)
@@ -53,7 +53,7 @@ void    ft_resolution(char *line, t_struct *info, int i)
     if ((info->y % 2) == 1)
         info->y++;
     if (info->x <= 0 || info->y <= 0)
-        exit(0);
+        ft_error(3);
 }
 
 /*void    ft_color(char *line, t_struct *info, int i, int type)
@@ -105,7 +105,7 @@ void    ft_options(char *line, t_struct *info, int i)
     else if (line[i] == '1')
         ft_parsing_map(line, info);
     else
-        exit(0);
+        ft_error(3);
 }
 
 void    ft_parsing(char *line, t_struct *info)

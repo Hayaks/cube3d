@@ -21,9 +21,9 @@ int     *ft_tri(t_struct *info, int *final)
     float   *temp;
 
     if (!(tab = malloc(sizeof(*tab) * (info->nb))))
-        exit(0);
+        ft_error(1);
     if (!(temp = malloc(sizeof(*temp) * (info->nb))))
-        exit(0);    
+        ft_error(1);    
     i = 0;
     j = 0;
     while (i < info->nb)
@@ -62,7 +62,7 @@ int     *ft_tri(t_struct *info, int *final)
     return (final);
 }
 
-void    ft_sprite(t_struct *info)
+void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites)
 {
     int     i;
     int     y;
@@ -84,23 +84,23 @@ void    ft_sprite(t_struct *info)
     int     *final;
 
     if (!(final = malloc(sizeof(*final) * (info->nb))))
-        exit(0);
+        ft_error(1);
     i = 0;
     y = 0; 
     while (y < info->nb)
     {
-        info->sprites[y]->dist = ((int)info->mlx->posx - info->sprites[y]->x) * ((int)info->mlx->posx - info->sprites[y]->x)+ ((int)info->mlx->posy - info->sprites[y]->y) * ((int)info->mlx->posy - info->sprites[i]->y);
+        sprites[y]->dist = ((int)mlx->posx - sprites[y]->x) * ((int)mlx->posx - sprites[y]->x)+ ((int)mlx->posy - sprites[y]->y) * ((int)mlx->posy - sprites[i]->y);
         y++;
     }
     final = ft_tri(info, final);
     while (i < info->nb)
     {
-        info->sprites[final[i]]->img = ft_imgaddr(info->mlx->img);
-        spritex = info->sprites[final[i]]->x + 0.5 - info->mlx->posx;
-        spritey = info->sprites[final[i]]->y + 0.5 - info->mlx->posy;
-        invdet = 1.0 / (info->mlx->planex * info->mlx->diry - info->mlx->planey * info->mlx->dirx);
-        transformx = invdet * (info->mlx->diry * spritex - info->mlx->dirx * spritey);
-        transformy = invdet * (-info->mlx->planey * spritex + info->mlx->planex * spritey);
+        sprites[final[i]]->img = ft_imgaddr(mlx->img);
+        spritex = sprites[final[i]]->x + 0.5 - mlx->posx;
+        spritey = sprites[final[i]]->y + 0.5 - mlx->posy;
+        invdet = 1.0 / (mlx->planex * mlx->diry - mlx->planey * mlx->dirx);
+        transformx = invdet * (mlx->diry * spritex - mlx->dirx * spritey);
+        transformy = invdet * (-mlx->planey * spritex + mlx->planex * spritey);
         spritescreenx = (int)((info->x / 2) * (1.0 + transformx / transformy));
 
         spriteheight = abs((int)(info->y / transformy));
@@ -122,18 +122,18 @@ void    ft_sprite(t_struct *info)
         {
             y = drawstarty;
             texx = (int)((256 * (drawstartx - (-spritewidth / 2 + spritescreenx)) * info->text->sx / spritewidth) / 256);
-            if (transformy > 0 && drawstartx > 0 && drawstartx < info->x && transformy < info->mlx->perp[drawstartx])
+            if (transformy > 0 && drawstartx > 0 && drawstartx < info->x && transformy < mlx->perp[drawstartx])
                 while (y < drawendy && y < info->y)
                 {
                     d = y * 256 - info->y * 128 + spriteheight * 128;
                     texy = ((d * info->text->sy) / spriteheight) / 256;
                     if (info->text->s[info->text->sx * texy + texx] != 0)
-                        info->sprites[final[i]]->img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
+                        sprites[final[i]]->img[drawstartx + info->x * y] = info->text->s[info->text->sx * texy + texx]; 
                     y++;
                 }
             drawstartx++; 
         }
-        info->sprites[final[i]]->dist = 0.0;
+        sprites[final[i]]->dist = 0.0;
         i++;
     }
 }
