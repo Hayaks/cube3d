@@ -33,6 +33,40 @@ typedef struct	sprite_struct
 	int			*img;
 }				s_param;
 
+typedef struct	draw_struct
+{
+	int		x;
+	int		y;
+    float   camerax;
+    float   raydirx;
+    float   raydiry;
+    int     mapx;
+    int     mapy;
+    float   sidedistx;
+    float   sidedisty;
+    float   deltadistx;
+    float   deltadisty;
+    int     stepx;
+    int     stepy;
+    int     hit;
+    int     side;
+    float   perpwalldist;
+    float   hauteurligne;
+    int     start;
+    int     end;
+    int     *img;
+    float   wallx;
+    int     texx;
+    int     texy;
+    float   floorxwall;
+    float   floorywall;
+    float   weight;
+    float   currentfloorx;
+    float   currentfloory;
+    int     floortextx;
+    int     floortexty;
+    float   currentdist;
+}				draw_param;
 
 typedef struct	mlx_struct
 {
@@ -98,6 +132,7 @@ typedef struct	s_struct
 	mlx_param	*mlx;
 	text_param	*text;
 	s_param		**sprites;
+	draw_param	*d;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
@@ -105,7 +140,7 @@ void	ft_parsing(char *line, t_struct *map);
 void    ft_parsing_map(char *line, t_struct *map);
 int    	ft_update(t_struct *info);
 void    ft_move(t_struct *info);
-void    ft_draw(t_struct *info, mlx_param *mlx);
+void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *draw);
 int     *ft_imgaddr(void *img);
 int     ft_presskey(int key, mlx_param *mlx);
 int     ft_releasekey(int key, mlx_param *mlx);

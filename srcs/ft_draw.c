@@ -16,173 +16,171 @@ void    ft_transparent(int *img, int pixel)
     
 }
 
-void    ft_draw(t_struct *info, mlx_param *mlx)
+void    ft_init_draw(t_struct *info, mlx_param *mlx, draw_param *d)
 {
-    int     x;
-    int     y;
-    float   camerax;// position de la colonne par rapport au centre de l’écran
-    float   rayposx;// position de départ du rayon sur X
-    float   rayposy;// position de départ du rayon sur Y
-    float   raydirx;// direction du rayon sur X
-    float   raydiry;// direction du rayon sur Y
-    // sur quelle case est la caméra
-    int     mapx;
-    int     mapy;
-    // longueur du rayon
-    float   sidedistx;
-    float   sidedisty;
-    // longueur du rayon entre chaque intersection
-    float   deltadistx;
-    float   deltadisty;
-    // direction du vecteur sur X et Y (+1 ou -1)
-    int     stepx;
-    int     stepy;
-    int     hit;//le rayon touche un mur ou pas
-    int     side;//quelle orientation à le mur (nord/sud ou est/ouest) dans la map
-    float   perpwalldist;//Distance corrigée du rayon
-    float   hauteurligne;//La hauteur de la ligne a tracer
-    int     drawstart;//Max haut de la colonne a tracer
-    int     drawend;//Max bas de la colonne a tracer
-    int     *img;
-    float   wallx;// la colonne exacte touchée transposée sur X
-    int     texx;// coordonnée x de la colonne dans la texture
-    int     texy;
-    //sol et plafond
-    // positions X et Y du texel du sol au bas du mur
-    float   floorxwall;
-    float   floorywall;
-    float   weight;
-    float   currentfloorx;
-    float   currentfloory;
-    int     floortextx;
-    int     floortexty;
-    float   currentdist;
+    d->y = 0;
+    d->camerax = (2.0 * (float)d->x / (float)info->x) - 1.0;
+    d->raydirx = mlx->dirx + mlx->planex * d->camerax;
+    d->raydiry = mlx->diry + mlx->planey * d->camerax;
+    d->mapx = (int)mlx->posx;
+    d->mapy = (int)mlx->posy;
+    d->deltadistx = fabs(1 / d->raydirx);
+    d->deltadisty = fabs(1 / d->raydiry);
+    d->hit = 0;
+    d->side = 0;
+}
 
-    x = 0;
-    mlx->img = mlx_new_image(mlx->init, info->x, info->y);
-    img = ft_imgaddr(mlx->img);
-    while (x <= info->x)
+void    ft_vector(mlx_param *mlx, draw_param *d)
+{
+    if (d->raydirx < 0)
     {
-        y = 0;
-        camerax = (2.0 * (float)x / (float)info->x) - 1.0;
-        rayposx = mlx->posx;
-        rayposy = mlx->posy;
-        raydirx = mlx->dirx + mlx->planex * camerax;
-        raydiry = mlx->diry + mlx->planey * camerax;
-        mapx = (int)rayposx;
-        mapy = (int)rayposy;
-        deltadistx = fabs(1 / raydirx);
-        deltadisty = fabs(1/ raydiry);
-        hit = 0;
-        side = 0;
-        if (raydirx < 0)
-        {
-            stepx = -1;
-            sidedistx = (rayposx - mapx) * deltadistx;
-        }
-        else
-        {
-            stepx = 1;
-            sidedistx = (mapx + 1.0 - rayposx) * deltadistx;
-        }
-        if (raydiry < 0)
-        {
-            stepy = -1;
-            sidedisty = (rayposy - mapy) * deltadisty;
-        }
-        else
-        {
-            stepy = 1;
-            sidedisty = (mapy + 1.0 - rayposy) * deltadisty;
-        }
-        while (hit == 0)
-        {
-            if (sidedistx < sidedisty)
-            {
-                sidedistx += deltadistx;
-                mapx += stepx;
-                side = 0;
-            }
-            else
-            {
-                sidedisty += deltadisty;
-                mapy += stepy;
-                side = 1;
-            }
-            if (info->map[mapx][mapy] == '1')
-                hit = 1;
-        }
-        if (side == 0)
-        {
-            perpwalldist = (float)fabs(((float)mapx - rayposx + (1.0 - (float)stepx) / 2.0) / raydirx);
-            wallx = rayposy + ((mapx - rayposx + (1 - stepx) / 2) / raydirx) * raydiry;
-        }
-        else
-        {
-            perpwalldist = (float)fabs(((float)mapy - rayposy + (1.0 - (float)stepy) / 2.0) / raydiry);
-            wallx = rayposx + ((mapy - rayposy + (1 - stepy) / 2) / raydiry) * raydirx;
-        }
-        wallx -= floor(wallx);
-        texx = (int)(wallx * 64);
-        if (side == 0 && raydirx > 0)
-        {
-            texx = 64 - texx - 1;
-            floorxwall = mapx;
-            floorywall = mapy + wallx;
-        }
-        else if (side == 0 && raydirx < 0)
-        {
-            floorxwall = mapx + 1.0;
-            floorywall = mapy + wallx;
-        }
-        else if (side == 1 && raydiry < 0)
-        {
-            texx = 64 - texx - 1;
-            floorxwall = mapx + wallx;
-            floorywall = mapy + 1.0;
-        }
-        else if (side == 1 && raydiry > 0)
-        {
-            floorxwall = mapx + wallx;
-            floorywall = mapy;
-        }
-        hauteurligne = (float)fabs((float)(info->y / perpwalldist));
-        drawstart = (int)(-hauteurligne / 2 + info->y / 2);
-        drawend = (int)(hauteurligne / 2 + info->y / 2);
-        if (drawstart < 0)
-            drawstart = 0;
-        if (drawend >= info->y)
-            drawend = info->y - 1;
-        y = drawstart;
-        while (y <= drawend)
-        {
-            texy = (y * 2 - info->y + hauteurligne) * (64 / 2) / hauteurligne;
-            if (side == 0 && raydirx < 0)
-                img[x + info->x * y] = info->text->no[texx + texy * 64];
-            else if (side == 0 && raydirx > 0)
-                img[x + info->x * y] = info->text->so[texx + texy * 64];
-            else if (side == 1 && raydiry < 0)
-                img[x + info->x * y] = info->text->we[texx + texy * 64];
-            else if (side == 1 && raydiry > 0)
-                img[x + info->x * y] = info->text->ea[texx + texy * 64];
-            y++;
-        }
-        while (y < info->y - 1)
-        {
-            currentdist = info->y / (2.0 * y - info->y);
-            weight = currentdist / perpwalldist;
-            currentfloorx = weight * floorxwall + (1.0 - weight) * rayposx;
-            currentfloory = weight * floorywall + (1.0 - weight) * rayposy;
-            floortextx = (int)(currentfloorx * 64) % 64;
-            floortexty = (int)(currentfloory * 64) % 64;
-            img[x + info->x * y] = info->text->f[floortextx + floortexty * 64];
-            img[x + info->x * (info->y - y)] = info->text->c[floortextx + floortexty * 64];
-            y++;
-        }
-        mlx->perp[x] = perpwalldist;
-        x++;
+        d->stepx = -1;
+        d->sidedistx = (mlx->posx - d->mapx) * d->deltadistx;
     }
-    ft_transparent(img, (info->x * info->y));
+    else
+    {
+        d->stepx = 1;
+        d->sidedistx = (d->mapx + 1.0 - mlx->posx) * d->deltadistx;
+    }
+    if (d->raydiry < 0)
+    {
+        d->stepy = -1;
+        d->sidedisty = (mlx->posy - d->mapy) * d->deltadisty;
+    }
+    else
+    {
+        d->stepy = 1;
+        d->sidedisty = (d->mapy + 1.0 - mlx->posy) * d->deltadisty;
+    }
+}
+
+void    ft_hit(t_struct *info, draw_param *d)
+{
+    while (d->hit == 0)
+    {
+        if (d->sidedistx < d->sidedisty)
+        {
+            d->sidedistx += d->deltadistx;
+            d->mapx += d->stepx;
+            d->side = 0;
+        }
+        else
+        {
+            d->sidedisty += d->deltadisty;
+            d->mapy += d->stepy;
+            d->side = 1;
+        }
+        if (info->map[d->mapx][d->mapy] == '1')
+            d->hit = 1;
+        }
+}
+
+void    ft_perp(mlx_param *mlx, draw_param *d)
+{
+    if (d->side == 0)
+    {
+        d->perpwalldist = (float)fabs(((float)d->mapx - mlx->posx + (1.0 - (float)d->stepx) / 2.0) / d->raydirx);
+        d->wallx = mlx->posy + ((d->mapx - mlx->posx + (1 - d->stepx) / 2) / d->raydirx) * d->raydiry;
+    }
+    else
+    {
+        d->perpwalldist = (float)fabs(((float)d->mapy - mlx->posy + (1.0 - (float)d->stepy) / 2.0) / d->raydiry);
+        d->wallx = mlx->posx + ((d->mapy - mlx->posy + (1 - d->stepy) / 2) / d->raydiry) * d->raydirx;
+    }
+    d->wallx -= floor(d->wallx);
+}
+
+void    ft_texx(draw_param *d)
+{
+    d->texx = (int)(d->wallx * 64);
+    if (d->side == 0 && d->raydirx > 0)
+    {
+        d->texx = 64 - d->texx - 1;
+        d->floorxwall = d->mapx;
+        d->floorywall = d->mapy + d->wallx;
+    }
+    else if (d->side == 0 && d->raydirx < 0)
+    {
+        d->floorxwall = d->mapx + 1.0;
+        d->floorywall = d->mapy + d->wallx;
+    }
+    else if (d->side == 1 && d->raydiry < 0)
+    {
+        d->texx = 64 - d->texx - 1;
+        d->floorxwall = d->mapx + d->wallx;
+        d->floorywall = d->mapy + 1.0;
+    }
+    else if (d->side == 1 && d->raydiry > 0)
+    {
+        d->floorxwall = d->mapx + d->wallx;
+        d->floorywall = d->mapy;
+    }
+}
+
+void    ft_hauteur(t_struct *info, draw_param *d)
+{
+    d->hauteurligne = (float)fabs((float)(info->y / d->perpwalldist));
+    d->start = (int)(-d->hauteurligne / 2 + info->y / 2);
+    d->end = (int)(d->hauteurligne / 2 + info->y / 2);
+    if (d->start < 0)
+        d->start = 0;
+    if (d->end >= info->y)
+        d->end = info->y - 1;
+    d->y = d->start;
+}
+
+void    ft_wall(t_struct *info, draw_param *d)
+{
+    while (d->y <= d->end)
+    {
+        d->texy = (d->y * 2 - info->y + d->hauteurligne) * (64 / 2) / d->hauteurligne;
+        if (d->side == 0 && d->raydirx < 0)
+            d->img[d->x + info->x * d->y] = info->text->no[d->texx + d->texy * 64];
+        else if (d->side == 0 && d->raydirx > 0)
+            d->img[d->x + info->x * d->y] = info->text->so[d->texx + d->texy * 64];
+        else if (d->side == 1 && d->raydiry < 0)
+            d->img[d->x + info->x * d->y] = info->text->we[d->texx + d->texy * 64];
+        else if (d->side == 1 && d->raydiry > 0)
+            d->img[d->x + info->x * d->y] = info->text->ea[d->texx + d->texy * 64];
+        d->y++;
+    }
+}
+
+void    ft_floor(t_struct *info, mlx_param *mlx, draw_param *d)
+{
+    while (d->y < info->y - 1)
+    {
+        d->currentdist = info->y / (2.0 * d->y - info->y);
+        d->weight = d->currentdist / d->perpwalldist;
+        d->currentfloorx = d->weight * d->floorxwall + (1.0 - d->weight) * mlx->posx;
+        d->currentfloory = d->weight * d->floorywall + (1.0 - d->weight) * mlx->posy;
+        d->floortextx = (int)(d->currentfloorx * 64) % 64;
+        d->floortexty = (int)(d->currentfloory * 64) % 64;
+        d->img[d->x + info->x * d->y] = info->text->f[d->floortextx + d->floortexty * 64];
+        d->img[d->x + info->x * (info->y - d->y)] = info->text->c[d->floortextx + d->floortexty * 64];
+        d->y++;
+    }
+}
+
+void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *d)
+{
+    d->x = 0;
+    mlx->img = mlx_new_image(mlx->init, info->x, info->y);
+    d->img = ft_imgaddr(mlx->img);
+    while (d->x <= info->x)
+    {
+        ft_init_draw(info, mlx, d);
+        ft_vector(mlx, d);
+        ft_hit(info, d);
+        ft_perp(mlx, d);
+        ft_texx(d);
+        ft_hauteur(info, d);
+        ft_wall(info, d);
+        ft_floor(info, mlx, d);
+        mlx->perp[d->x] = d->perpwalldist;
+        d->x++;
+    }
+    ft_transparent(d->img, (info->x * info->y));
     ft_sprite(info, info->mlx, info->sprites);
     mlx_put_image_to_window(mlx->init, mlx->window, mlx->img, 0, 0);
 }

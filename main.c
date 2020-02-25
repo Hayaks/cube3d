@@ -94,7 +94,7 @@ void    ft_mlx(t_struct *info)
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
     ft_set_texture(info, info->text);
-    ft_draw(info, info->mlx);
+    ft_draw(info, info->mlx, info->d);
     mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info->mlx);
 	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info->mlx);
     mlx_loop_hook(info->mlx->init, &ft_update, info);
@@ -115,6 +115,8 @@ int	main(int ac, char **av)
     if (!(info->text = malloc(sizeof(text_param))))
         ft_error(1);
     if (!(info->sprites = malloc(sizeof(*info->sprites) * (20 + 1))))
+        ft_error(1);
+    if (!(info->d = malloc(sizeof(draw_param))))
         ft_error(1);
     ft_newmap(info);
     fd = open(av[1], O_RDONLY);

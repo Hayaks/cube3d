@@ -32,6 +32,6 @@ int    ft_update(t_struct *info)
     ft_move(info);
     ft_rotate(info->mlx);
     mlx_destroy_image(info->mlx->init, info->mlx->img);
-    ft_draw(info, info->mlx);
+    ft_draw(info, info->mlx, info->d);
     return (0);
 }
