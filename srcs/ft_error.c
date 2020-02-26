@@ -10,5 +10,6 @@ void    ft_error(int i)
         write(1,"Mauvaise map\n", 14);
     if (i == 3)
         write(1,"Mauvais argument\n", 18);
+    //fonction pour free 
     exit(0);
 }
