@@ -16,13 +16,16 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
         ft_parsing(line, info);
         free(line);
     }
-    while (info->map[0][i])
-    {
-        if (info->map[0][i] != '1' ||
-        info->map[info->i - 1][i] != '1')
-            ft_error(2);
+    ft_verif_map(info);
+    while (info->map[0][i] && info->map[0][i] == '1')
         i++;
-    }
+    if (info->map[0][i] && info->map[0][i] != '1')
+            ft_error(2);
+    i = 0;
+    while (info->map[info->i - 1][i] && info->map[info->i - 1][i] == '1')
+        i++;
+    if (info->map[info->i - 1][i] && info->map[info->i - 1][i] != '1')
+            ft_error(2);
 }
 
 void    ft_set_texture(t_struct *info, text_param *text)

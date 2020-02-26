@@ -2,7 +2,8 @@
 
 void    ft_error(int i)
 {   
-    write(1,"Erreur\n", 8);
+    if (i > 0)
+        write(1,"Erreur\n", 8);
     if (i == 1)
         write(1,"Probleme de malloc\n", 20);
     if (i == 2)

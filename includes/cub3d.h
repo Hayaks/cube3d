@@ -173,5 +173,6 @@ void    ft_error(int i);
 void    ft_vector(t_struct *info ,mlx_param *mlx, draw_param *d);
 int     *ft_tri(t_struct *info, int *final);
 void    ft_newmap(t_struct *info);
+void	ft_verif_map(t_struct *info);
 
 #endif
