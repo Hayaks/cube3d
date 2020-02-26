@@ -5,7 +5,8 @@ INCLUDESDIR	= ./includes/
 SRCS		= 	$(SRCSDIR)ft_parsing.c $(SRCSDIR)get_next_line.c $(SRCSDIR)ft_parsing_map.c \
 				$(SRCSDIR)ft_update.c $(SRCSDIR)ft_draw.c $(SRCSDIR)ft_imgaddr.c \
 				$(SRCSDIR)ft_key.c $(SRCSDIR)ft_sprite.c $(SRCSDIR)ft_error.c \
-				$(SRCSDIR)ft_move.c
+				$(SRCSDIR)ft_move.c $(SRCSDIR)ft_vector.c $(SRCSDIR)ft_tri.c \
+				$(SRCSDIR)ft_newmap.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 

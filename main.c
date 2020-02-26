@@ -1,59 +1,6 @@
 #include "./includes/cub3d.h"
 #include "./includes/key.h"
 
-void    ft_newmap(t_struct *info)
-{
-    info->x = 0;
-    info->y = 0;
-    info->no = NULL;
-    info->so = NULL;
-    info->we = NULL;
-    info->ea = NULL;
-    info->s = NULL;
-    info->f = NULL;
-    info->c = NULL;
-    info->map = NULL;
-    info->i = 0;
-    info->nb = 0;
-
-    info->mlx->posx = 0;
-    info->mlx->posy = 0;
-    info->mlx->dirx = 0;
-    info->mlx->diry = 0;
-    info->mlx->planex = 0;
-    info->mlx->planey = 0;
-    info->mlx->up = 0;
-    info->mlx->down = 0;
-    info->mlx->left = 0;
-    info->mlx->right = 0;
-    info->mlx->leftr = 0;
-    info->mlx->rightr = 0;
-    info->mlx->v = 0.05;
-    info->mlx->perp = malloc(sizeof(float) * (3000));
-
-    info->text->no = NULL;
-    info->text->nox = 0;
-    info->text->noy = 0;
-    info->text->so = NULL;
-    info->text->sox = 0;
-    info->text->soy = 0;
-    info->text->we = NULL;
-    info->text->wex = 0;
-    info->text->wey = 0;
-    info->text->ea = NULL;
-    info->text->eax = 0;
-    info->text->eay = 0;
-    info->text->s = NULL;
-    info->text->sx = 0;
-    info->text->sy = 0;
-    info->text->c = NULL;
-    info->text->cx = 0;
-    info->text->cy = 0;
-    info->text->f = NULL;
-    info->text->fx = 0;
-    info->text->fy = 0;
-}
-
 void    ft_map(int ret, int fd, char *line, t_struct *info)
 {
     int i;
@@ -73,7 +20,7 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
     {
         if (info->map[0][i] != '1' ||
         info->map[info->i - 1][i] != '1')
-            exit(0);
+            ft_error(2);
         i++;
     }
 }
@@ -117,6 +64,8 @@ int	main(int ac, char **av)
     if (!(info->sprites = malloc(sizeof(*info->sprites) * (20 + 1))))
         ft_error(1);
     if (!(info->d = malloc(sizeof(draw_param))))
+        ft_error(1);
+    if (!(info->sp = malloc(sizeof(s_param))))
         ft_error(1);
     ft_newmap(info);
     fd = open(av[1], O_RDONLY);

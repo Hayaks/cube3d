@@ -1,4 +1,4 @@
-refaire au propre
 Parsing de la map
 Touche echap
-Calloc
+Leaks
+BMP
