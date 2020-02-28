@@ -12,7 +12,7 @@
 
 #	ifndef CUB3D_H
 # 	define CUB3D_H
-#	define BUFFER_SIZE 32
+#	define BUFFER_SIZE 400
 #	define OPTIONS "RNSWEFC1"
 #	define MAP "NSWE012"
 #	define POS "NSWE"
@@ -148,7 +148,6 @@ typedef struct	s_struct
 	char		*s;
 	char		*f;
 	char		*c;
-	char		*type;
 	char		**map;
 	int			i;
 	int			nb;
@@ -166,10 +165,10 @@ int    	ft_update(t_struct *info);
 void    ft_move(t_struct *info);
 void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *draw);
 int     *ft_imgaddr(void *img);
-int     ft_presskey(int key, mlx_param *mlx);
-int     ft_releasekey(int key, mlx_param *mlx);
+int     ft_presskey(int key, t_struct *info);
+int     ft_releasekey(int key, t_struct *info);
 void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp);
-void    ft_error(int i);
+void    ft_error(int i, t_struct *info);
 void    ft_vector(t_struct *info ,mlx_param *mlx, draw_param *d);
 int     *ft_tri(t_struct *info, int *final);
 void    ft_newmap(t_struct *info);

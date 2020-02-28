@@ -1,41 +1,41 @@
 #include "../includes/cub3d.h"
 
-int     ft_presskey(int key, mlx_param *mlx)
+int     ft_presskey(int key, t_struct *info)
 {
     if (key == 13)
-        mlx->up = 1;
+        info->mlx->up = 1;
     if (key == 1)
-        mlx->down = 1;
+        info->mlx->down = 1;
     if (key == 0)
-        mlx->left = 1;
+        info->mlx->left = 1;
     if (key == 2)
-        mlx->right = 1;
+        info->mlx->right = 1;
     if (key == 123)
-        mlx->leftr = 1;
+        info->mlx->leftr = 1;
     if (key == 124)
-        mlx->rightr = 1;
+        info->mlx->rightr = 1;
     if (key == 257)
-        mlx->v = 0.1;
+        info->mlx->v = 0.1;
     if (key == 53)
-        ft_error(0);
+        ft_error(0, info);
     return (1);
 }
 
-int     ft_releasekey(int key, mlx_param *mlx)
+int     ft_releasekey(int key, t_struct *info)
 {
     if (key == 13)
-        mlx->up = 0;
+        info->mlx->up = 0;
     if (key == 1)
-        mlx->down = 0;
+        info->mlx->down = 0;
     if (key == 0)
-        mlx->left = 0;
+        info->mlx->left = 0;
     if (key == 2)
-        mlx->right = 0;
+        info->mlx->right = 0;
     if (key == 123)
-        mlx->leftr = 0;
+        info->mlx->leftr = 0;
     if (key == 124)
-        mlx->rightr = 0;
+        info->mlx->rightr = 0;
     if (key == 257)
-        mlx->v = 0.05;
+        info->mlx->v = 0.05;
     return (1);
 }

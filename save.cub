@@ -6,7 +6,7 @@ EA ./srcs/textures/BRICKLIT.xpm
 
 S                             ./srcs/textures/barrel.xpm 
 F        ./srcs/textures/wall.xpm 
-C ./srcs/textures/wall.xpm 
+C  ./srcs/textures/wall.xpm 
 
 11111111111
 101010101011

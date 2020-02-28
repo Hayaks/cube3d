@@ -1,5 +1,5 @@
-#include "./includes/cub3d.h"
-#include "./includes/key.h"
+#include "../includes/cub3d.h"
+#include "../includes/key.h"
 
 void    ft_map(int ret, int fd, char *line, t_struct *info)
 {
@@ -11,6 +11,7 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
         ft_parsing(line, info);
         free(line);
     }
+    ft_error(0, info);//wweefebfhebfehbfehj
     if (ret == 0)
     {
         ft_parsing(line, info);
@@ -20,12 +21,12 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
     while (info->map[0][i] && info->map[0][i] == '1')
         i++;
     if (info->map[0][i] && info->map[0][i] != '1')
-            ft_error(2);
+            ft_error(2, info);
     i = 0;
     while (info->map[info->i - 1][i] && info->map[info->i - 1][i] == '1')
         i++;
     if (info->map[info->i - 1][i] && info->map[info->i - 1][i] != '1')
-            ft_error(2);
+            ft_error(2, info);
 }
 
 void    ft_set_texture(t_struct *info, text_param *text)
@@ -45,8 +46,8 @@ void    ft_mlx(t_struct *info)
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
     ft_set_texture(info, info->text);
     ft_draw(info, info->mlx, info->d);
-    mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info->mlx);
-	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info->mlx);
+    mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info);
+	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info);
     mlx_loop_hook(info->mlx->init, &ft_update, info);
     mlx_loop(info->mlx->init);
 }
@@ -58,21 +59,26 @@ int	main(int ac, char **av)
     char        *line;
     t_struct    *info;
 
+    setbuf(stdout, NULL);//N'oublie pas d'enlever
+    ret = 0;
+    line = NULL;
     if (!(info = malloc(sizeof(t_struct))) && ac != 2)
-        ft_error(1);
+        ft_error(1, info);
+    ft_bzero(info, sizeof(t_struct));
     if (!(info->mlx = malloc(sizeof(mlx_param))))
-        ft_error(1);
+        ft_error(1, info);
     if (!(info->text = malloc(sizeof(text_param))))
-        ft_error(1);
-    if (!(info->sprites = malloc(sizeof(*info->sprites) * (20 + 1))))
-        ft_error(1);
+        ft_error(1, info);
+    if (!(info->sprites = malloc(sizeof(*info->sprites) * (30 + 1))))
+        ft_error(1, info);
     if (!(info->d = malloc(sizeof(draw_param))))
-        ft_error(1);
+        ft_error(1, info);
     if (!(info->sp = malloc(sizeof(s_param))))
-        ft_error(1);
+        ft_error(1, info);
     ft_newmap(info);
     fd = open(av[1], O_RDONLY);
     ft_map(ret, fd, line, info);
     close(fd);
     ft_mlx(info);
+    return (0);
 }

@@ -1,7 +1,9 @@
 #include "../includes/cub3d.h"
 
-void    ft_newinfo(t_struct *info)
+/*void    ft_newinfo(t_struct *info)
 {
+    ft_bzero(info, sizeof(t_struct));
+
     info->x = 0;
     info->y = 0;
     info->no = NULL;
@@ -14,7 +16,7 @@ void    ft_newinfo(t_struct *info)
     info->map = NULL;
     info->i = 0;
     info->nb = 0;
-}
+}*/
 
 void    ft_newmlx(mlx_param *mlx)
 {
@@ -61,7 +63,7 @@ void    ft_newtext(text_param *text)
 
 void    ft_newmap(t_struct *info)
 {
-    ft_newinfo(info);
+    //ft_newinfo(info);
     ft_newmlx(info->mlx);
     ft_newtext(info->text);
 }
