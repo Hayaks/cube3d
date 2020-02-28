@@ -6,7 +6,7 @@ SRCS		= 	$(SRCSDIR)ft_parsing.c $(SRCSDIR)get_next_line.c $(SRCSDIR)ft_parsing_m
 				$(SRCSDIR)ft_update.c $(SRCSDIR)ft_draw.c $(SRCSDIR)ft_imgaddr.c \
 				$(SRCSDIR)ft_key.c $(SRCSDIR)ft_sprite.c $(SRCSDIR)ft_error.c \
 				$(SRCSDIR)ft_move.c $(SRCSDIR)ft_vector.c $(SRCSDIR)ft_tri.c \
-				$(SRCSDIR)ft_newmap.c $(SRCSDIR)ft_verif_map.c
+				$(SRCSDIR)ft_newmap.c $(SRCSDIR)ft_verif_map.c $(SRCSDIR)main.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 
@@ -14,7 +14,7 @@ OBJS		= $(SRCS:.c=.o)
 
 INCLUDES	= -I$(HEADER)
 
-NAME		= cub3d.a
+NAME		= cub3d
 
 CC			= gcc
 LIB			= ar -rcs
