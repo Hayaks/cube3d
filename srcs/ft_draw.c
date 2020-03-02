@@ -79,5 +79,7 @@ void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *d)
     }
     ft_transparent(d->img, (info->x * info->y));
     ft_sprite(info, info->mlx, info->sprites, info->sp);
+    if (info->ac == 3)
+        ft_bmp(info, info->bmp);
     mlx_put_image_to_window(mlx->init, mlx->window, mlx->img, 0, 0);
 }

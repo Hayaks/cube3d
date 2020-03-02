@@ -68,14 +68,11 @@ void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *s
     sp->final = ft_tri(info, sp->final);
     while (sp->i < info->nb)
     {
-        printf("final: %i\n", sp->final[sp->i]);
-        printf("info->nb: %i \n", info->nb);
         ft_init_sprite(info, mlx, sprites, sp);
         while (sp->drawstartx < sp->drawendx)
             ft_draw_sprite(info, mlx, sprites, sp);
         sprites[sp->final[sp->i]]->dist = 0.0;
         sp->i++;
-        printf("wesh\n");
     }
     free(sp->final);
 }

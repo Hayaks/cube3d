@@ -1,23 +1,5 @@
 #include "../includes/cub3d.h"
 
-/*void    ft_newinfo(t_struct *info)
-{
-    ft_bzero(info, sizeof(t_struct));
-
-    info->x = 0;
-    info->y = 0;
-    info->no = NULL;
-    info->so = NULL;
-    info->we = NULL;
-    info->ea = NULL;
-    info->s = NULL;
-    info->f = NULL;
-    info->c = NULL;
-    info->map = NULL;
-    info->i = 0;
-    info->nb = 0;
-}*/
-
 void    ft_newmlx(mlx_param *mlx)
 {
     mlx->posx = 0;
@@ -63,7 +45,6 @@ void    ft_newtext(text_param *text)
 
 void    ft_newmap(t_struct *info)
 {
-    //ft_newinfo(info);
     ft_newmlx(info->mlx);
     ft_newtext(info->text);
 }

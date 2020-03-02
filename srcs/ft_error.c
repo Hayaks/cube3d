@@ -48,8 +48,6 @@ void    ft_free_info(t_struct *info)
     }
     if (info->map != NULL)
         free(info->map);
-    //if (info->type != NULL)
-        //free(info->type);
     if (info->no != NULL)
         free(info->no);
     if (info->so != NULL)
@@ -86,6 +84,10 @@ void    ft_error(int i, t_struct *info)
         write(1,"Mauvaise map\n", 14);
     if (i == 3)
         write(1,"Mauvais argument\n", 18);
+    if (i == 4)
+        write(1,"BMP\n", 5);
+    if (info->bmp != NULL)
+        free(info->bmp);
     if (info->sp != NULL)
         free(info->sp);
     if (info->d != NULL)
@@ -95,10 +97,10 @@ void    ft_error(int i, t_struct *info)
     ft_free_mlx(info->mlx);
     ft_free_info(info);
     //verifier si les textures sont bons
-                system("leaks a.out");
+ /*               system("leaks a.out");
     while(1)
     {
         
-    }
+    }*/
     exit(0);
 }

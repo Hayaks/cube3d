@@ -11,7 +11,6 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
         ft_parsing(line, info);
         free(line);
     }
-    ft_error(0, info);//wweefebfhebfehbfehj
     if (ret == 0)
     {
         ft_parsing(line, info);
@@ -40,8 +39,17 @@ void    ft_set_texture(t_struct *info, text_param *text)
     info->text->f = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->f, &text->fx, &text->fy));
 }
 
-void    ft_mlx(t_struct *info)
+void    ft_mlx(t_struct *info, char **av)
 {
+    int         fd;
+    int         ret;
+    char        *line;
+
+    ret = 0;
+    line = NULL;
+    fd = open(av[1], O_RDONLY);
+    ft_map(ret, fd, line, info);
+    close(fd);
     info->mlx->init = mlx_init();
     info->mlx->window = mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
     ft_set_texture(info, info->text);
@@ -54,17 +62,12 @@ void    ft_mlx(t_struct *info)
 
 int	main(int ac, char **av)
 {
-	int         fd;
-    int         ret;
-    char        *line;
     t_struct    *info;
 
-    setbuf(stdout, NULL);//N'oublie pas d'enlever
-    ret = 0;
-    line = NULL;
-    if (!(info = malloc(sizeof(t_struct))) && ac != 2)
+    if (!(info = malloc(sizeof(t_struct))) && (ac != 2 || ac != 3))
         ft_error(1, info);
     ft_bzero(info, sizeof(t_struct));
+    info->ac = ac;
     if (!(info->mlx = malloc(sizeof(mlx_param))))
         ft_error(1, info);
     if (!(info->text = malloc(sizeof(text_param))))
@@ -75,10 +78,11 @@ int	main(int ac, char **av)
         ft_error(1, info);
     if (!(info->sp = malloc(sizeof(s_param))))
         ft_error(1, info);
+    if (!(info->bmp = malloc(sizeof(bmp_param))))
+        ft_error(1, info);
     ft_newmap(info);
-    fd = open(av[1], O_RDONLY);
-    ft_map(ret, fd, line, info);
-    close(fd);
-    ft_mlx(info);
+    if (ac == 3 && strcmp(av[2], SAVE))
+        ft_error(3, info);
+    ft_mlx(info, av);
     return (0);
 }

@@ -12,10 +12,12 @@
 
 #	ifndef CUB3D_H
 # 	define CUB3D_H
-#	define BUFFER_SIZE 400
+#	define BUFFER_SIZE 32
 #	define OPTIONS "RNSWEFC1"
 #	define MAP "NSWE012"
 #	define POS "NSWE"
+#	define SAVE "--save"
+#	define BMP "save.bmp"
 
 #include <stdlib.h>
 #include <stdio.h> //printf
@@ -24,6 +26,13 @@
 #include <mlx.h>
 #include <math.h>
 #include "../libft/libft.h"
+
+typedef struct	bmp_struct
+{
+	int			fd;
+	char		*h_file;
+	char		*h_img;
+}				bmp_param;
 
 typedef struct	sprite_struct
 {
@@ -151,11 +160,13 @@ typedef struct	s_struct
 	char		**map;
 	int			i;
 	int			nb;
+	int			ac;
 	mlx_param	*mlx;
 	text_param	*text;
 	s_param		**sprites;
 	draw_param	*d;
 	sp_param	*sp;
+	bmp_param	*bmp;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
@@ -173,5 +184,6 @@ void    ft_vector(t_struct *info ,mlx_param *mlx, draw_param *d);
 int     *ft_tri(t_struct *info, int *final);
 void    ft_newmap(t_struct *info);
 void	ft_verif_map(t_struct *info);
+void	ft_bmp(t_struct *info, bmp_param *bmp);
 
 #endif
