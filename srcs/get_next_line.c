@@ -57,6 +57,7 @@ int		get_next_line(int fd, char **line)
 {
 	static char	*save;
 	char		*buffer;
+	char		*tmp;
 	int			i;
 	int			c;
 
@@ -72,7 +73,9 @@ int		get_next_line(int fd, char **line)
 		if (c < 0)
 			return (ft_exit(-1, &buffer, &save));
 		buffer[c] = '\0';
-		save = ft_strjoin(save, buffer);
+		tmp = ft_strjoin(save, buffer);
+		free(save);
+		save = tmp;
 	}
 	while (save[i] && save[i] != '\n')
 		i++;
