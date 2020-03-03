@@ -27,13 +27,6 @@
 #include <math.h>
 #include "../libft/libft.h"
 
-typedef struct	bmp_struct
-{
-	int			fd;
-	char		*h_file;
-	char		*h_img;
-}				bmp_param;
-
 typedef struct	sprite_struct
 {
 	int			x;
@@ -161,12 +154,12 @@ typedef struct	s_struct
 	int			i;
 	int			nb;
 	int			ac;
+	int			fd;
 	mlx_param	*mlx;
 	text_param	*text;
 	s_param		**sprites;
 	draw_param	*d;
 	sp_param	*sp;
-	bmp_param	*bmp;
 }				t_struct;
 
 int		get_next_line(int const fd, char **line);
@@ -179,11 +172,11 @@ int     *ft_imgaddr(void *img);
 int     ft_presskey(int key, t_struct *info);
 int     ft_releasekey(int key, t_struct *info);
 void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp);
-void    ft_error(int i, t_struct *info);
+int    	ft_error(int i, t_struct *info);
 void    ft_vector(t_struct *info ,mlx_param *mlx, draw_param *d);
 int     *ft_tri(t_struct *info, int *final);
 void    ft_newmap(t_struct *info);
 void	ft_verif_map(t_struct *info);
-void	ft_bmp(t_struct *info, bmp_param *bmp);
+void	ft_bmp(t_struct *info);
 
 #endif

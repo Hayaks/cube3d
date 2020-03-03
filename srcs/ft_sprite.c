@@ -56,7 +56,7 @@ void    ft_draw_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_par
 
 void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
 {
-    if (!(sp->final = malloc(sizeof(sp->final) * (info->nb))))
+    if (!(sp->final = malloc(sizeof(int) * (info->nb + 1))))
         ft_error(1, info);
     sp->i = 0;
     sp->y = 0; 
@@ -66,7 +66,7 @@ void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *s
         sp->y++;
     }
     sp->final = ft_tri(info, sp->final);
-    while (sp->i < info->nb)
+    while (sp->i < (info->nb))
     {
         ft_init_sprite(info, mlx, sprites, sp);
         while (sp->drawstartx < sp->drawendx)

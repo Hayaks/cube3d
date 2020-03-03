@@ -74,7 +74,7 @@ void    ft_free_mlx(mlx_param *mlx)
         free(mlx);
 }
 
-void    ft_error(int i, t_struct *info)
+int     ft_error(int i, t_struct *info)
 {   
     if (i > 0)
         write(1,"Erreur\n", 8);
@@ -86,8 +86,6 @@ void    ft_error(int i, t_struct *info)
         write(1,"Mauvais argument\n", 18);
     if (i == 4)
         write(1,"BMP\n", 5);
-    if (info->bmp != NULL)
-        free(info->bmp);
     if (info->sp != NULL)
         free(info->sp);
     if (info->d != NULL)
@@ -97,10 +95,11 @@ void    ft_error(int i, t_struct *info)
     ft_free_mlx(info->mlx);
     ft_free_info(info);
     //verifier si les textures sont bons
- /*               system("leaks a.out");
+    /*            system("leaks a.out");
     while(1)
     {
         
     }*/
     exit(0);
+    return (1);
 }

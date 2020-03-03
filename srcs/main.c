@@ -56,6 +56,7 @@ void    ft_mlx(t_struct *info, char **av)
     ft_draw(info, info->mlx, info->d);
     mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info);
 	mlx_hook(info->mlx->window, KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info);
+    mlx_hook(info->mlx->window, DESTROYNOTIFY, STRUCTURENOTIFYMASK, &ft_error, info);
     mlx_loop_hook(info->mlx->init, &ft_update, info);
     mlx_loop(info->mlx->init);
 }
@@ -77,8 +78,6 @@ int	main(int ac, char **av)
     if (!(info->d = malloc(sizeof(draw_param))))
         ft_error(1, info);
     if (!(info->sp = malloc(sizeof(s_param))))
-        ft_error(1, info);
-    if (!(info->bmp = malloc(sizeof(bmp_param))))
         ft_error(1, info);
     ft_newmap(info);
     if (ac == 3 && strcmp(av[2], SAVE))

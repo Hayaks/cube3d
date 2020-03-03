@@ -30,7 +30,7 @@ $(NAME):	$(OBJS)
 			@make -C ./libft/
 			@cp ./libft/libft.a ./$(NAME)
 			$(LIB) $(NAME) $(OBJS)
-			gcc  -lmlx -framework OpenGl -framework Appkit $(NAME)
+			gcc  -Wall -Werror -Wextra -lmlx -framework OpenGl -framework Appkit $(NAME)
 
 all:		$(NAME)
 
