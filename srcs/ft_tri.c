@@ -16,6 +16,7 @@ void    ft_temp(t_struct *info, int i, int j, float *tab)
 {
     float   *temp;
 
+    temp = NULL;
     if (!(temp = malloc(sizeof(*temp) * (info->nb + 1))))
         ft_error(1, info); 
     while ((j + 1) < info->nb)
@@ -41,6 +42,7 @@ int     *ft_tri(t_struct *info, int *final)
     int     j;
     float   *tab;
 
+    tab = NULL;
     if (!(tab = malloc(sizeof(*tab) * (info->nb + 1))))
         ft_error(1, info);   
     i = 0;
@@ -57,6 +59,6 @@ int     *ft_tri(t_struct *info, int *final)
         j++;
     }
     free(tab);
-    //final[j] = -1;
+    final[j] = -1;
     return (final);
 }
