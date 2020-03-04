@@ -73,7 +73,7 @@ int	main(int ac, char **av)
         ft_error(1, info);
     if (!(info->text = malloc(sizeof(text_param))))
         ft_error(1, info);
-    if (!(info->sprites = malloc(sizeof(*info->sprites) * (30 + 1))))
+    if (!(info->sprites = malloc(sizeof(*info->sprites) * (30))))
         ft_error(1, info);
     if (!(info->d = malloc(sizeof(draw_param))))
         ft_error(1, info);
