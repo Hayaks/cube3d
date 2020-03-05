@@ -1,1 +1,3 @@
-Fermeture avec la croix
+convertion hexa
+regle bonus
+-D(nom du define) -I.

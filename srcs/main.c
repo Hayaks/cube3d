@@ -6,6 +6,7 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
     int i;
 
     i = 0;
+    info->nb = 0;
     while ((ret = get_next_line(fd, &line)) > 0)
     {
         ft_parsing(line, info);
@@ -26,17 +27,6 @@ void    ft_map(int ret, int fd, char *line, t_struct *info)
         i++;
     if (info->map[info->i - 1][i] && info->map[info->i - 1][i] != '1')
             ft_error(2, info);
-}
-
-void    ft_set_texture(t_struct *info, text_param *text)
-{
-    info->text->no = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->no, &text->nox, &text->noy));
-    info->text->so = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->so, &text->sox, &text->soy));
-    info->text->we = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->we, &text->wex, &text->wey));
-    info->text->ea = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->ea, &text->eax, &text->eay));
-    info->text->s = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->s, &text->sx, &text->sy));
-    info->text->c = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->c, &text->cx, &text->cy));
-    info->text->f = ft_imgaddr(mlx_xpm_file_to_image(info->mlx->init, info->f, &text->fx, &text->fy));
 }
 
 void    ft_mlx(t_struct *info, char **av)
@@ -61,7 +51,44 @@ void    ft_mlx(t_struct *info, char **av)
     mlx_loop(info->mlx->init);
 }
 
-int	main(int ac, char **av)
+void    ft_nbsprites(t_struct *info, char **av)
+{
+    int         fd;
+    int         ret;
+    char        *line;
+    int         j;
+
+    ret = 0;
+    line = NULL;
+    fd = open(av[1], O_RDONLY);
+    while ((ret = get_next_line(fd, &line)) > 0)
+    {
+        j = 0;
+        if (line[j] == '1')
+            while (line[j])
+            {
+                if (line[j] == '2')
+                    info->nb++;
+                j++;
+            }
+        free(line);
+    }
+    close(fd);
+}
+
+void    ft_verif_arg(t_struct *info, char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    i = i - 4;
+    if (ft_strncmp(&str[i], ARG, ft_strlen(ARG)))
+        ft_error(3, info);
+}
+
+int	    main(int ac, char **av)
 {
     t_struct    *info;
 
@@ -69,18 +96,20 @@ int	main(int ac, char **av)
         ft_error(1, info);
     ft_bzero(info, sizeof(t_struct));
     info->ac = ac;
+    ft_nbsprites(info, av);
     if (!(info->mlx = malloc(sizeof(mlx_param))))
         ft_error(1, info);
     if (!(info->text = malloc(sizeof(text_param))))
         ft_error(1, info);
-    if (!(info->sprites = malloc(sizeof(*info->sprites) * (30))))
+    if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nb * 2))))
         ft_error(1, info);
     if (!(info->d = malloc(sizeof(draw_param))))
         ft_error(1, info);
     if (!(info->sp = malloc(sizeof(s_param))))
         ft_error(1, info);
     ft_newmap(info);
-    if (ac == 3 && strcmp(av[2], SAVE))
+    ft_verif_arg(info, av[1]);
+    if (ac == 3 && ft_strncmp(av[2], SAVE, ft_strlen(SAVE)))
         ft_error(3, info);
     ft_mlx(info, av);
     return (0);

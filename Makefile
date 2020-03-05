@@ -7,7 +7,7 @@ SRCS		= 	$(SRCSDIR)ft_parsing.c $(SRCSDIR)get_next_line.c $(SRCSDIR)ft_parsing_m
 				$(SRCSDIR)ft_key.c $(SRCSDIR)ft_sprite.c $(SRCSDIR)ft_error.c \
 				$(SRCSDIR)ft_move.c $(SRCSDIR)ft_vector.c $(SRCSDIR)ft_tri.c \
 				$(SRCSDIR)ft_newmap.c $(SRCSDIR)ft_verif_map.c $(SRCSDIR)ft_bmp.c \
-				$(SRCSDIR)main.c
+				$(SRCSDIR)ft_set_texture.c $(SRCSDIR)main.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 
@@ -30,7 +30,7 @@ $(NAME):	$(OBJS)
 			@make -C ./libft/
 			@cp ./libft/libft.a ./$(NAME)
 			$(LIB) $(NAME) $(OBJS)
-			gcc  -Wall -Werror -Wextra -lmlx -framework OpenGl -framework Appkit $(NAME)
+			gcc -Wall -Werror -Wextra -lmlx -framework OpenGl -framework Appkit $(NAME)
 
 all:		$(NAME)
 

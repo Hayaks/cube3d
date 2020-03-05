@@ -16,6 +16,7 @@
 #	define OPTIONS "RNSWEFC1"
 #	define MAP "NSWE012"
 #	define POS "NSWE"
+#	define ARG ".cub"
 #	define SAVE "--save"
 #	define BMP "save.bmp"
 
@@ -178,5 +179,6 @@ int     *ft_tri(t_struct *info, int *final);
 void    ft_newmap(t_struct *info);
 void	ft_verif_map(t_struct *info);
 void	ft_bmp(t_struct *info);
+void    ft_set_texture(t_struct *info, text_param *text);
 
 #endif

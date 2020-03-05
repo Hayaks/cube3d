@@ -4,7 +4,7 @@ SO        ./srcs/textures/BSTONE1.xpm
 WE ./srcs/textures/BRICK7.xpm
 EA ./srcs/textures/BRICKLIT.xpm
 
-S                             ./srcs/textures/barrel.xpm 
+S                             ./srcs/textures/barrel.xpm
 F        ./srcs/textures/wall.xpm 
 C  ./srcs/textures/wall.xpm 
 

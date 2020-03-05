@@ -22,7 +22,7 @@ void    ft_newmap(t_struct *info)
 {
     ft_newmlx(info->mlx);
     ft_bzero(info->text, sizeof(text_param));
-    ft_bzero(info->sprites, sizeof(*info->sprites) * 30);
+    ft_bzero(info->sprites, sizeof(*info->sprites) * (info->nb * 2));
     ft_bzero(info->d, sizeof(draw_param));
     ft_bzero(info->sp, sizeof(s_param));
 }
