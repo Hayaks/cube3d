@@ -92,6 +92,7 @@ int	    main(int ac, char **av)
 {
     t_struct    *info;
 
+    printf("BONUS: %d\n", BONUS);
     if (!(info = malloc(sizeof(t_struct))) && (ac != 2 || ac != 3))
         ft_error(1, info);
     ft_bzero(info, sizeof(t_struct));

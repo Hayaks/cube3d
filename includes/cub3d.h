@@ -19,6 +19,9 @@
 #	define ARG ".cub"
 #	define SAVE "--save"
 #	define BMP "save.bmp"
+#	ifndef BONUS
+#	define BONUS 0
+#	endif
 
 #include <stdlib.h>
 #include <stdio.h> //printf

@@ -19,10 +19,13 @@ void    ft_set_texture(t_struct *info, text_param *text)
 	if (!(tmp = mlx_xpm_file_to_image(info->mlx->init, info->s, &text->sx, &text->sy)))
 		ft_error(3, info);
 	text->s = ft_imgaddr(tmp);
-	if (!(tmp = mlx_xpm_file_to_image(info->mlx->init, info->c, &text->cx, &text->cy)))
-		ft_error(3, info);
-	text->c = ft_imgaddr(tmp);
-	if (!(tmp = mlx_xpm_file_to_image(info->mlx->init, info->f, &text->fx, &text->fy)))
-		ft_error(3, info);
-	text->f = ft_imgaddr(tmp);
+	if (BONUS == 1)
+	{
+		if (!(tmp = mlx_xpm_file_to_image(info->mlx->init, info->c, &text->cx, &text->cy)))
+			ft_error(3, info);
+		text->c = ft_imgaddr(tmp);
+		if (!(tmp = mlx_xpm_file_to_image(info->mlx->init, info->f, &text->fx, &text->fy)))
+			ft_error(3, info);
+		text->f = ft_imgaddr(tmp);
+	}
 }

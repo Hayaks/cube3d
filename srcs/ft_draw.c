@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-void    ft_transparent(int *img, int pixel)
+void    ft_transparent(int *img, int pixel, t_struct *info)
 {
     int i;
 
@@ -8,9 +8,9 @@ void    ft_transparent(int *img, int pixel)
     while (i < pixel)
     {
         if (img[i] == 0 && i <= (pixel / 2))
-            img[i] = 12058111;
+            img[i] = ft_atoi(info->c);
         if (img[i] == 0 && i > (pixel / 2))
-            img[i] = 12895428;
+            img[i] = ft_atoi(info->f);
         i++;
     }
     
@@ -73,11 +73,13 @@ void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *d)
         ft_init_draw(info, mlx, d);
         ft_vector(info, mlx, d);
         ft_wall(info, d);
-        ft_floor(info, mlx, d);
+        if (BONUS == 1)
+            ft_floor(info, mlx, d);
         mlx->perp[d->x] = d->perpwalldist;
         d->x++;
     }
-    ft_transparent(d->img, (info->x * info->y));
+    if (BONUS == 0)
+        ft_transparent(d->img, (info->x * info->y), info);
     ft_sprite(info, info->mlx, info->sprites, info->sp);
     if (info->ac == 3)
         ft_bmp(info);

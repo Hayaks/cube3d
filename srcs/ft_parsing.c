@@ -63,31 +63,30 @@ void    ft_resolution(char *line, t_struct *info, int i)
     free(temp);
 }
 
-/*void    ft_color(char *line, t_struct *info, int i, int type)
+void    ft_color(char *line, t_struct *info, int i, int type)
 {
     char    *temp;
+    char    **tab;
     int     j;
+    int     result;
 
     j = 0;
-    if (type == 1)
-    {
-        temp = ft_trimset(&line[i + 1], " ");
-        info->f = ft_split(temp, ',');
-        while (info->f[j])
-            j++;
-    }
-    else
-    {
-        temp = ft_trimset(&line[i + 1], " ");
-        info->c = ft_split(temp, ',');
-        while (info->c[j])
-            j++;
-    }
-    temp = NULL;
-    free(temp);
+    temp = ft_trimset(&line[i + 1], " ");
+    tab = ft_split(temp, ',');
+    while (tab[j])
+        j++;
     if (j != 3)
         exit(0);
-}*/
+    result = ft_atoi(tab[0]) * (int)pow(256, 2) + ft_atoi(tab[1]) * 256 + ft_atoi(tab[2]);
+    if (type == 1)
+        info->f = ft_itoa(result);
+    if (type == 2)
+        info->c = ft_itoa(result);
+    temp = NULL;
+    free(temp);
+    tab = NULL;
+    free(tab);
+}
 
 void    ft_options(char *line, t_struct *info, int i)
 {
@@ -105,11 +104,19 @@ void    ft_options(char *line, t_struct *info, int i)
     else if (line[i] == 'S' && line[i + 1] == ' ')
         info->s = ft_strtrim(&line[i + 2], " ");
     else if (line[i] == 'F')
-        info->f = ft_strtrim(&line[i + 2], " ");
-        //ft_color(line, info, i, 1);
+    {
+        if (BONUS == 0)
+            ft_color(line, info, i, 1);
+        else
+            info->f = ft_strtrim(&line[i + 2], " ");
+    }
     else if (line[i] == 'C')
-        info->c = ft_strtrim(&line[i + 2], " ");
-        //ft_color(line, info, i, 2);
+    {
+        if (BONUS == 0)
+            ft_color(line, info, i, 2);
+        else
+            info->c = ft_strtrim(&line[i + 2], " ");
+    }
     else if (line[i] == '1')
         ft_parsing_map(line, info);
     else

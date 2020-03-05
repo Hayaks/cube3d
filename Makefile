@@ -23,10 +23,18 @@ RM			= rm -f
 
 CFLAGS		= -Wall -Werror -Wextra
 
+BONUS		= bonus
+
 .c.o:	
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) $(INCLUDES)
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -D BONUS=1 $(INCLUDES)
 
 $(NAME):	$(OBJS)
+			@make -C ./libft/
+			@cp ./libft/libft.a ./$(NAME)
+			$(LIB) $(NAME) $(OBJS)
+			gcc -Wall -Werror -Wextra -lmlx -framework OpenGl -framework Appkit $(NAME)
+
+$(BONUS):	$(OBJS)
 			@make -C ./libft/
 			@cp ./libft/libft.a ./$(NAME)
 			$(LIB) $(NAME) $(OBJS)
@@ -44,4 +52,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re bonus
