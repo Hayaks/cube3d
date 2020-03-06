@@ -26,7 +26,7 @@ CFLAGS		= -Wall -Werror -Wextra
 BONUS		= bonus
 
 .c.o:	
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -D BONUS=1 $(INCLUDES)
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -D BONUS=1 $(INCLUDES) 
 
 $(NAME):	$(OBJS)
 			@make -C ./libft/
