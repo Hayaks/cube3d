@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bmp.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/09 13:43:03 by jsaguez           #+#    #+#             */
+/*   Updated: 2020/03/09 13:46:47 by jsaguez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	ft_size(char *str, int size)
@@ -56,7 +68,7 @@ void	ft_header_img(t_struct *info)
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 	ft_size(header, 40);
-	ft_size(header + 4 , info->x);
+	ft_size(header + 4, info->x);
 	ft_size(header + 8, info->y);
 	header[12] = (char)1;
 	ft_size(header + 14, 24);
