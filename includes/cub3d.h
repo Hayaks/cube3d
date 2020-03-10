@@ -24,9 +24,9 @@
 #	endif
 
 #include <stdlib.h>
-#include <stdio.h> //printf
-#include <unistd.h> //close
-#include <fcntl.h> //open
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <mlx.h>
 #include <math.h>
 #include "../libft/libft.h"
@@ -175,7 +175,7 @@ void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *draw);
 int     *ft_imgaddr(void *img);
 int     ft_presskey(int key, t_struct *info);
 int     ft_releasekey(int key, t_struct *info);
-void    ft_sprite(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp);
+void    ft_sp(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp);
 int    	ft_error(int i, t_struct *info);
 void    ft_vector(t_struct *info ,mlx_param *mlx, draw_param *d);
 int     *ft_tri(t_struct *info, int *final);
