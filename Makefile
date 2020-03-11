@@ -26,9 +26,7 @@ CFLAGS		= -Wall -Werror -Wextra
 $(NAME):	$(OBJS)
 			@make -C ./libft/
 			@cp ./libft/libft.a .
-			$(CC) $(CFLAGS) $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $^ -o $@
-			$(LIB) $(NAME) $(OBJS)
-			gcc -Wall -Werror -Wextra -lmlx -framework OpenGl -framework Appkit $(NAME)
+			$(CC) $(CFLAGS) -g -fsanitize=address $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $^ -o $@
 
 $(OBJS):
 			$(CC) $(CFLAGS) -c $(SRCS)
@@ -36,7 +34,7 @@ $(OBJS):
 bonus:		bonus_objs
 			@make -C ./libft/
 			@cp ./libft/libft.a .
-			$(CC) $(CFLAGS) -DBONUS=1 $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) -g -fsanitize=address -DBONUS=1 $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $(OBJS) -o $(NAME)
 
 bonus_objs:
 			$(CC) $(CFLAGS) -DBONUS=1 -c $(SRCS)
