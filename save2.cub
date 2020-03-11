@@ -1,0 +1,17 @@
+R 2560 1440 
+NO                ./srcs/textures/BRICK4.xpm 
+SO        ./srcs/textures/BSTONE1.xpm
+WE ./srcs/textures/BRICK7.xpm
+EA ./srcs/textures/BRICKLIT.xpm
+
+S                             ./srcs/textures/barrel.xpm
+F        72,49,26 
+C  17,49,122
+
+111111111111    11111111
+120000000001    10000001
+100000000001    10000001
+1000000N0001111100000001
+100000000000000000000001
+100000000021101100000001
+11111111111 111 11111111 

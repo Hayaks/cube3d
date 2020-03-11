@@ -63,6 +63,8 @@ void	ft_wall(t_struct *info, draw_param *d)
 		else if (d->side == 1 && d->raydiry > 0)
 			d->img[d->x + info->x * d->y] =
 			info->text->ea[d->texx + d->texy * 64];
+		if (d->img[d->x + info->x * d->y] == 0)
+				d->img[d->x + info->x * d->y]++;
 		d->y++;
 	}
 }

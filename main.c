@@ -92,6 +92,7 @@ void	ft_nbsprites(t_struct *info, char **av)
 			}
 		free(line);
 	}
+	free(line);
 	close(fd);
 }
 
@@ -120,7 +121,7 @@ int		main(int ac, char **av)
 		ft_error(1, info);
 	if (!(info->text = malloc(sizeof(text_param))))
 		ft_error(1, info);
-	if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nb * 2))))
+	if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nb))))
 		ft_error(1, info);
 	if (!(info->d = malloc(sizeof(draw_param))))
 		ft_error(1, info);
