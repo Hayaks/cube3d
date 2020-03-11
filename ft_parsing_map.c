@@ -18,7 +18,6 @@ void	ft_setplayer(char *temp, int j, t_struct *info)
 	{
 		info->mlx->posx = info->i + 0.5;
 		info->mlx->posy = j + 0.5;
-
 		if (temp[j] == 'N')
 			info->mlx->dirx = -1.0;
 		else if (temp[j] == 'S')
@@ -48,27 +47,28 @@ void	ft_parsing_sprite(int j, t_struct *info)
 
 void	ft_parsing_map(char *line, t_struct *info)
 {
-		char  *temp;
-		int   j;
+	char	*temp;
+	int		j;
 
-		temp = ft_trimset(line, " ");
-		j = 0;
-		while (temp[j])
-		{
-			if (!(ft_strchr(MAP, temp[j])))
-				ft_error(2, info);
-			if (ft_strchr(POS, temp[j]))
-				ft_setplayer(temp, j, info);
-			if (temp[j] == '2')
-				ft_parsing_sprite(j, info);
-			j++;
-		}
-		if (info->i == 0)
-			if (!(info->map = malloc(sizeof(*info->map) * 30)))
-				ft_error(1, info);
-		info->map[info->i] = ft_strdup(temp);
-		if (info->map[info->i][j - 1] != '1')
+	temp = ft_strdup(line);
+	j = 0;
+	while (temp[j])
+	{
+		if (!(ft_strchr(MAP, temp[j])))
 			ft_error(2, info);
-		info->i++;
-		free(temp);
+		if (ft_strchr(POS, temp[j]))
+			ft_setplayer(temp, j, info);
+		if (temp[j] == '2')
+			ft_parsing_sprite(j, info);
+		j++;
+	}
+	if (info->i == 0)
+		if (!(info->map = malloc(sizeof(*info->map) * 30)))
+			ft_error(1, info);
+	info->map[info->i] = ft_strdup(temp);
+	if (info->map[info->i][j - 1] != '1' &&
+	info->map[info->i][j - 1] != ' ')
+		ft_error(2, info);
+	info->i++;
+	free(temp);
 }

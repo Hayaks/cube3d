@@ -27,8 +27,8 @@ void	ft_newmlx(mlx_param *mlx)
 	mlx->leftr = 0;
 	mlx->rightr = 0;
 	mlx->v = 0.05;
-	mlx->perp = malloc(sizeof(float) * (3000));
-	ft_bzero(mlx->perp, sizeof(float) * 3000);
+	mlx->perp = malloc(sizeof(float) * (2560));
+	ft_bzero(mlx->perp, sizeof(float) * 2560);
 }
 
 void	ft_newmap(t_struct *info)

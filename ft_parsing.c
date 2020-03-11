@@ -67,7 +67,9 @@ void	ft_color(char *line, t_struct *info, int i, int type)
 	int		result;
 
 	j = 0;
-	temp = ft_trimset(&line[i + 1], " ");
+	while (line[i] == ' ')
+		i++;
+	temp = ft_strdup(&line[i]);
 	tab = ft_split(temp, ',');
 	while (tab[j])
 		j++;
@@ -99,15 +101,14 @@ void	ft_options(char *line, t_struct *info, int i)
 		info->ea = ft_strtrim(&line[i + 2], " ");
 	else if (line[i] == 'S' && line[i + 1] == ' ')
 		info->s = ft_strtrim(&line[i + 2], " ");
-	else if (line[i] == 'F' || line[i] == 'C')
-	{
-		if (BONUS == 0)
-			ft_color(line, info, i, 2);
-		else if (line[i] == 'F')
-			info->f = ft_strtrim(&line[i + 2], " ");
-		else
-			info->c = ft_strtrim(&line[i + 2], " ");
-	}
+	else if (line[i] == 'F' && BONUS == 0)
+		ft_color(line, info, (i + 1), 1);
+	else if (line[i] == 'F' && BONUS == 1)
+		info->f = ft_strtrim(&line[i + 2], " ");
+	else if (line[i] == 'C' && BONUS == 0)
+		ft_color(line, info, (i + 1), 2);
+	else if (line[i] == 'C' && BONUS == 1)
+		info->c = ft_strtrim(&line[i + 2], " ");
 	else if (line[i] == '1')
 		ft_parsing_map(line, info);
 	else

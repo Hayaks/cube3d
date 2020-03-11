@@ -15,14 +15,18 @@
 void	ft_transparent(int *img, int pixel, t_struct *info)
 {
 	int i;
+	int c;
+	int f;
 
 	i = 0;
+	c = ft_atoi(info->c);
+	f = ft_atoi(info->f);
 	while (i < pixel)
 	{
 		if (img[i] == 0 && i <= (pixel / 2))
-			img[i] = ft_atoi(info->c);
+			img[i] = c;
 		if (img[i] == 0 && i > (pixel / 2))
-			img[i] = ft_atoi(info->f);
+			img[i] = f;
 		i++;
 	}
 }

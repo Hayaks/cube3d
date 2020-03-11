@@ -30,14 +30,18 @@ void	ft_map(int ret, int fd, char *line, t_struct *info)
 		free(line);
 	}
 	ft_verif_map(info);
-	while (info->map[0][i] && info->map[0][i] == '1')
+	while (info->map[0][i] &&
+	(info->map[0][i] == '1' || info->map[0][i] == ' '))
 		i++;
-	if (info->map[0][i] && info->map[0][i] != '1')
+	if (info->map[0][i] && (info->map[0][i] != '1' ||
+	info->map[0][i] != ' '))
 		ft_error(2, info);
 	i = 0;
-	while (info->map[info->i - 1][i] && info->map[info->i - 1][i] == '1')
+	while (info->map[info->i - 1][i] &&
+	(info->map[info->i - 1][i] == '1' || info->map[info->i - 1][i] == ' '))
 		i++;
-	if (info->map[info->i - 1][i] && info->map[info->i - 1][i] != '1')
+	if (info->map[info->i - 1][i] && (info->map[info->i - 1][i] != '1' ||
+	info->map[info->i - 1][i] != ' '))
 		ft_error(2, info);
 }
 

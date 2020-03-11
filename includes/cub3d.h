@@ -14,7 +14,7 @@
 # 	define CUB3D_H
 #	define BUFFER_SIZE 32
 #	define OPTIONS "RNSWEFC1"
-#	define MAP "NSWE012"
+#	define MAP "NSWE012 "
 #	define POS "NSWE"
 #	define ARG ".cub"
 #	define SAVE "--save"
