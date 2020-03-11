@@ -59,7 +59,7 @@ void	ft_ds(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
 	sp->y = sp->drawstarty;
 	sp->texx = (int)((256 * (sp->drawstartx - (-sp->spritewidth / 2
 	+ sp->spritescreenx)) * info->text->sx / sp->spritewidth) / 256);
-	if (sp->transformy > 0 && sp->drawstartx > 0 && sp->drawstartx <
+	if (sp->transformy >= 0 && sp->drawstartx >= 0 && sp->drawstartx <=
 	info->x && sp->transformy < mlx->perp[sp->drawstartx])
 		while (sp->y < sp->drawendy && sp->y < info->y)
 		{

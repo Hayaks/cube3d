@@ -92,7 +92,6 @@ void	ft_floor(t_struct *info, mlx_param *mlx, draw_param *d)
 void	ft_draw(t_struct *info, mlx_param *mlx, draw_param *d)
 {
 	d->x = 0;
-	mlx->img = mlx_new_image(mlx->init, info->x, info->y);
 	d->img = ft_imgaddr(mlx->img);
 	while (d->x <= info->x)
 	{

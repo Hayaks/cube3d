@@ -59,6 +59,7 @@ void	ft_mlx(t_struct *info, char **av)
 	info->mlx->init = mlx_init();
 	info->mlx->window =
 	mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
+	info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
 	ft_set_texture(info, info->text);
 	ft_draw(info, info->mlx, info->d);
 	mlx_hook(info->mlx->window, KEYPRESS, KEYPRESSMASK, &ft_presskey, info);

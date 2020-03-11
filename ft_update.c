@@ -43,7 +43,7 @@ int		ft_update(t_struct *info)
 {
 	ft_move(info);
 	ft_rotate(info->mlx);
-	mlx_destroy_image(info->mlx->init, info->mlx->img);
+	ft_bzero(info->d->img, sizeof(*info->d->img) * (info->x * info->y));
 	ft_draw(info, info->mlx, info->d);
 	return (0);
 }

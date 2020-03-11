@@ -80,6 +80,8 @@ void	ft_free_mlx(mlx_param *mlx)
 {
 	if (mlx->perp != NULL)
 		free(mlx->perp);
+	mlx_destroy_image(mlx->init, mlx->img);
+	mlx_destroy_window(mlx->init, mlx->window);
 	if (mlx != NULL)
 		free(mlx);
 }
