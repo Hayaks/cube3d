@@ -43,15 +43,15 @@ void	ft_init(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
 	if (sp->drawstarty < 0)
 		sp->drawstarty = 0;
 	sp->drawendy = sp->spriteheight / 2 + info->y / 2;
-	if (sp->drawendy < 0)
-		sp->drawendy = 0;
+	if (sp->drawendy >= info->y)
+		sp->drawendy = info->y;
 	sp->spritewidth = abs((int)(info->y / sp->transformy));
 	sp->drawstartx = -sp->spritewidth / 2 + sp->spritescreenx;
 	if (sp->drawstartx < 0)
 		sp->drawstartx = 0;
 	sp->drawendx = sp->spritewidth / 2 + sp->spritescreenx;
-	if (sp->drawendx < 0)
-		sp->drawendx = 0;
+	if (sp->drawendx >= info->x)
+		sp->drawendx = info->x;
 }
 
 void	ft_ds(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)

@@ -96,8 +96,6 @@ int		ft_error(int i, t_struct *info)
 		write(1, "Mauvais argument\n", 18);
 	if (i == 4)
 		write(1, "BMP\n", 5);
-	mlx_destroy_window(info->mlx->init, info->mlx->window);
-	mlx_destroy_image(info->mlx->init, info->mlx->img);
 	if (info->sp != NULL)
 		free(info->sp);
 	if (info->d != NULL)
