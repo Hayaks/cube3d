@@ -81,7 +81,7 @@ void	ft_nbsprites(t_struct *info, char **av)
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		j = 0;
-		if (line[j] == '1')
+		if (line[j] == '1' || line[j] == ' ')
 			while (line[j])
 			{
 				if (line[j] == '2')
@@ -110,7 +110,10 @@ int		main(int ac, char **av)
 {
 	t_struct	*info;
 
-	if (!(info = malloc(sizeof(t_struct))) && (ac != 2 || ac != 3))
+	info = NULL;
+	if (ac < 2 || ac > 3)
+		ft_error(6, info);
+	if (!(info = malloc(sizeof(t_struct))))
 		ft_error(1, info);
 	ft_bzero(info, sizeof(t_struct));
 	info->ac = ac;

@@ -1,1 +1,5 @@
-set texture
+probleme segfault
+Limite de la fenetre
+Limite couleur
+Pas d'argument
+Correction BMP (flavien)

@@ -29,7 +29,7 @@ void	ft_setplayer(char *temp, int j, t_struct *info)
 		if (info->mlx->dirx != 0)
 			info->mlx->planey = -info->mlx->dirx;
 		else
-			info->mlx->planex = -info->mlx->diry;
+			info->mlx->planex = info->mlx->diry;
 	}
 	else
 		ft_error(2, info);
@@ -39,6 +39,7 @@ void	ft_parsing_sprite(int j, t_struct *info)
 {
 	if (!(info->sprites[info->nb] = malloc(sizeof(t_s))))
 		ft_error(1, info);
+	ft_bzero(info->sprites[info->nb], sizeof(t_s));
 	info->sprites[info->nb]->x = info->i;
 	info->sprites[info->nb]->y = j;
 	info->sprites[info->nb]->dist = 0.0;
@@ -63,8 +64,11 @@ void	ft_parsing_map(char *line, t_struct *info)
 		j++;
 	}
 	if (info->i == 0)
+	{
 		if (!(info->map = malloc(sizeof(*info->map) * 30)))
 			ft_error(1, info);
+		ft_bzero(info->map, sizeof(*info->map) * 30);
+	}
 	info->map[info->i] = ft_strdup(temp);
 	if (info->map[info->i][j - 1] != '1' &&
 	info->map[info->i][j - 1] != ' ')

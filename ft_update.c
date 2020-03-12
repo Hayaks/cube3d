@@ -12,7 +12,7 @@
 
 #include "./includes/cub3d.h"
 
-void	ft_rotate(mlx_param *mlx)
+void	ft_rotate(t_mlx *mlx)
 {
 	float	v;
 	float	tempdirx;

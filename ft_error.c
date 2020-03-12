@@ -23,8 +23,7 @@ void	ft_free_s(t_struct *info)
 			free(info->sprites[i]);
 		i++;
 	}
-	if (info->sprites != NULL)
-		free(info->sprites);
+	free(info->sprites);
 }
 
 void	ft_free_text(t_text *text)
@@ -43,8 +42,7 @@ void	ft_free_text(t_text *text)
 		free(text->c);
 	if (text->f != NULL)
 		free(text->f);
-	if (text != NULL)
-		free(text);
+	free(text);
 }
 
 void	ft_free_info(t_struct *info)
@@ -76,22 +74,24 @@ void	ft_free_info(t_struct *info)
 		free(info->c);
 }
 
-void	ft_free_mlx(t_mlx *mlx)
+void	ft_free_mlx(t_mlx *mlx, int i)
 {
 	if (mlx->perp != NULL)
 		free(mlx->perp);
-	mlx_destroy_image(mlx->init, mlx->img);
-	mlx_destroy_window(mlx->init, mlx->window);
-	if (mlx != NULL)
-		free(mlx);
+	if (i == 5)
+	{
+		mlx_destroy_image(mlx->init, mlx->img);
+		mlx_destroy_window(mlx->init, mlx->window);
+	}
+	free(mlx);
 }
 
 int		ft_error(int i, t_struct *info)
 {
+	if (i > 0 && i != 5)
+		write(1, "Erreur\n", 8);
 	if (i < 0 || i > 5)
 		exit(0);
-	if (i > 0)
-		write(1, "Erreur\n", 8);
 	if (i == 1)
 		write(1, "Probleme de malloc\n", 20);
 	if (i == 2)
@@ -100,16 +100,14 @@ int		ft_error(int i, t_struct *info)
 		write(1, "Mauvais argument\n", 18);
 	if (i == 4)
 		write(1, "BMP\n", 5);
-	if (info->sp != NULL)
-		free(info->sp);
-	if (info->d != NULL)
-		free(info->d);
+	free(info->sp);
+	free(info->d);
 	ft_free_s(info);
 	ft_free_text(info->text);
-	ft_free_mlx(info->mlx);
+	ft_free_mlx(info->mlx, i);
 	ft_free_info(info);
-	if (info != NULL)
-		free(info);
+	free(info);
+	system("leaks cub3D");
 	exit(0);
 	return (1);
 }

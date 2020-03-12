@@ -76,8 +76,9 @@ void	ft_ds(t_struct *info, t_mlx *mlx, t_s **sprites, t_sp *sp)
 void	ft_sp(t_struct *info, t_mlx *m, t_s **s, t_sp *sp)
 {
 	sp->final = NULL;
-	if (!(sp->final = malloc(sizeof(int) * (info->nb + 1))))
+	if (!(sp->final = malloc(sizeof(*sp->final) * (info->nb + 1))))
 		ft_error(1, info);
+	ft_bzero(sp->final, sizeof(*sp->final) * info->nb + 1);
 	sp->i = 0;
 	sp->y = 0;
 	while (sp->y < info->nb)

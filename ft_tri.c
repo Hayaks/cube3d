@@ -31,6 +31,7 @@ void	ft_temp(t_struct *info, int i, int j, float *tab)
 	temp = NULL;
 	if (!(temp = malloc(sizeof(*temp) * (info->nb + 1))))
 		ft_error(1, info);
+	ft_bzero(temp, sizeof(*temp) * (info->nb + 1));
 	while ((j + 1) < info->nb)
 	{
 		if (tab[j] < tab[j + 1])

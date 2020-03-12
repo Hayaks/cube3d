@@ -29,7 +29,7 @@ int	ft_presskey(int key, t_struct *info)
 	if (key == 257)
 		info->mlx->v = 0.1;
 	if (key == 53)
-		ft_error(0, info);
+		ft_error(5, info);
 	return (1);
 }
 

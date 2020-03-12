@@ -74,7 +74,7 @@ void	ft_color(char *line, t_struct *info, int i, int type)
 	while (tab[j])
 		j++;
 	if (j != 3)
-		exit(0);
+		ft_error(3, info);
 	result = ft_atoi(tab[0]) * (int)pow(256, 2) +
 	ft_atoi(tab[1]) * 256 + ft_atoi(tab[2]);
 	if (type == 1)

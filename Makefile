@@ -26,7 +26,7 @@ CFLAGS		= -Wall -Werror -Wextra
 $(NAME):	$(OBJS)
 			@make -C ./libft/
 			@cp ./libft/libft.a .
-			$(CC) $(CFLAGS) -g -fsanitize=address $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $^ -o $@
+			$(CC) $(CFLAGS) $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $(OBJS) -o $(NAME)
 
 $(OBJS):
 			$(CC) $(CFLAGS) -c $(SRCS)
@@ -34,7 +34,7 @@ $(OBJS):
 bonus:		bonus_objs
 			@make -C ./libft/
 			@cp ./libft/libft.a .
-			$(CC) $(CFLAGS) -g -fsanitize=address -DBONUS=1 $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) -DBONUS=1 $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $(OBJS) -o $(NAME)
 
 bonus_objs:
 			$(CC) $(CFLAGS) -DBONUS=1 -c $(SRCS)
