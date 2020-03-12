@@ -1,5 +1,5 @@
 probleme segfault
 Limite de la fenetre
 Limite couleur
-Pas d'argument
+Pas d'argument (utilise verif arg peut etre le remonter dans le main)
 Correction BMP (flavien)

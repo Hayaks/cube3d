@@ -15,7 +15,7 @@ OBJS		= $(SRCS:.c=.o)
 
 INCLUDES	= -I$(HEADER)
 
-NAME		= cub3D
+NAME		= Cub3D
 
 CC			= gcc
 LIB			= ar -rcs
