@@ -25,7 +25,7 @@ void	ft_vide(t_struct *info, int *img)
 	}
 }
 
-void	ft_init(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
+void	ft_init(t_struct *info, t_mlx *mlx, t_s **sprites, t_sp *sp)
 {
 	sprites[sp->final[sp->i]]->img = ft_imgaddr(mlx->img);
 	sp->spritex = sprites[sp->final[sp->i]]->x + 0.5 - mlx->posx;
@@ -54,7 +54,7 @@ void	ft_init(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
 		sp->drawendx = info->x;
 }
 
-void	ft_ds(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
+void	ft_ds(t_struct *info, t_mlx *mlx, t_s **sprites, t_sp *sp)
 {
 	sp->y = sp->drawstarty;
 	sp->texx = (int)((256 * (sp->drawstartx - (-sp->spritewidth / 2
@@ -73,7 +73,7 @@ void	ft_ds(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
 	sp->drawstartx++;
 }
 
-void	ft_sp(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
+void	ft_sp(t_struct *info, t_mlx *m, t_s **s, t_sp *sp)
 {
 	sp->final = NULL;
 	if (!(sp->final = malloc(sizeof(int) * (info->nb + 1))))
@@ -82,18 +82,18 @@ void	ft_sp(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp)
 	sp->y = 0;
 	while (sp->y < info->nb)
 	{
-		sprites[sp->y]->dist = ((int)mlx->posx - sprites[sp->y]->x) *
-		((int)mlx->posx - sprites[sp->y]->x) + ((int)mlx->posy -
-		sprites[sp->y]->y) * ((int)mlx->posy - sprites[sp->i]->y);
+		s[sp->y]->dist = ((int)m->posx - s[sp->y]->x) *
+		((int)m->posx - s[sp->y]->x) + ((int)m->posy -
+		s[sp->y]->y) * ((int)m->posy - s[sp->i]->y);
 		sp->y++;
 	}
 	sp->final = ft_tri(info, sp->final);
 	while (sp->i < (info->nb) && sp->final[sp->i] != -1)
 	{
-		ft_init(info, mlx, sprites, sp);
+		ft_init(info, m, s, sp);
 		while (sp->drawstartx < sp->drawendx)
-			ft_ds(info, mlx, sprites, sp);
-		sprites[sp->final[sp->i]]->dist = 0.0;
+			ft_ds(info, m, s, sp);
+		s[sp->final[sp->i]]->dist = 0.0;
 		sp->i++;
 	}
 	free(sp->final);

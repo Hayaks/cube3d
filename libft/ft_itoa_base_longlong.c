@@ -28,10 +28,10 @@ static int	ft_nb_size(unsigned long nb, int base)
 
 char		*ft_itoa_base_longlong(unsigned long nbr, int base)
 {
-	char				    *str;
-	unsigned long			nb;
-	int					    index;
-	int					    size;
+	char			*str;
+	unsigned long	nb;
+	int				index;
+	int				size;
 
 	nb = nbr;
 	index = 0;

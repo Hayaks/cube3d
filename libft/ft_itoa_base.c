@@ -12,20 +12,20 @@
 
 #include "libft.h"
 
-static int	ft_nb_size(unsigned int nb, int base)
+static int	ft_nb_size(unsigned int nb, int b)
 {
 	int	size;
 
 	size = 0;
-	while (nb >= (unsigned int)base)
+	while (nb >= (unsigned int)b)
 	{
-		nb = nb / base;
+		nb = nb / b;
 		size++;
 	}
 	return (size + 1);
 }
 
-char		*ft_itoa_base(char c, unsigned int nbr, int base)
+char		*ft_itoa_b(char c, unsigned int nbr, int b)
 {
 	char				*str;
 	unsigned int		nb;
@@ -34,7 +34,7 @@ char		*ft_itoa_base(char c, unsigned int nbr, int base)
 
 	nb = nbr;
 	index = 0;
-	size = ft_nb_size(nb, base);
+	size = ft_nb_size(nb, b);
 	if (!(str = malloc(sizeof(*str) * (size + 1))))
 		return (0);
 	index = size - 1;
@@ -43,13 +43,13 @@ char		*ft_itoa_base(char c, unsigned int nbr, int base)
 		if (c == 'u')
 			str[index] = (char)(nb % 10 + 48);
 		if (c == 'x')
-			str[index] = (nb % base < 10) ? nb % base + '0' : nb % base + 'a' - 10;
+			str[index] = (nb % b < 10) ? nb % b + '0' : nb % b + 'a' - 10;
 		if (c == 'X')
-			str[index] = (nb % base < 10) ? nb % base + '0' : nb % base + 'A' - 10;
+			str[index] = (nb % b < 10) ? nb % b + '0' : nb % b + 'A' - 10;
 		index--;
-		nb = nb / base;
+		nb = nb / b;
 	}
-	str[index] = nb % base + 48;
+	str[index] = nb % b + 48;
 	str[size] = '\0';
 	return (str);
 }

@@ -24,11 +24,8 @@ void	ft_map(int ret, int fd, char *line, t_struct *info)
 		ft_parsing(line, info);
 		free(line);
 	}
-	if (ret == 0)
-	{
-		ft_parsing(line, info);
-		free(line);
-	}
+	ft_parsing(line, info);
+	free(line);
 	ft_verif_map(info);
 	while (info->map[0][i] &&
 	(info->map[0][i] == '1' || info->map[0][i] == ' '))
@@ -66,7 +63,7 @@ void	ft_mlx(t_struct *info, char **av)
 	mlx_hook(info->mlx->window,
 	KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info);
 	mlx_hook(info->mlx->window,
-	DESTROYNOTIFY, STRUCTURENOTIFYMASK, &ft_error, info);
+	DESTROYNOTIFY, 131072, &ft_error, info);
 	mlx_loop_hook(info->mlx->init, &ft_update, info);
 	mlx_loop(info->mlx->init);
 }
@@ -118,15 +115,15 @@ int		main(int ac, char **av)
 	ft_bzero(info, sizeof(t_struct));
 	info->ac = ac;
 	ft_nbsprites(info, av);
-	if (!(info->mlx = malloc(sizeof(mlx_param))))
+	if (!(info->mlx = malloc(sizeof(t_mlx))))
 		ft_error(1, info);
-	if (!(info->text = malloc(sizeof(text_param))))
+	if (!(info->text = malloc(sizeof(t_text))))
 		ft_error(1, info);
 	if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nb))))
 		ft_error(1, info);
-	if (!(info->d = malloc(sizeof(draw_param))))
+	if (!(info->d = malloc(sizeof(t_draw))))
 		ft_error(1, info);
-	if (!(info->sp = malloc(sizeof(s_param))))
+	if (!(info->sp = malloc(sizeof(t_sp))))
 		ft_error(1, info);
 	ft_newmap(info);
 	ft_verif_arg(info, av[1]);

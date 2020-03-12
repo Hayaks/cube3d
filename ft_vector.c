@@ -12,7 +12,7 @@
 
 #include "./includes/cub3d.h"
 
-void	ft_hauteur(t_struct *info, draw_param *d)
+void	ft_hauteur(t_struct *info, t_draw *d)
 {
 	d->hauteurligne = (float)fabs((float)(info->y / d->perpwalldist));
 	d->start = (int)(-d->hauteurligne / 2 + info->y / 2);
@@ -24,7 +24,7 @@ void	ft_hauteur(t_struct *info, draw_param *d)
 	d->y = d->start;
 }
 
-void	ft_texx(draw_param *d)
+void	ft_texx(t_draw *d)
 {
 	d->texx = (int)(d->wallx * 64);
 	if (d->side == 0 && d->raydirx > 0)
@@ -51,7 +51,7 @@ void	ft_texx(draw_param *d)
 	}
 }
 
-void	ft_perp(mlx_param *mlx, draw_param *d)
+void	ft_perp(t_mlx *mlx, t_draw *d)
 {
 	if (d->side == 0)
 	{
@@ -70,7 +70,7 @@ void	ft_perp(mlx_param *mlx, draw_param *d)
 	d->wallx -= floor(d->wallx);
 }
 
-void	ft_hit(t_struct *info, draw_param *d)
+void	ft_hit(t_struct *info, t_draw *d)
 {
 	while (d->hit == 0)
 	{
@@ -91,7 +91,7 @@ void	ft_hit(t_struct *info, draw_param *d)
 	}
 }
 
-void	ft_vector(t_struct *info, mlx_param *mlx, draw_param *d)
+void	ft_vector(t_struct *info, t_mlx *mlx, t_draw *d)
 {
 	if (d->raydirx < 0)
 	{

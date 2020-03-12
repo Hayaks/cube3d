@@ -31,7 +31,7 @@ void	ft_transparent(int *img, int pixel, t_struct *info)
 	}
 }
 
-void	ft_init_draw(t_struct *info, mlx_param *mlx, draw_param *d)
+void	ft_init_draw(t_struct *info, t_mlx *mlx, t_draw *d)
 {
 	d->y = 0;
 	d->camerax = (2.0 * (float)d->x / (float)info->x) - 1.0;
@@ -45,7 +45,7 @@ void	ft_init_draw(t_struct *info, mlx_param *mlx, draw_param *d)
 	d->side = 0;
 }
 
-void	ft_wall(t_struct *info, draw_param *d)
+void	ft_wall(t_struct *info, t_draw *d)
 {
 	while (d->y <= d->end)
 	{
@@ -64,12 +64,12 @@ void	ft_wall(t_struct *info, draw_param *d)
 			d->img[d->x + info->x * d->y] =
 			info->text->ea[d->texx + d->texy * 64];
 		if (d->img[d->x + info->x * d->y] == 0)
-				d->img[d->x + info->x * d->y]++;
+			d->img[d->x + info->x * d->y]++;
 		d->y++;
 	}
 }
 
-void	ft_floor(t_struct *info, mlx_param *mlx, draw_param *d)
+void	ft_floor(t_struct *info, t_mlx *mlx, t_draw *d)
 {
 	while (d->y < info->y - 1)
 	{
@@ -89,7 +89,7 @@ void	ft_floor(t_struct *info, mlx_param *mlx, draw_param *d)
 	}
 }
 
-void	ft_draw(t_struct *info, mlx_param *mlx, draw_param *d)
+void	ft_draw(t_struct *info, t_mlx *mlx, t_draw *d)
 {
 	d->x = 0;
 	d->img = ft_imgaddr(mlx->img);

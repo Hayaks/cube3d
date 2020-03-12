@@ -71,7 +71,6 @@ int		get_next_line(int fd, char **line)
 	{
 		if (c < 0)
 			return (ft_exit(-1, &buffer, &save));
-		//buffer[c] = '\0';
 		tmp = ft_strjoin(save, buffer);
 		free(save);
 		save = tmp;

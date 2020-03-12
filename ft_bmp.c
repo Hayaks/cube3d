@@ -24,15 +24,17 @@ void	ft_screen(t_struct *info)
 {
 	int						i;
 	int						j;
-	static unsigned char	rgb[3] = {0, 0, 0};
+	static unsigned char	rgb[3];
 
 	i = 0;
+	ft_bzero(rgb, sizeof(*rgb) * 3);
 	while (i < (info->y - 1))
 	{
 		j = 0;
 		while (j < info->x)
 		{
-			rgb[0] = ((info->d->img[((info->y - 1) - i) * (info->x) + j]) >> 16);
+			rgb[0] = ((info->d->img[((info->y - 1) - i) *
+			(info->x) + j]) >> 16);
 			rgb[1] = ((info->d->img[((info->y - 1) - i) * (info->x) + j]) >> 8);
 			rgb[2] = (info->d->img[((info->y - 1) - i) * (info->x) + j]);
 			if (write(info->fd, rgb + 2, 1) < 0)
@@ -50,8 +52,9 @@ void	ft_screen(t_struct *info)
 void	ft_header_file(t_struct *info)
 {
 	int		size;
-	char	header[14] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	char	header[14];
 
+	ft_bzero(header, sizeof(*header) * 14);
 	size = 54 + (3 * info->x + ((4 - (info->x * 3) % 4) % 4) * info->y);
 	header[0] = 'B';
 	header[1] = 'M';
@@ -63,10 +66,9 @@ void	ft_header_file(t_struct *info)
 
 void	ft_header_img(t_struct *info)
 {
-	char	header[40] = {
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	char	header[40];
 
+	ft_bzero(header, sizeof(*header) * 40);
 	ft_size(header, 40);
 	ft_size(header + 4, info->x);
 	ft_size(header + 8, info->y);

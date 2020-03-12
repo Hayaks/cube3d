@@ -37,7 +37,7 @@ void	ft_setplayer(char *temp, int j, t_struct *info)
 
 void	ft_parsing_sprite(int j, t_struct *info)
 {
-	if (!(info->sprites[info->nb] = malloc(sizeof(s_param))))
+	if (!(info->sprites[info->nb] = malloc(sizeof(t_s))))
 		ft_error(1, info);
 	info->sprites[info->nb]->x = info->i;
 	info->sprites[info->nb]->y = j;

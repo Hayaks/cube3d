@@ -12,7 +12,7 @@
 
 #include "./includes/cub3d.h"
 
-void	ft_up(t_struct *info, mlx_param *mlx, float v)
+void	ft_up(t_struct *info, t_mlx *mlx, float v)
 {
 	if (info->map[(int)(mlx->posx + mlx->dirx * 0.5)][(int)mlx->posy]
 	!= '1' && info->map[(int)(mlx->posx + mlx->dirx * 0.5)][(int)mlx->posy]
@@ -24,7 +24,7 @@ void	ft_up(t_struct *info, mlx_param *mlx, float v)
 		mlx->posy += mlx->diry * v;
 }
 
-void	ft_down(t_struct *info, mlx_param *mlx, float v)
+void	ft_down(t_struct *info, t_mlx *mlx, float v)
 {
 	if (info->map[(int)(mlx->posx - mlx->dirx * 0.5)][(int)mlx->posy]
 	!= '1' && info->map[(int)(mlx->posx - mlx->dirx * 0.5)][(int)mlx->posy]
@@ -36,7 +36,7 @@ void	ft_down(t_struct *info, mlx_param *mlx, float v)
 		mlx->posy -= mlx->diry * v;
 }
 
-void	ft_right(t_struct *info, mlx_param *mlx, float v)
+void	ft_right(t_struct *info, t_mlx *mlx, float v)
 {
 	if (info->map[(int)(mlx->posx + mlx->planex * 0.5)][(int)mlx->posy]
 	!= '1' && info->map[(int)(mlx->posx + mlx->planex * 0.5)][(int)mlx->posy]
@@ -48,7 +48,7 @@ void	ft_right(t_struct *info, mlx_param *mlx, float v)
 		mlx->posy += mlx->planey * v;
 }
 
-void	ft_left(t_struct *info, mlx_param *mlx, float v)
+void	ft_left(t_struct *info, t_mlx *mlx, float v)
 {
 	if (info->map[(int)(mlx->posx - mlx->planex * 0.5)][(int)mlx->posy]
 	!= '1' && info->map[(int)(mlx->posx - mlx->planex * 0.5)][(int)mlx->posy]

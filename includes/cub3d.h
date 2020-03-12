@@ -10,94 +10,93 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#	ifndef CUB3D_H
-# 	define CUB3D_H
-#	define BUFFER_SIZE 32
-#	define OPTIONS "RNSWEFC1"
-#	define MAP "NSWE012 "
-#	define POS "NSWE"
-#	define ARG ".cub"
-#	define SAVE "--save"
-#	define BMP "save.bmp"
-#	ifndef BONUS
-#	define BONUS 0
-#	endif
+#ifndef CUB3D_H
+# define CUB3D_H
+# define BUFFER_SIZE 32
+# define OPTIONS "RNSWEFC1"
+# define MAP "NSWE012 "
+# define POS "NSWE"
+# define ARG ".cub"
+# define SAVE "--save"
+# define BMP "save.bmp"
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <mlx.h>
-#include <math.h>
-#include "../libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <mlx.h>
+# include <math.h>
+# include "../libft/libft.h"
 
-typedef struct	sprite_struct
+typedef struct	s_s
 {
 	int			x;
 	int			y;
 	float		dist;
 	int			*img;
-}				s_param;
+}				t_s;
 
-typedef struct	draw_struct
+typedef struct	s_draw
 {
 	int		x;
 	int		y;
-	float   camerax;
-	float   raydirx;
-	float   raydiry;
-	int     mapx;
-	int     mapy;
-	float   sidedistx;
-	float   sidedisty;
-	float   deltadistx;
-	float   deltadisty;
-	int     stepx;
-	int     stepy;
-	int     hit;
-	int     side;
-	float   perpwalldist;
-	float   hauteurligne;
-	int     start;
-	int     end;
-	int     *img;
-	float   wallx;
-	int     texx;
-	int     texy;
-	float   floorxwall;
-	float   floorywall;
-	float   weight;
-	float   currentfloorx;
-	float   currentfloory;
-	int     floortextx;
-	int     floortexty;
-	float   currentdist;
-}				draw_param;
+	float	camerax;
+	float	raydirx;
+	float	raydiry;
+	int		mapx;
+	int		mapy;
+	float	sidedistx;
+	float	sidedisty;
+	float	deltadistx;
+	float	deltadisty;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	float	perpwalldist;
+	float	hauteurligne;
+	int		start;
+	int		end;
+	int		*img;
+	float	wallx;
+	int		texx;
+	int		texy;
+	float	floorxwall;
+	float	floorywall;
+	float	weight;
+	float	currentfloorx;
+	float	currentfloory;
+	int		floortextx;
+	int		floortexty;
+	float	currentdist;
+}				t_draw;
 
-typedef struct sp_struct
+typedef	struct	s_sp
 {
-	int     i;
-	int     y;
-	int     d;
-	float   spritex;
-	float   spritey;
-	float   invdet;
-	float   transformx;
-	float   transformy;
-	int     spritescreenx;
-	int     spriteheight;
-	int     spritewidth;
-	int     drawstarty;
-	int     drawendy;
-	int     drawstartx;
-	int     drawendx;
-	int     texy;
-	int     texx;
-	int     *final;
-}				sp_param;
+	int		i;
+	int		y;
+	int		d;
+	float	spritex;
+	float	spritey;
+	float	invdet;
+	float	transformx;
+	float	transformy;
+	int		spritescreenx;
+	int		spriteheight;
+	int		spritewidth;
+	int		drawstarty;
+	int		drawendy;
+	int		drawstartx;
+	int		drawendx;
+	int		texy;
+	int		texx;
+	int		*final;
+}				t_sp;
 
-
-typedef struct	mlx_struct
+typedef struct	s_mlx
 {
 	void		*init;
 	void		*window;
@@ -116,9 +115,9 @@ typedef struct	mlx_struct
 	int			rightr;
 	float		v;
 	float		*perp;
-}				mlx_param;
+}				t_mlx;
 
-typedef struct	text_struct
+typedef struct	s_text
 {
 	int			*no;
 	int			nox;
@@ -141,7 +140,7 @@ typedef struct	text_struct
 	int			*f;
 	int			fx;
 	int			fy;
-}				text_param;
+}				t_text;
 
 typedef struct	s_struct
 {
@@ -159,29 +158,29 @@ typedef struct	s_struct
 	int			nb;
 	int			ac;
 	int			fd;
-	mlx_param	*mlx;
-	text_param	*text;
-	s_param		**sprites;
-	draw_param	*d;
-	sp_param	*sp;
+	t_mlx		*mlx;
+	t_text		*text;
+	t_s			**sprites;
+	t_draw		*d;
+	t_sp		*sp;
 }				t_struct;
 
-int		get_next_line(int const fd, char **line);
-void	ft_parsing(char *line, t_struct *map);
-void    ft_parsing_map(char *line, t_struct *map);
-int    	ft_update(t_struct *info);
-void    ft_move(t_struct *info);
-void    ft_draw(t_struct *info, mlx_param *mlx, draw_param *draw);
-int     *ft_imgaddr(void *img);
-int     ft_presskey(int key, t_struct *info);
-int     ft_releasekey(int key, t_struct *info);
-void    ft_sp(t_struct *info, mlx_param *mlx, s_param **sprites, sp_param *sp);
-int    	ft_error(int i, t_struct *info);
-void    ft_vector(t_struct *info ,mlx_param *mlx, draw_param *d);
-int     *ft_tri(t_struct *info, int *final);
-void    ft_newmap(t_struct *info);
-void	ft_verif_map(t_struct *info);
-void	ft_bmp(t_struct *info);
-void    ft_set_texture(t_struct *info, text_param *text);
+int				get_next_line(int const fd, char **line);
+void			ft_parsing(char *line, t_struct *map);
+void			ft_parsing_map(char *line, t_struct *map);
+int				ft_update(t_struct *info);
+void			ft_move(t_struct *info);
+void			ft_draw(t_struct *info, t_mlx *mlx, t_draw *draw);
+int				*ft_imgaddr(void *img);
+int				ft_presskey(int key, t_struct *info);
+int				ft_releasekey(int key, t_struct *info);
+void			ft_sp(t_struct *info, t_mlx *m, t_s **s, t_sp *sp);
+int				ft_error(int i, t_struct *info);
+void			ft_vector(t_struct *info, t_mlx *mlx, t_draw *d);
+int				*ft_tri(t_struct *info, int *final);
+void			ft_newmap(t_struct *info);
+void			ft_verif_map(t_struct *info);
+void			ft_bmp(t_struct *info);
+void			ft_set_texture(t_struct *info, t_text *text);
 
 #endif

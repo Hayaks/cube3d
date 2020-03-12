@@ -27,7 +27,7 @@ void	ft_free_s(t_struct *info)
 		free(info->sprites);
 }
 
-void	ft_free_text(text_param *text)
+void	ft_free_text(t_text *text)
 {
 	if (text->no != NULL)
 		free(text->no);
@@ -76,7 +76,7 @@ void	ft_free_info(t_struct *info)
 		free(info->c);
 }
 
-void	ft_free_mlx(mlx_param *mlx)
+void	ft_free_mlx(t_mlx *mlx)
 {
 	if (mlx->perp != NULL)
 		free(mlx->perp);
@@ -88,6 +88,8 @@ void	ft_free_mlx(mlx_param *mlx)
 
 int		ft_error(int i, t_struct *info)
 {
+	if (i < 0 || i > 5)
+		exit(0);
 	if (i > 0)
 		write(1, "Erreur\n", 8);
 	if (i == 1)
