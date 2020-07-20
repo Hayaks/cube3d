@@ -182,5 +182,6 @@ void			ft_newmap(t_struct *info);
 void			ft_verif_map(t_struct *info);
 void			ft_bmp(t_struct *info);
 void			ft_set_texture(t_struct *info, t_text *text);
+void			ft_verif_color(char **tab, t_struct *info);
 
 #endif

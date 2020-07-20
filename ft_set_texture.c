@@ -12,8 +12,10 @@
 
 #include "./includes/cub3d.h"
 
-void	ft_texture_bonus(t_struct *info, t_text *text, void *tmp)
+void	ft_texture_bonus(t_struct *info, t_text *text)
 {
+	void	*tmp;
+
 	if (!(tmp = mlx_xpm_file_to_image(
 	info->mlx->init, info->c, &text->cx, &text->cy)))
 		ft_error(3, info);
@@ -49,5 +51,5 @@ void	ft_set_texture(t_struct *info, t_text *text)
 		ft_error(3, info);
 	text->s = ft_imgaddr(tmp);
 	if (BONUS == 1)
-		ft_texture_bonus(info, text, tmp);
+		ft_texture_bonus(info, text);
 }

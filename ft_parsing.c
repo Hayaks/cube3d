@@ -75,7 +75,7 @@ void	ft_color(char *line, t_struct *info, int i, int type)
 		j++;
 	if (j != 3)
 		ft_error(3, info);
-	//verifier tab[0] tab[1] tab[2] si c'est entre 0 et 255
+	ft_verif_color(tab, info);
 	result = ft_atoi(tab[0]) * (int)pow(256, 2) +
 	ft_atoi(tab[1]) * 256 + ft_atoi(tab[2]);
 	if (type == 1)
