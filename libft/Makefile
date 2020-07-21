@@ -33,7 +33,7 @@ NAME		= libft.a
 
 BONUS		= bonus
 
-CC			= gcc
+CC			= clang
 LIB			= ar -rcs
 RM			= rm -f
 
