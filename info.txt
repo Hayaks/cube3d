@@ -4,3 +4,8 @@ Limite couleur
 Pas d'argument (utilise verif arg peut etre le remonter dans le main)
 Correction BMP (flavien)
 Make relink
+X Error of failed request:  BadValue (integer parameter out of range for operation)
+  Major opcode of failed request:  2 (X_ChangeWindowAttributes)
+  Value in failed request:  0xffffffef
+  Serial number of failed request:  41
+  Current serial number in output stream:  42
