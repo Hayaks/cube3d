@@ -14,38 +14,38 @@
 
 int	ft_presskey(int key, t_struct *info)
 {
-	if (key == 13)
+	if (key == 119)
 		info->mlx->up = 1;
-	if (key == 1)
+	if (key == 115)
 		info->mlx->down = 1;
-	if (key == 0)
+	if (key == 100)
 		info->mlx->left = 1;
-	if (key == 2)
+	if (key == 97)
 		info->mlx->right = 1;
-	if (key == 123)
+	if (key == 65363)
 		info->mlx->leftr = 1;
-	if (key == 124)
+	if (key == 65361)
 		info->mlx->rightr = 1;
 	if (key == 257)
 		info->mlx->v = 0.1;
-	if (key == 53)
+	if (key == 65307)
 		ft_error(5, info);
 	return (1);
 }
 
 int	ft_releasekey(int key, t_struct *info)
 {
-	if (key == 13)
+	if (key == 119)
 		info->mlx->up = 0;
-	if (key == 1)
+	if (key == 115)
 		info->mlx->down = 0;
-	if (key == 0)
+	if (key == 100)
 		info->mlx->left = 0;
-	if (key == 2)
+	if (key == 97)
 		info->mlx->right = 0;
-	if (key == 123)
+	if (key == 65363)
 		info->mlx->leftr = 0;
-	if (key == 124)
+	if (key == 65361)
 		info->mlx->rightr = 0;
 	if (key == 257)
 		info->mlx->v = 0.05;
