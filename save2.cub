@@ -1,4 +1,4 @@
-R 500 500 
+R 1000 1000 
 NO                ./srcs/textures/BRICK4.xpm 
 SO        ./srcs/textures/BSTONE1.xpm
 WE ./srcs/textures/BRICK7.xpm
