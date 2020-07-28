@@ -44,16 +44,10 @@ void	ft_resolution(char *line, t_struct *info, int i)
 		ft_error(3, info);
 	info->x = ft_atoi(temp[0]);
 	info->y = ft_atoi(temp[1]);
-	if (info->x > 2560)
-		info->x = 2560;
-	if (info->y > 1440)
-		info->y = 1440;
 	if ((info->x % 2) == 1)
 		info->x++;
 	if ((info->y % 2) == 1)
 		info->y++;
-	if (info->x <= 0 || info->y <= 0)
-		ft_error(3, info);
 	free(temp[0]);
 	free(temp[1]);
 	free(temp);

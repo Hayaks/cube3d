@@ -50,7 +50,7 @@ void	ft_wall(t_struct *info, t_draw *d)
 	while (d->y <= d->end)
 	{
 		d->texy = (d->y * 2 - info->y + d->hauteurligne)
-		* (32 / 2) / d->hauteurligne;
+		* (64 / 2) / d->hauteurligne;
 		if (d->side == 0 && d->raydirx < 0)
 			d->img[d->x + info->x * d->y] =
 			info->text->no[d->texx + d->texy * 64];

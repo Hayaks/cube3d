@@ -54,6 +54,7 @@ void	ft_mlx(t_struct *info, char **av)
 	ft_map(ret, fd, line, info);
 	close(fd);
 	info->mlx->init = mlx_init();
+	ft_verif_window(info, info->mlx);
 	info->mlx->window =
 	mlx_new_window(info->mlx->init, info->x, info->y, "wesh");
 	info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
