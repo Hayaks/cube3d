@@ -28,20 +28,6 @@ void	ft_free_s(t_struct *info)
 
 void	ft_free_text(t_text *text)
 {
-	if (text->no != NULL)
-		free(text->no);
-	if (text->so != NULL)
-		free(text->so);
-	if (text->we != NULL)
-		free(text->we);
-	if (text->ea != NULL)
-		free(text->ea);
-	if (text->s != NULL)
-		free(text->s);
-	if (text->c != NULL)
-		free(text->c);
-	if (text->f != NULL)
-		free(text->f);
 	free(text);
 }
 
