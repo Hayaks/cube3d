@@ -77,9 +77,9 @@ void	ft_color(char *line, t_struct *info, int i, int type)
 	if (type == 2)
 		info->c = ft_itoa(result);
 	free(temp);
-	free(tab[0]);
-	free(tab[1]);
 	free(tab[2]);
+	free(tab[1]);
+	free(tab[0]);
 	free(tab);
 }
 
