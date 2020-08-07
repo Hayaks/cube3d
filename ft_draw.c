@@ -51,20 +51,23 @@ void	ft_wall(t_struct *info, t_draw *d)
 	{
 		d->texy = (d->y * 2 - info->y + d->hauteurligne)
 		* (64 / 2) / d->hauteurligne;
-		if (d->side == 0 && d->raydirx < 0)
-			d->img[d->x + info->x * d->y] =
-			info->text->no[d->texx + d->texy * 64];
-		else if (d->side == 0 && d->raydirx > 0)
-			d->img[d->x + info->x * d->y] =
-			info->text->so[d->texx + d->texy * 64];
-		else if (d->side == 1 && d->raydiry < 0)
-			d->img[d->x + info->x * d->y] =
-			info->text->we[d->texx + d->texy * 64];
-		else if (d->side == 1 && d->raydiry > 0)
-			d->img[d->x + info->x * d->y] =
-			info->text->ea[d->texx + d->texy * 64];
-		if (d->img[d->x + info->x * d->y] == 0)
-			d->img[d->x + info->x * d->y]++;
+		if ((d->x + info->x * d->y) > 0 && (d->texx + d->texy * 64) > 0)
+		{
+			if (d->side == 0 && d->raydirx < 0)
+				d->img[d->x + info->x * d->y] =
+				info->text->no[d->texx + d->texy * 64];
+			else if (d->side == 0 && d->raydirx > 0)
+				d->img[d->x + info->x * d->y] =
+				info->text->so[d->texx + d->texy * 64];
+			else if (d->side == 1 && d->raydiry < 0)
+				d->img[d->x + info->x * d->y] =
+				info->text->we[d->texx + d->texy * 64];
+			else if (d->side == 1 && d->raydiry > 0)
+				d->img[d->x + info->x * d->y] =
+				info->text->ea[d->texx + d->texy * 64];
+			if (d->img[d->x + info->x * d->y] == 0)
+				d->img[d->x + info->x * d->y]++;
+		}
 		d->y++;
 	}
 }
