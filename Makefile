@@ -41,7 +41,7 @@ $(NAME):	$(OBJS)
 bonus:		bonus_objs
 			@make -C ./libft/
 			@cp ./libft/libft.a .
-			$(CC) $(CFLAGS) -DBONUS=1 $(INCLUDES) -L. -lft -lmlx -framework OpenGl -framework Appkit $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) -DBONUS=1 $(SRCSDIR)*.o -o $(NAME) $(LIBFT) $(MLX_FLAG)
 
 bonus_objs:
 			$(CC) $(CFLAGS) -DBONUS=1 -c $(SRCS)

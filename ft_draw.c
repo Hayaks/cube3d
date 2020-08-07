@@ -84,6 +84,8 @@ void	ft_floor(t_struct *info, t_mlx *mlx, t_draw *d)
 		(1.0 - d->weight) * mlx->posy;
 		d->floortextx = (int)(d->currentfloorx * 64) % 64;
 		d->floortexty = (int)(d->currentfloory * 64) % 64;
+		if((d->x + info->x * d->y) > 0 
+		&& d->floortextx + d->floortexty * 64 > 0)
 		d->img[d->x + info->x * d->y] =
 		info->text->f[d->floortextx + d->floortexty * 64];
 		d->img[d->x + info->x * (info->y - d->y)] =
