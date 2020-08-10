@@ -21,6 +21,16 @@ void	ft_newmlx(t_mlx *mlx)
 
 void	ft_newmap(t_struct *info)
 {
+	if (!(info->mlx = malloc(sizeof(t_mlx))))
+		ft_error(1, info);
+	if (!(info->text = malloc(sizeof(t_text))))
+		ft_error(1, info);
+	if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nb))))
+		ft_error(1, info);
+	if (!(info->d = malloc(sizeof(t_draw))))
+		ft_error(1, info);
+	if (!(info->sp = malloc(sizeof(t_sp))))
+		ft_error(1, info);
 	ft_bzero(info->mlx, sizeof(t_mlx));
 	ft_newmlx(info->mlx);
 	ft_bzero(info->text, sizeof(t_text));

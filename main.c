@@ -119,16 +119,6 @@ int		main(int ac, char **av)
 	ft_bzero(info, sizeof(t_struct));
 	info->ac = ac;
 	ft_nbsprites(info, av);
-	if (!(info->mlx = malloc(sizeof(t_mlx))))
-		ft_error(1, info);
-	if (!(info->text = malloc(sizeof(t_text))))
-		ft_error(1, info);
-	if (!(info->sprites = malloc(sizeof(*info->sprites) * (info->nb))))
-		ft_error(1, info);
-	if (!(info->d = malloc(sizeof(t_draw))))
-		ft_error(1, info);
-	if (!(info->sp = malloc(sizeof(t_sp))))
-		ft_error(1, info);
 	ft_newmap(info);
 	ft_verif_arg(info, av[1]);
 	if (ac == 3 && ft_strncmp(av[2], SAVE, ft_strlen(SAVE)))

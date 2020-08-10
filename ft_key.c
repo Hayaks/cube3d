@@ -22,9 +22,9 @@ int	ft_presskey(int key, t_struct *info)
 		info->mlx->left = 1;
 	if (key == 97)
 		info->mlx->right = 1;
-	if (key == 65363)
-		info->mlx->leftr = 1;
 	if (key == 65361)
+		info->mlx->leftr = 1;
+	if (key == 65363)
 		info->mlx->rightr = 1;
 	if (key == 257)
 		info->mlx->v = 0.1;
@@ -43,9 +43,9 @@ int	ft_releasekey(int key, t_struct *info)
 		info->mlx->left = 0;
 	if (key == 97)
 		info->mlx->right = 0;
-	if (key == 65363)
-		info->mlx->leftr = 0;
 	if (key == 65361)
+		info->mlx->leftr = 0;
+	if (key == 65363)
 		info->mlx->rightr = 0;
 	if (key == 257)
 		info->mlx->v = 0.05;
