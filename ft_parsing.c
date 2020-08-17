@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 12:56:22 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:14:37 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/08/17 12:15:12 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	ft_color(char *line, t_struct *info, int i, int type)
 	int		result;
 
 	j = 0;
+	result = 0;
 	while (line[i] == ' ')
 		i++;
 	temp = ft_strdup(&line[i]);
@@ -69,13 +70,7 @@ void	ft_color(char *line, t_struct *info, int i, int type)
 		j++;
 	if (j != 3)
 		ft_error(3, info);
-	ft_verif_color(tab, info);
-	result = ft_atoi(tab[0]) * (int)pow(256, 2) +
-	ft_atoi(tab[1]) * 256 + ft_atoi(tab[2]);
-	if (type == 1)
-		info->f = ft_itoa(result);
-	if (type == 2)
-		info->c = ft_itoa(result);
+	ft_verif_color(tab, info, result, type);
 	free(temp);
 	free(tab[2]);
 	free(tab[1]);

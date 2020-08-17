@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:12:07 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/08/17 11:52:46 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int		ft_error(int i, t_struct *info)
 	ft_free_mlx(info->mlx, i);
 	ft_free_info(info);
 	free(info);
-	system("leaks cub3D");
 	exit(0);
 	return (1);
 }

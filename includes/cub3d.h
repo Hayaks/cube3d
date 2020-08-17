@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/01/21 13:55:25 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/08/17 12:15:30 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void			ft_newmap(t_struct *info);
 void			ft_verif_map(t_struct *info);
 void			ft_bmp(t_struct *info);
 void			ft_set_texture(t_struct *info, t_text *text);
-void			ft_verif_color(char **tab, t_struct *info);
+void			ft_verif_color(char **tab, t_struct *info, int result, int type);
 void			ft_verif_window(t_struct *info, t_mlx *mlx);
 
 #endif

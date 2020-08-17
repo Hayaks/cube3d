@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 12:56:07 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:14:51 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/08/17 11:49:40 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ void	ft_parsing_sprite(int j, t_struct *info)
 	info->nb++;
 }
 
+void	ft_parsing_map_bis(t_struct *info, char *temp, int j)
+{
+	info->map[info->i] = ft_strdup(temp);
+	if (info->map[info->i][j - 1] != '1' &&
+	info->map[info->i][j - 1] != ' ')
+		ft_error(2, info);
+	info->i++;
+}
+
 void	ft_parsing_map(char *line, t_struct *info)
 {
 	char	*temp;
@@ -69,10 +78,6 @@ void	ft_parsing_map(char *line, t_struct *info)
 			ft_error(1, info);
 		ft_bzero(info->map, sizeof(*info->map) * 30);
 	}
-	info->map[info->i] = ft_strdup(temp);
-	if (info->map[info->i][j - 1] != '1' &&
-	info->map[info->i][j - 1] != ' ')
-		ft_error(2, info);
-	info->i++;
+	ft_parsing_map_bis(info, temp, j);
 	free(temp);
 }
