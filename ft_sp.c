@@ -66,8 +66,8 @@ void	ft_ds(t_struct *info, t_mlx *mlx, t_s **sprites, t_sp *sp)
 			sp->d = sp->y * 256 - info->y * 128 + sp->spriteheight * 128;
 			sp->texy = ((sp->d * info->text->sy) / sp->spriteheight) / 256;
 			if ((info->text->sx * sp->texy + sp->texx) > 0)
-			if (info->text->s[info->text->sx * sp->texy + sp->texx] != 0)
-				sprites[sp->final[sp->i]]->img[sp->drawstartx + info->x *
+				if (info->text->s[info->text->sx * sp->texy + sp->texx] != 0)
+					sprites[sp->final[sp->i]]->img[sp->drawstartx + info->x *
 				sp->y] = info->text->s[info->text->sx * sp->texy + sp->texx];
 			sp->y++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:11:46 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:11:52 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/08/17 10:20:33 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	ft_floor(t_struct *info, t_mlx *mlx, t_draw *d)
 		(1.0 - d->weight) * mlx->posy;
 		d->floortextx = (int)(d->currentfloorx * 64) % 64;
 		d->floortexty = (int)(d->currentfloory * 64) % 64;
-		if((d->x + info->x * d->y) > 0 
+		if ((d->x + info->x * d->y) > 0
 		&& d->floortextx + d->floortexty * 64 > 0)
-		d->img[d->x + info->x * d->y] =
+			d->img[d->x + info->x * d->y] =
 		info->text->f[d->floortextx + d->floortexty * 64];
 		d->img[d->x + info->x * (info->y - d->y)] =
 		info->text->c[d->floortextx + d->floortexty * 64];
