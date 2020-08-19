@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:16:48 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:16:50 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/08/19 09:49:43 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	ft_verif_map(t_struct *info)
 			if (info->map[j][i] != '1' &&
 			info->map[j][i] != ' ' &&
 			(info->map[j - 1][i] == ' ' ||
-			info->map[j + 1][i] == ' '))
+			info->map[j + 1][i] == ' ' ||
+			info->map[j][i - 1] == ' ' ||
+			info->map[j][i + 1] == ' '))
 				ft_error(2, info);
 			i++;
 		}
