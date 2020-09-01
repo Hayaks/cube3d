@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/08/17 12:15:30 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/01 22:41:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,6 @@ void			ft_bmp(t_struct *info);
 void			ft_set_texture(t_struct *info, t_text *text);
 void			ft_verif_color(char **tab, t_struct *info, int result, int type);
 void			ft_verif_window(t_struct *info, t_mlx *mlx);
+int				ft_stop(t_struct *info);
 
 #endif

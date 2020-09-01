@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:40:04 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/10 15:40:07 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/01 22:34:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_mlx(t_struct *info, char **av)
 	mlx_hook(info->mlx->window,
 	KEYRELEASE, KEYRELEASEMASK, &ft_releasekey, info);
 	mlx_hook(info->mlx->window,
-	DESTROYNOTIFY, 131072, &ft_error, info);
+	DESTROYNOTIFY, STRUCTNOTIFYMASK, &ft_stop, info);
 	mlx_loop_hook(info->mlx->init, &ft_update, info);
 	mlx_loop(info->mlx->init);
 }

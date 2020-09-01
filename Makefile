@@ -14,7 +14,7 @@ SRCS		= 	$(SRCSDIR)ft_parsing.c $(SRCSDIR)get_next_line.c $(SRCSDIR)ft_parsing_m
 				$(SRCSDIR)ft_move.c $(SRCSDIR)ft_vector.c $(SRCSDIR)ft_tri.c \
 				$(SRCSDIR)ft_newmap.c $(SRCSDIR)ft_verif_map.c $(SRCSDIR)ft_bmp.c \
 				$(SRCSDIR)ft_set_texture.c $(SRCSDIR)ft_verif_color.c $(SRCSDIR)main.c \
-				$(SRCSDIR)ft_verif_window.c
+				$(SRCSDIR)ft_verif_window.c $(SRCSDIR)ft_stop.c
 
 HEADER		= 	$(INCLUDESDIR)cub3d.h
 
