@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:43:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 13:46:47 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/02 12:40:39 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ void	ft_bmp(t_struct *info)
 	ft_header_img(info);
 	ft_screen(info);
 	close(info->fd);
-	ft_error(0, info);
+	ft_error(5, info);
 }
