@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:43:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/02 12:40:39 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/02 12:54:53 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_size(char *str, int size)
 {
-	str[0] = (char)(size);
-	str[1] = (char)(size >> 8);
-	str[2] = (char)(size >> 16);
-	str[3] = (char)(size >> 24);
+	str[0] = (unsigned char)(size);
+	str[1] = (unsigned char)(size >> 8);
+	str[2] = (unsigned char)(size >> 16);
+	str[3] = (unsigned char)(size >> 24);
 }
 
 void	ft_screen(t_struct *info)
@@ -72,7 +72,7 @@ void	ft_header_img(t_struct *info)
 	ft_size(header, 40);
 	ft_size(header + 4, info->x);
 	ft_size(header + 8, info->y);
-	header[12] = (char)1;
+	header[12] = (unsigned char)1;
 	ft_size(header + 14, 24);
 	if (write(info->fd, header, 40) < 0)
 		ft_error(4, info);
