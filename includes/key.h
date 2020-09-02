@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 16:57:42 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/11 16:58:08 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/02 09:39:09 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define KEY_H
 # define KEYPRESS 2
 # define KEYRELEASE 3
-# define DESTROYNOTIFY 17
+# define DESTROYNOTIFY 33
 # define KEYPRESSMASK 1
 # define KEYRELEASEMASK 10
 # define STRUCTNOTIFYMASK 131072

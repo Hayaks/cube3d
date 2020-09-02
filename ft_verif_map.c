@@ -6,7 +6,7 @@
 /*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:16:48 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/08/19 09:49:43 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/02 09:43:06 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_verif_map(t_struct *info)
 	size_t	i;
 	size_t	j;
 
-	i = 0;
 	j = 1;
 	while (j < (size_t)(info->i - 1))
 	{
