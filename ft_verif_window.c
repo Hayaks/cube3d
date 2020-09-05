@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_verif_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/17 09:53:58 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/08/17 10:16:30 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/05 11:50:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,6 @@ void	ft_verif_window(t_struct *info, t_mlx *mlx)
 	info->y = (info->y < (sizey / 2)) ? (sizey / 2) : info->y;
 	info->x = (info->x > sizex) ? sizex : info->x;
 	info->y = (info->y > sizey) ? sizey : info->y;
+	mlx->perp = malloc(sizeof(float) * (sizex));
+	ft_bzero(mlx->perp, sizeof(float) * sizex);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_update.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:16:16 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:16:17 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/05 12:47:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		ft_update(t_struct *info)
 {
 	ft_move(info);
 	ft_rotate(info->mlx);
+	mlx_destroy_image(info->mlx->init, info->mlx->img);
+	info->mlx->img = mlx_new_image(info->mlx->init, info->x, info->y);
 	ft_bzero(info->d->img, sizeof(*info->d->img) * (info->x * info->y));
 	ft_draw(info, info->mlx, info->d);
 	return (0);

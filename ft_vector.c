@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:16:40 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/03/09 14:16:43 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/05 12:44:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_hauteur(t_struct *info, t_draw *d)
 	if (d->start < 0)
 		d->start = 0;
 	if (d->end >= info->y)
-		d->end = info->y - 1;
+		d->end = info->y;
 	d->y = d->start;
 }
 

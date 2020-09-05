@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:11:46 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/08/17 20:09:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/05 12:50:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_transparent(int *img, int pixel, t_struct *info)
 	f = ft_atoi(info->f);
 	while (i < pixel)
 	{
-		if (img[i] == 0 && i <= (pixel / 2))
+		if (img[i] == 0 && i < (pixel / 2))
 			img[i] = c;
 		if (img[i] == 0 && i > (pixel / 2))
 			img[i] = f;
@@ -74,7 +74,7 @@ void	ft_wall(t_struct *info, t_draw *d)
 
 void	ft_floor(t_struct *info, t_mlx *mlx, t_draw *d)
 {
-	while (d->y < info->y - 1)
+	while (d->y < info->y)
 	{
 		d->currentdist = info->y / (2.0 * d->y - info->y);
 		d->weight = d->currentdist / d->perpwalldist;
