@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:11:46 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/05 12:50:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/07 15:51:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_draw(t_struct *info, t_mlx *mlx, t_draw *d)
 {
 	d->x = 0;
 	d->img = ft_imgaddr(mlx->img);
-	while (d->x <= info->x)
+	while (d->x < info->x)
 	{
 		ft_init_draw(info, mlx, d);
 		ft_vector(info, mlx, d);
