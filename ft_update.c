@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:16:16 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/05 12:47:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/07 17:48:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_rotate(t_mlx *mlx)
 	float	tempdirx;
 	float	tempplanex;
 
-	v = 0.05;
+	v = 0.15;
 	if (mlx->rightr == 1)
 	{
 		tempdirx = mlx->dirx;

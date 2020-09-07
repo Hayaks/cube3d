@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:11:46 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/07 15:51:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/07 17:17:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_draw(t_struct *info, t_mlx *mlx, t_draw *d)
 
 void	ft_wall(t_struct *info, t_draw *d)
 {
-	while (d->y <= d->end)
+	while (d->y < d->end)
 	{
 		d->texy = (d->y * 2 - info->y + d->hauteurligne)
 		* (64 / 2) / d->hauteurligne;

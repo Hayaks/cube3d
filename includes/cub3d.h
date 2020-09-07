@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 13:14:24 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/07 15:47:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/07 17:23:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,13 @@ typedef struct	s_mlx
 
 typedef struct	s_text
 {
+	void		*nop;
+	void		*sop;
+	void		*wep;
+	void		*eap;
+	void		*sp;
+	void		*cp;
+	void		*fp;
 	int			*no;
 	int			nox;
 	int			noy;

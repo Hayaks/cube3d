@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/07 16:27:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/07 17:47:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,18 @@ void	ft_free_s(t_struct *info)
 	free(info->sprites);
 }
 
-void	ft_free_text(t_text *text)
+void	ft_free_text(t_text *text, t_mlx *mlx)
 {
+	mlx_destroy_image(mlx->init, text->nop);
+	mlx_destroy_image(mlx->init, text->sop);
+	mlx_destroy_image(mlx->init, text->wep);
+	mlx_destroy_image(mlx->init, text->eap);
+	mlx_destroy_image(mlx->init, text->sp);
+	if (BONUS == 1)
+	{
+		mlx_destroy_image(mlx->init, text->cp);
+		mlx_destroy_image(mlx->init, text->fp);
+	}
 	free(text);
 }
 
@@ -89,7 +99,7 @@ int		ft_error(int i, t_struct *info)
 	free(info->sp);
 	free(info->d);
 	ft_free_s(info);
-	ft_free_text(info->text);
+	ft_free_text(info->text, info->mlx);
 	ft_free_mlx(info->mlx, i);
 	ft_free_info(info);
 	free(info);
