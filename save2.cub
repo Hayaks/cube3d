@@ -1,5 +1,5 @@
 R 20000 20000
-NO                ./srcs/textures/BRICK4.xpm 
+NO                ./srcs/textures/BRICK4.xpm
 SO        ./srcs/textures/BSTONE1.xpm
 WE ./srcs/textures/BRICK7.xpm
 EA ./srcs/textures/BRICKLIT.xpm

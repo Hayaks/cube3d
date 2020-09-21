@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/21 18:32:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/21 19:06:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,24 @@ void	ft_free_s(t_struct *info)
 
 void	ft_free_text(t_text *text, t_mlx *mlx, int i)
 {
-	if(i == 5)
+	if(i == 4 || i == 5 || i == 6)
 	{
-	mlx_destroy_image(mlx->init, text->nop);
-	mlx_destroy_image(mlx->init, text->sop);
-	mlx_destroy_image(mlx->init, text->wep);
-	mlx_destroy_image(mlx->init, text->eap);
-	mlx_destroy_image(mlx->init, text->sp);
+	if (text->nop != NULL)
+		mlx_destroy_image(mlx->init, text->nop);
+	if (text->sop != NULL)
+		mlx_destroy_image(mlx->init, text->sop);
+	if (text->wep != NULL)
+		mlx_destroy_image(mlx->init, text->wep);
+	if (text->eap != NULL)
+		mlx_destroy_image(mlx->init, text->eap);
+	if (text->sp != NULL)
+		mlx_destroy_image(mlx->init, text->sp);
 	if (BONUS == 1)
 	{
-		mlx_destroy_image(mlx->init, text->cp);
-		mlx_destroy_image(mlx->init, text->fp);
+		if (text->cp != NULL)
+			mlx_destroy_image(mlx->init, text->cp);
+		if (text->fp != NULL)
+			mlx_destroy_image(mlx->init, text->fp);
 	}
 	}
 	free(text);
@@ -77,7 +84,7 @@ void	ft_free_mlx(t_mlx *mlx, int i)
 {
 	if (mlx->perp != NULL)
 		free(mlx->perp);
-	if (i == 4 || i == 5)
+	if (i == 6 || i == 4 || i == 5)
 	{
 		mlx_destroy_image(mlx->init, mlx->img);
 		mlx_destroy_window(mlx->init, mlx->window);
@@ -90,7 +97,7 @@ int		ft_error(int i, t_struct *info)
 {
 	if (i > 0 && i != 5)
 		write(1, "Erreur\n", 8);
-	if (i < 0 || i > 5)
+	if (i < 0 || i > 6)
 		exit(0);
 	if (i == 1)
 		write(1, "Probleme de malloc\n", 20);
@@ -100,6 +107,8 @@ int		ft_error(int i, t_struct *info)
 		write(1, "Mauvais argument\n", 18);
 	if (i == 4)
 		write(1, "BMP\n", 5);
+	if (i == 6)
+		write(1, "Mauvaise texture\n", 18);
 	free(info->sp);
 	free(info->d);
 	ft_free_s(info);
