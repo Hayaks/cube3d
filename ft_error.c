@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/11 12:24:47 by jsaguez          ###   ########.fr       */
+/*   Updated: 2020/09/21 16:44:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_free_mlx(t_mlx *mlx, int i)
 {
 	if (mlx->perp != NULL)
 		free(mlx->perp);
-	if (i == 5)
+	if (i == 4 || i == 5)
 	{
 		mlx_destroy_image(mlx->init, mlx->img);
 		mlx_destroy_window(mlx->init, mlx->window);
