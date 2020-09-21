@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/21 16:44:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/21 18:32:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_free_mlx(t_mlx *mlx, int i)
 	{
 		mlx_destroy_image(mlx->init, mlx->img);
 		mlx_destroy_window(mlx->init, mlx->window);
+		free(mlx->init);
 	}
 	free(mlx);
 }
