@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/21 19:06:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/22 09:25:45 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,25 @@ void	ft_free_s(t_struct *info)
 
 void	ft_free_text(t_text *text, t_mlx *mlx, int i)
 {
-	if(i == 4 || i == 5 || i == 6)
+	if (i == 4 || i == 5 || i == 6)
 	{
-	if (text->nop != NULL)
-		mlx_destroy_image(mlx->init, text->nop);
-	if (text->sop != NULL)
-		mlx_destroy_image(mlx->init, text->sop);
-	if (text->wep != NULL)
-		mlx_destroy_image(mlx->init, text->wep);
-	if (text->eap != NULL)
-		mlx_destroy_image(mlx->init, text->eap);
-	if (text->sp != NULL)
-		mlx_destroy_image(mlx->init, text->sp);
-	if (BONUS == 1)
-	{
-		if (text->cp != NULL)
-			mlx_destroy_image(mlx->init, text->cp);
-		if (text->fp != NULL)
-			mlx_destroy_image(mlx->init, text->fp);
-	}
+		if (text->nop != NULL)
+			mlx_destroy_image(mlx->init, text->nop);
+		if (text->sop != NULL)
+			mlx_destroy_image(mlx->init, text->sop);
+		if (text->wep != NULL)
+			mlx_destroy_image(mlx->init, text->wep);
+		if (text->eap != NULL)
+			mlx_destroy_image(mlx->init, text->eap);
+		if (text->sp != NULL)
+			mlx_destroy_image(mlx->init, text->sp);
+		if (BONUS == 1)
+		{
+			if (text->cp != NULL)
+				mlx_destroy_image(mlx->init, text->cp);
+			if (text->fp != NULL)
+				mlx_destroy_image(mlx->init, text->fp);
+		}
 	}
 	free(text);
 }

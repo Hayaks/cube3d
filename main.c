@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jsaguez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:40:04 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/05 12:48:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/22 10:29:52 by jsaguez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	ft_map(int ret, int fd, char *line, t_struct *info)
 	int	i;
 
 	i = 0;
-	info->nb = 0;
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		ft_parsing(line, info);
 		free(line);
 	}
+	if (ret == -1)
+		ft_error(3, info);
 	ft_parsing(line, info);
 	free(line);
 	ft_verif_map(info);
 	while (info->map[0][i] &&
 	(info->map[0][i] == '1' || info->map[0][i] == ' '))
 		i++;
-	if (info->map[0][i] && (info->map[0][i] != '1' ||
-	info->map[0][i] != ' '))
+	if (info->map[0][i] && (info->map[0][i] != '1' || info->map[0][i] != ' '))
 		ft_error(2, info);
 	i = 0;
 	while (info->map[info->i - 1][i] &&
@@ -50,6 +50,7 @@ void	ft_mlx(t_struct *info, char **av)
 
 	ret = 0;
 	line = NULL;
+	info->nb = 0;
 	fd = open(av[1], O_RDONLY);
 	ft_map(ret, fd, line, info);
 	close(fd);
@@ -113,7 +114,7 @@ int		main(int ac, char **av)
 
 	info = NULL;
 	if (ac < 2 || ac > 3)
-		ft_error(6, info);
+		ft_error(7, info);
 	if (!(info = malloc(sizeof(t_struct))))
 		ft_error(1, info);
 	ft_bzero(info, sizeof(t_struct));
