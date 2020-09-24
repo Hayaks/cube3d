@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:43:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/24 13:13:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 13:39:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void	ft_bmp(t_struct *info)
 	ft_header_img(info);
 	ft_screen(info);
 	close(info->fd);
-	ft_error(4, info);
+	ft_error(8, info);
 }
