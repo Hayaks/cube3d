@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:12:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/23 20:46:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 13:18:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	ft_free_mlx(t_mlx *mlx, int i)
 	if (i == 6 || i == 4 || i == 5)
 	{
 		mlx_destroy_image(mlx->init, mlx->img);
-		mlx_destroy_window(mlx->init, mlx->window);
+		if (i != 4)
+			mlx_destroy_window(mlx->init, mlx->window);
 		free(mlx->init);
 	}
 	free(mlx);
@@ -95,7 +96,7 @@ void	ft_free_mlx(t_mlx *mlx, int i)
 
 int		ft_error(int i, t_struct *info)
 {
-	if (i > 0 && i != 5)
+	if (i > 0 && i != 4 && i != 5)
 		write(1, "Erreur\n", 8);
 	if (i < 0 || i > 6)
 		exit(0);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 13:43:03 by jsaguez           #+#    #+#             */
-/*   Updated: 2020/09/23 20:46:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 13:13:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,12 @@ void	ft_header_img(t_struct *info)
 
 void	ft_bmp(t_struct *info)
 {
+	mlx_destroy_window(info->mlx->init, info->mlx->window);
 	if ((info->fd = open(BMP, O_CREAT | O_WRONLY, 0777)) < 0)
 		ft_error(4, info);
 	ft_header_file(info);
 	ft_header_img(info);
 	ft_screen(info);
 	close(info->fd);
-	ft_error(5, info);
+	ft_error(4, info);
 }
